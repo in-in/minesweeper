@@ -1,0 +1,13 @@
+pre-commit:
+  skip:
+    - ref: gh-pages, main
+  parallel: true
+  commands:
+    pug-linter:
+      root: "shelter/"
+      glob: "*.pug"
+      run: npx pug-lint -c .config/.pug-lintrc.json {staged_files}
+    stylelint:
+      root: "shelter/"
+      glob: "*.scss"
+      run: npx stylelint --max-warnings=0 --fix {staged_files} && git add {staged_files}
