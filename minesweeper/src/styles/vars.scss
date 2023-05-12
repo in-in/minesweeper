@@ -1,0 +1,21 @@
+$size-font-base: 16;
+$typography-family-main: 'Roboto', sans-serif;
+$typography-weight-regular: 400;
+$typography-weight-bold: 700;
+$color-crystal: rgb(255 255 255 / 0%);
+$color-light: #fafafa;
+$color-dark: #333;
+$color-key-default: #868e96;
+$color-key-modifier: #343a40;
+$color-accent: #15aabf;
+$time-base: 0.4s;
+$time-short: 0.1s;
+$size-border-radius: 4px;
+$easing-base: ease-in-out;
+$breakpoint: (
+  's': 320,
+  'm': 768,
+  'l': 1280,
+  'start': 320,
+  'end': 1280,
+);

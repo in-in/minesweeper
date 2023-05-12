@@ -1,0 +1,15 @@
+@use 'config' as *;
+
+.textarea {
+  display: block;
+  width: 100%;
+  max-width: 904px;
+  height: 288px;
+  padding: 8px;
+  border-radius: $size-border-radius;
+  background-color: $color-light;
+  color: $color-dark;
+  font-family: inherit;
+  font-size: 1.2em;
+  resize: none;
+}

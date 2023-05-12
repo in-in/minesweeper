@@ -1,0 +1,12 @@
+- let data = require('../../data/data.json');
+
+doctype html
+html(lang='en' dir='ltr')
+  head
+    include ../head/head.pug
+
+  body(class='layout')
+    block body
+
+    block script
+      script(src=require('@scripts/main.js') defer)

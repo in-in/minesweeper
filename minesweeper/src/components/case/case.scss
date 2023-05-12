@@ -1,0 +1,13 @@
+@use 'config' as *;
+
+.case {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  border-radius: $size-border-radius;
+  background-color: $color-light;
+
+  &__row {
+    display: flex;
+  }
+}

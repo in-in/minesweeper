@@ -1,0 +1,66 @@
+@use 'sass:string';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'functions' as *;
+@use 'vars' as *;
+
+@mixin container() {
+  width: 100%;
+  max-width: rem($grid-max-width);
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  padding-right: rem(10);
+  padding-left: rem(10);
+
+  @include breakpoint(m) {
+    padding-right: rem(30);
+    padding-left: rem(30);
+  }
+
+  @include breakpoint(l) {
+    padding-right: rem(40);
+    padding-left: rem(40);
+  }
+}
+
+@mixin hover($selector: null, $combinator: ' ') {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover#{$combinator}#{$selector} {
+      @content;
+    }
+  }
+}
+
+@mixin active() {
+  &:active {
+    @content;
+  }
+}
+
+@mixin transition(
+  $prop: all,
+  $duration: $time-base,
+  $timing: $easing-base) {
+  transition-property: string.unquote($prop);
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
+@mixin button-hover() {
+  border-color: $color-primary-light;
+  background-color: $color-primary-light;
+}
+
+@mixin breakpoint($size, $operator: '>=') {
+  @if map.get($breakpoint, $size) {
+    @media (width $operator map.get($breakpoint, $size) + px) {
+      @content;
+    }
+  } @else if meta.type-of($size) == 'number' {
+    @media (width $operator $size + px) {
+      @content;
+    }
+  } @else {
+    @error 'Unknown size: #{$size}';
+  }
+}

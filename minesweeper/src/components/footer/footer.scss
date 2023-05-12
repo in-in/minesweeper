@@ -1,0 +1,14 @@
+@use 'config' as *;
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  &__text {
+    color: $color-light;
+    font-size: 1em;
+  }
+}

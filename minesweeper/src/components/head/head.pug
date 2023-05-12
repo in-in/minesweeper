@@ -1,0 +1,9 @@
+block head
+  - let title = 'Virtual Keyboard';
+
+  include ../meta/meta.pug
+
+  link(rel='icon' href=require('@images/favicon.svg') type='image/svg+xml' sizes='any')
+  link(rel='stylesheet' href=require('@styles/styles.scss'))
+
+  title= pageTitle ? `${title} | ${pageTitle}` : title
