@@ -1,9 +1,12 @@
 extends ../components/layout/layout.pug
 
 include ../components/field/field.pug
+include ../components/cell/cell.pug
 
 prepend head
 	- let pageTitle = '';
 
 block body
 	+field()
+		each item in Array(625)
+			+cell
