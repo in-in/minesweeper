@@ -75,6 +75,7 @@ module.exports = {
 
 		// stylelint-stylistic
 		'stylistic/string-quotes': 'single',
+		'stylistic/indentation': 'tab',
 		'stylistic/declaration-colon-space-after': 'always-single-line',
 		'stylistic/block-closing-brace-newline-after': [
 			'always',
