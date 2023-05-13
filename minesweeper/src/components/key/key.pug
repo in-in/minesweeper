@@ -1,4 +1,0 @@
-mixin key(data)
-  - let {value, size, type} = data
-  div(class='key' style=`--ratio: ${size};`)&attributes(attributes)
-    button(class=`key__button key__button--${type}`)!= value

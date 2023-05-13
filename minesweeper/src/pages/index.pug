@@ -1,11 +1,9 @@
 extends ../components/layout/layout.pug
 
-include ../components/case/case.pug
-include ../components/key/key.pug
-include ../components/textarea/textarea.pug
-include ../components/footer/footer.pug
+include ../components/field/field.pug
 
 prepend head
-  - let pageTitle = '';
+	- let pageTitle = '';
 
 block body
+	+field()
