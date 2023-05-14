@@ -1,4 +1,4 @@
 mixin level()
 	div(class='level')&attributes(attributes)
 		each val, key in data.level
-			button(data-level=val class='button')!= key
+			+button({text: key}, 'primary')(class='level_button')(data-level=val)

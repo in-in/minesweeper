@@ -1,0 +1,36 @@
+@use 'config' as *;
+
+.button {
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	padding: rem(10) rem(20);
+	color: $color-dark-3xl;
+	font-size: rem(16);
+	font-weight: $typography-weight-regular;
+	line-height: 1;
+	cursor: pointer;
+
+	@include transition('background-color, border-color');
+
+	@include hover() {
+		@include button-hover();
+	}
+
+	@include active();
+
+	&__primary {
+		background-color: $color-primary;
+	}
+
+	&__plain {
+		background-color: $color-crystal;
+	}
+
+	&__disabled {
+		border-color: $color-dark-s;
+		color: $color-dark-s;
+		pointer-events: none;
+	}
+}
