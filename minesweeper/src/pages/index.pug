@@ -4,6 +4,7 @@ include ../components/wrapper/wrapper.pug
 include ../components/dashboard/dashboard.pug
 include ../components/field/field.pug
 include ../components/cell/cell.pug
+include ../components/level/level.pug
 
 prepend head
 	- let pageTitle = '';
@@ -14,3 +15,4 @@ block body
 		+field()
 			each item in Array(625)
 				+cell
+		+level()
