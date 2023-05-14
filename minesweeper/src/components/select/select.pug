@@ -1,0 +1,5 @@
+mixin select()
+	select(class='select' name='mines')&attributes(attributes)
+		- let range = Array.from({length: 90}, (_, i) => i + 10)
+		each n in range
+			option(value=n)!= n
