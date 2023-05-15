@@ -1,0 +1,5 @@
+mixin switch(label)
+	- let id = label.replace(/[^a-z0-9]/ig, '-')
+	div(class='switch')&attributes(attributes)
+		label(class='switch_title' for=`switch-${id}`)!= label
+		input(type='checkbox' name=`switch-${id}` id=`switch-${id}` class='switch_input')
