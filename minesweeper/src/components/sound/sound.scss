@@ -1,20 +1,21 @@
 @use 'config' as *;
 
-.range {
+.sound {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 8px;
-	font-size: 14px;
 
 	&_title {
 		text-align: center;
+		font-size: 14px;
 		line-height: 1;
 	}
 
-	&_select {
-		width: 100%;
+	&_input {
+		width: 16px;
+		height: 16px;
 		accent-color: $color-primary;
 	}
 }

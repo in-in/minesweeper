@@ -43,7 +43,9 @@ button {
 }
 
 input,
+select,
 button {
+	border: 0;
 	word-spacing: inherit;
 	letter-spacing: inherit;
 	font: inherit;
