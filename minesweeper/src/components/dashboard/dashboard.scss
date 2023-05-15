@@ -1,5 +1,7 @@
 @use 'config' as *;
 
 .dashboard {
-	border: 1px solid orangered;
+	display: flex;
+	gap: 8px;
+	padding-block: 8px;
 }
