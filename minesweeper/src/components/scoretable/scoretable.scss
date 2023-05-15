@@ -1,0 +1,28 @@
+@use 'config' as *;
+
+.scoretable {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding-block: 8px;
+
+	&_row {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 8px;
+		width: 100%;
+		padding-block: 8px;
+		border-bottom: 1px solid rgba($color: $color-light, $alpha: 50%);
+	}
+
+	&_cell {
+		text-align: center;
+		font-size: 12px;
+
+		&-title {
+			text-transform: uppercase;
+		}
+	}
+}
