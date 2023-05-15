@@ -1,0 +1,7 @@
+mixin range()
+	div(class='range')
+		span(class='range_title') mines <br> amount
+		select(class='range_select' name='mines')&attributes(attributes)
+			- let range = Array.from({length: 90}, (_, i) => i + 10)
+			each n in range
+				option(value=n)!= n

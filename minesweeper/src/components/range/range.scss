@@ -1,0 +1,19 @@
+@use 'config' as *;
+
+.range {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+
+	&_title {
+		text-align: center;
+		font-size: 14px;
+		line-height: 1;
+	}
+
+	&_select {
+		width: 100%;
+	}
+}

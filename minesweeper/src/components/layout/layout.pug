@@ -1,15 +1,15 @@
 - let data = require('../../data/data.json');
 
 include ../button/button.pug
-include ../select/select.pug
+include ../range/range.pug
 
 doctype html
 html(lang='en' dir='ltr')
-  head
-    include ../head/head.pug
+	head
+		include ../head/head.pug
 
-  body(class='layout')
-    block body
+	body(class='layout')
+		block body
 
-    block script
-      script(src=require('@scripts/main.js') defer)
+		block script
+			script(src=require('@scripts/main.js') defer)
