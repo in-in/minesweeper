@@ -1,11 +1,14 @@
 extends ../components/layout/layout.pug
 
+include ../components/button/button.pug
+include ../components/range/range.pug
 include ../components/wrapper/wrapper.pug
 include ../components/dashboard/dashboard.pug
 include ../components/field/field.pug
 include ../components/cell/cell.pug
 include ../components/level/level.pug
 include ../components/scoretable/scoretable.pug
+include ../components/timer/timer.pug
 
 prepend head
 	- let pageTitle = '';
@@ -15,6 +18,7 @@ block body
 		+dashboard()
 			+range()
 			+button({text: 'New Game'}, 'primary')
+			+timer()
 		+field()
 			each item in Array(625)
 				+cell
