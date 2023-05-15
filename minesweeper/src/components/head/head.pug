@@ -1,9 +1,9 @@
 block head
-  - let title = 'Minesweeper';
+	- let title = 'Minesweeper';
 
-  include ../meta/meta.pug
+	include ../meta/meta.pug
 
-  link(rel='icon' href=require('@images/favicon.svg') type='image/svg+xml' sizes='any')
-  link(rel='stylesheet' href=require('@styles/styles.scss'))
+	link(rel='icon' href=require('@images/favicon.svg') type='image/svg+xml' sizes='any')
+	link(rel='stylesheet' href=require('@styles/styles.scss'))
 
-  title= pageTitle ? `${title} | ${pageTitle}` : title
+	title= pageTitle ? `${title} | ${pageTitle}` : title
