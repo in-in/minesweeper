@@ -4,8 +4,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 8px;
-	border: 1px solid blueviolet;
+	gap: 16px;
+	padding-block: 8px;
 
 	&_button {
 		text-transform: capitalize;
