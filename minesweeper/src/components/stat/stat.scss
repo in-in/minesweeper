@@ -1,13 +1,15 @@
 @use 'config' as *;
 
-.timer {
+.stat {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 8px;
 
-	span {
+	&_title,
+	&_number {
+		font-variant-numeric: tabular-nums;
 		line-height: 1;
 	}
 }

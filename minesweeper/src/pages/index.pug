@@ -8,7 +8,7 @@ include ../components/field/field.pug
 include ../components/cell/cell.pug
 include ../components/level/level.pug
 include ../components/scoretable/scoretable.pug
-include ../components/timer/timer.pug
+include ../components/stat/stat.pug
 include ../components/sound/sound.pug
 
 prepend head
@@ -18,9 +18,11 @@ block body
 	+wrapper()
 		+dashboard()
 			+range()
-			+button({text: 'New Game'}, 'primary')
-			+timer()
 			+sound()
+			+button({text: 'New Game'}, 'primary')
+			+stat('timer', 555)
+			+stat('turns', 0)
+			+stat('mines', 0)
 		+field()
 			each item in Array(625)
 				+cell
