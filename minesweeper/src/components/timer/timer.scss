@@ -1,0 +1,13 @@
+@use 'config' as *;
+
+.timer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+
+	span {
+		line-height: 1;
+	}
+}
