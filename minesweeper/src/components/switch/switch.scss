@@ -5,17 +5,17 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 8px;
+	gap: em(8);
 
 	&_title {
 		text-align: center;
-		font-size: small;
+		font-size: em($size-font-small);
 		line-height: 1;
 	}
 
 	&_input {
-		width: 16px;
-		height: 16px;
+		width: em(16);
+		height: em(16);
 		accent-color: $color-primary;
 	}
 }

@@ -2,13 +2,23 @@
 
 .dashboard {
 	display: flex;
+	grid-area: dashboard;
 	justify-content: center;
-	align-items: flex-start;
-	gap: 16px;
-	padding-block: 8px;
+	align-items: start;
+	gap: em(16);
 
 	&_button {
 		align-self: stretch;
 		margin-left: auto;
+	}
+
+	@include breakpoint(m) {
+		flex-direction: column-reverse;
+		justify-content: start;
+		align-items: center;
+
+		&_button {
+			margin-left: 0;
+		}
 	}
 }

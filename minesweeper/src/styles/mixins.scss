@@ -4,25 +4,6 @@
 @use 'functions' as *;
 @use 'vars' as *;
 
-@mixin container() {
-	width: 100%;
-	max-width: rem($grid-max-width);
-	margin-inline-start: auto;
-	margin-inline-end: auto;
-	padding-right: rem(10);
-	padding-left: rem(10);
-
-	@include breakpoint(m) {
-		padding-right: rem(30);
-		padding-left: rem(30);
-	}
-
-	@include breakpoint(l) {
-		padding-right: rem(40);
-		padding-left: rem(40);
-	}
-}
-
 @mixin hover($selector: null, $combinator: ' ') {
 	@media (hover: hover) and (pointer: fine) {
 		&:hover#{$combinator}#{$selector} {

@@ -1,4 +1,6 @@
 $size-font-base: 16;
+$size-font-max: 20;
+$size-font-small: $size-font-base * 0.8;
 $typography-family-main: 'Roboto', sans-serif;
 $typography-weight-regular: 400;
 $color-crystal: rgb(255 255 255 / 0%);
@@ -19,8 +21,8 @@ $size-border-radius: 4px;
 $easing-base: ease-in-out;
 $breakpoint: (
 	's': 500,
-	'm': 768,
-	'l': 1280,
+	'm': 700,
+	'l': 1000,
 	'start': 500,
-	'end': 1280,
+	'end': 1000,
 );

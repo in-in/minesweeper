@@ -1,10 +1,7 @@
 @use 'config' as *;
 
 .cell {
-	--size: 20px;
-
-	width: var(--size);
-	height: var(--size);
-	border: 1px solid $color-dark;
+	border: em(1) solid $color-dark;
 	background-color: $color-light;
+	aspect-ratio: 1;
 }
