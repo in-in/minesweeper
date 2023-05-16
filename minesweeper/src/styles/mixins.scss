@@ -47,7 +47,7 @@
 }
 
 @mixin button-hover() {
-	filter: brightness(105%) hue-rotate(225deg);
+	filter: sepia(60%);
 }
 
 @mixin breakpoint($size, $operator: '>=') {

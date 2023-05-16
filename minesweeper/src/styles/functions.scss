@@ -13,9 +13,9 @@
 
 @function locks(
 	$size-min,
-  $size-max,
-  $viewport-min: map.get($breakpoint, 'start'),
-  $viewport-max: map.get($breakpoint, 'm'),
+	$size-max,
+	$viewport-min: map.get($breakpoint, 'start'),
+	$viewport-max: map.get($breakpoint, 'end'),
 ) {
 	$slope: math.div(($size-max - $size-min), ($viewport-max - $viewport-min));
 	$preferred-size: rem($size-max - $viewport-max * $slope);

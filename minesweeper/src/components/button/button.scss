@@ -19,7 +19,7 @@
 	}
 
 	@include active() {
-		filter: saturate(30%);
+		filter: invert(90%);
 	}
 
 	&__primary {

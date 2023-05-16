@@ -4,7 +4,7 @@ $typography-weight-regular: 400;
 $color-crystal: rgb(255 255 255 / 0%);
 $color-light: #fafafa;
 $color-dark: #333;
-$color-primary: #96f2d7;
+$color-primary: #f1f3f5;
 $color-light-xl: #fff;
 $color-light-l: #f6f6f6;
 $color-light-s: #fafafa;
@@ -13,14 +13,14 @@ $color-dark-3xl: #292929;
 $color-dark-s: #cdcdcd;
 $color-dark-m: #b2b2b2;
 $color-dark-xl: #4c4c4c;
-$time-base: 0.4s;
+$time-base: 0.2s;
 $time-short: 0.1s;
 $size-border-radius: 4px;
 $easing-base: ease-in-out;
 $breakpoint: (
-	's': 320,
+	's': 500,
 	'm': 768,
 	'l': 1280,
-	'start': 320,
+	'start': 500,
 	'end': 1280,
 );
