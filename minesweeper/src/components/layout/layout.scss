@@ -7,8 +7,9 @@
 	align-items: center;
 	width: 100%;
 	padding: 16px;
-	background-color: #333;
+	background-color: $color-dark;
 	color: $color-light;
 	font-family: $typography-family-main;
+	font-size: 16px;
 	font-weight: 400;
 }

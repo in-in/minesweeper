@@ -5,6 +5,6 @@
 
 	width: var(--size);
 	height: var(--size);
-	border: 1px solid #000;
-	background-color: #0ff;
+	border: 1px solid $color-dark;
+	background-color: $color-light;
 }

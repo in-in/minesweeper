@@ -39,16 +39,15 @@
 
 @mixin transition(
 	$prop: all,
-  $duration: $time-base,
-  $timing: $easing-base) {
+	$duration: $time-base,
+	$timing: $easing-base) {
 	transition-property: string.unquote($prop);
 	transition-duration: $duration;
 	transition-timing-function: $timing;
 }
 
 @mixin button-hover() {
-	border-color: $color-primary-light;
-	background-color: $color-primary-light;
+	filter: brightness(105%) hue-rotate(225deg);
 }
 
 @mixin breakpoint($size, $operator: '>=') {
