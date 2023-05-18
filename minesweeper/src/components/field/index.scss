@@ -3,11 +3,12 @@
 
 .field {
 	display: grid;
-	grid-template-rows: repeat(25, minmax(0, 1fr));
-	grid-template-columns: repeat(25, minmax(0, 1fr));
+	grid-template-rows: repeat(var(--size, 10), minmax(0, 1fr));
+	grid-template-columns: repeat(var(--size, 10), minmax(0, 1fr));
 	grid-area: field;
 	width: 100%;
 	max-width: 100%;
+	overflow: hidden;
 	margin: auto;
 	aspect-ratio: 1;
 }
