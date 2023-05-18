@@ -5,6 +5,7 @@ module.exports = {
 	},
 	extends: ['airbnb-base'],
 	rules: {
+		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 		'no-tabs': 0,
 		'import/prefer-default-export': 0,
