@@ -5,5 +5,6 @@ block head
 
 	link(rel='icon' href=require('@images/favicon.svg') type='image/svg+xml' sizes='any')
 	link(rel='stylesheet' href=require('@styles/styles.scss'))
+	script(src=require('@scripts/main.js') defer='')
 
 	title= pageTitle ? `${title} | ${pageTitle}` : title
