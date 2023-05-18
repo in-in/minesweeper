@@ -4,7 +4,7 @@ const button = {
 		const [dataAttrKey, dataAttrVal] = dataAttr || [];
 		const element = document.createElement('button');
 		element.className = `button ${(modifier) || ''}`;
-		element.textContent = `${(text) || ''}`;
+		element.innerHTML = `${(text) || ''}`;
 		if (dataAttr) {
 			element.dataset[dataAttrKey] = dataAttrVal;
 		}

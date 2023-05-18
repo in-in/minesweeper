@@ -15,15 +15,3 @@ prepend head
 	- let pageTitle = '';
 
 block body
-	//- +wrapper()
-		+dashboard()
-			+range()
-			+toggle('sound')
-			+toggle('day/night')
-			+stat('timer', 555)
-			+stat('turns', 0)
-			+stat('mines', 0)
-			+button({text: 'New<br>Game'}, 'primary')(class='dashboard_button')
-		+field()
-		+level()
-		+scoretable()
