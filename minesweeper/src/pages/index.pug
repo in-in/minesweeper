@@ -9,7 +9,7 @@ include ../components/cell/index.pug
 include ../components/level/index.pug
 include ../components/scoretable/index.pug
 include ../components/stat/index.pug
-include ../components/switch/index.pug
+include ../components/toggle/index.pug
 
 prepend head
 	- let pageTitle = '';
@@ -18,8 +18,8 @@ block body
 	//- +wrapper()
 		+dashboard()
 			+range()
-			+switch('sound')
-			+switch('day/night')
+			+toggle('sound')
+			+toggle('day/night')
 			+stat('timer', 555)
 			+stat('turns', 0)
 			+stat('mines', 0)
