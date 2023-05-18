@@ -4,6 +4,9 @@ module.exports = {
 		node: true,
 	},
 	extends: ['airbnb-base'],
+	parserOptions: {
+		ecmaVersion: 'latest',
+	},
 	rules: {
 		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 		indent: ['error', 'tab', { SwitchCase: 1 }],
