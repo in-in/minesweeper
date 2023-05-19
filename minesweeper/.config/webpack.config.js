@@ -73,6 +73,7 @@ const config = {
 	mode: isDev ? 'development' : 'production',
 	entry: {
 		index: join(PATHS.src, 'pages/index.pug'),
+		main: join(PATHS.scripts, 'main.js'),
 	},
 	output: {
 		path: PATHS.dist,
