@@ -1,4 +1,4 @@
-import { state } from '../../scripts/store/state';
+import { state } from '@state/state';
 
 const cell = {
 	render(container) {

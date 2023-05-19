@@ -1,5 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const { join } = require('path');
+const { join } = require('node:path');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const PugPlugin = require('pug-plugin');
@@ -86,6 +85,9 @@ const config = {
 			'@scripts': PATHS.scripts,
 			'@styles': PATHS.styles,
 			'@fonts': PATHS.fonts,
+			'@state': PATHS.state,
+			'@components': PATHS.components,
+			'@data': PATHS.data,
 		},
 	},
 	plugins: [

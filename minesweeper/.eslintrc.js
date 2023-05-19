@@ -7,6 +7,13 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 'latest',
 	},
+	settings: {
+		'import/resolver': {
+			webpack: {
+				config: './.config/webpack.config.js',
+			},
+		},
+	},
 	rules: {
 		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 		indent: ['error', 'tab', { SwitchCase: 1 }],

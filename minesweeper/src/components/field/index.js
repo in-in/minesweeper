@@ -1,5 +1,5 @@
-import { state } from '../../scripts/store/state';
-import { cell } from '../cell';
+import { state } from '@state/state';
+import { cell } from '@components/cell';
 
 const field = {
 	render(container) {

@@ -1,7 +1,7 @@
-import { range } from '../range';
-import { toggle } from '../toggle';
-import { stat } from '../stat';
-import { button } from '../button';
+import { range } from '@components/range';
+import { toggle } from '@components/toggle';
+import { stat } from '@components/stat';
+import { button } from '@components/button';
 
 const dashboard = {
 	render(container) {

@@ -1,5 +1,5 @@
-import data from '../../data/data.json';
-import { button } from '../button';
+import { button } from '@components/button';
+import data from '@data/data.json';
 
 const level = {
 	render(container) {

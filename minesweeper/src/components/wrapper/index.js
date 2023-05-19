@@ -1,7 +1,7 @@
-import { dashboard } from '../dashboard';
-import { field } from '../field';
-import { level } from '../level';
-import { scoretable } from '../scoretable';
+import { dashboard } from '@components/dashboard';
+import { field } from '@components/field';
+import { level } from '@components/level';
+import { scoretable } from '@components/scoretable';
 
 const wrapper = {
 	render(container) {
