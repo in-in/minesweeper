@@ -4,12 +4,12 @@ import { level } from '@components/level';
 import { scoretable } from '@components/scoretable';
 
 const wrapper = {
-	render(container) {
+	render(container, state) {
 		const element = document.createElement('div');
 		element.className = 'wrapper';
 
 		dashboard.render(element);
-		field.render(element);
+		field.render(element, state);
 		level.render(element);
 		scoretable.render(element);
 

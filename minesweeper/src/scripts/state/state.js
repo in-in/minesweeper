@@ -1,65 +1,60 @@
-const state = {
-	field: 10,
-};
+import { Store } from './store';
+import { initialState } from './initialState';
 
-export { state };
+class State {
+	constructor(name) {
+		// this.itemId = 1;
+		// this.form = {
+		// 	focus: false,
+		// 	valid: false,
+		// };
+		this.state = initialState;
+		this.store = new Store(name);
 
-// import { Store } from './store';
+		if (this.store.isStorageAvailable) {
+			this.state = this.store.load(initialState);
+		}
 
-// class State {
-// 	constructor(name) {
-// 		this.itemId = 1;
-// 		this.form = {
-// 			focus: false,
-// 			valid: false,
-// 		};
-// 		this.items = [];
-// 		this.store = new Store(name);
+		// this.orderItems();
+	}
 
-// 		if (this.store.islocalStorageAvailable) {
-// 			this.items = this.store.load();
-// 		}
+	// saveItems() {
+	// 	if (this.store.isStorageAvailable) {
+	// 		this.store.save(this.items);
+	// 	}
+	// }
 
-// 		this.orderItems();
-// 	}
+	// addItem(item) {
+	// 	this.items.unshift({
+	// 		id: this.itemId + 1,
+	// 		status: 0,
+	// 		value: item,
+	// 	});
+	// 	this.saveItems();
+	// }
 
-// 	saveItems() {
-// 		if (this.store.islocalStorageAvailable) {
-// 			this.store.save(this.items);
-// 		}
-// 	}
+	// orderItems() {
+	// 	const todo = this.items.filter((item) => item.status === 0);
+	// 	const done = this.items.filter((item) => item.status === 1);
+	// 	this.items = todo.concat(done);
+	// }
 
-// 	addItem(item) {
-// 		this.items.unshift({
-// 			id: this.itemId + 1,
-// 			status: 0,
-// 			value: item,
-// 		});
-// 		this.saveItems();
-// 	}
+	// findItemIndex(id) {
+	// 	return this.items.findIndex((item) => item.id === id);
+	// }
 
-// 	orderItems() {
-// 		const todo = this.items.filter((item) => item.status === 0);
-// 		const done = this.items.filter((item) => item.status === 1);
-// 		this.items = todo.concat(done);
-// 	}
+	// deleteItem(id) {
+	// 	const itemIndex = this.findItemIndex(id);
+	// 	this.items.splice(itemIndex, 1);
+	// 	this.saveItems();
+	// }
 
-// 	findItemIndex(id) {
-// 		return this.items.findIndex((item) => item.id === id);
-// 	}
+	// toggleItemStatus(id) {
+	// 	const itemIndex = this.findItemIndex(id);
+	// 	this.items[itemIndex].status = this.items[itemIndex].status ? 0 : 1;
+	// 	this.orderItems();
+	// 	this.saveItems();
+	// }
+}
 
-// 	deleteItem(id) {
-// 		const itemIndex = this.findItemIndex(id);
-// 		this.items.splice(itemIndex, 1);
-// 		this.saveItems();
-// 	}
-
-// 	toggleItemStatus(id) {
-// 		const itemIndex = this.findItemIndex(id);
-// 		this.items[itemIndex].status = this.items[itemIndex].status ? 0 : 1;
-// 		this.orderItems();
-// 		this.saveItems();
-// 	}
-// }
-
-// export { State };
+export { State };

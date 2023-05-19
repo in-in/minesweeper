@@ -1,13 +1,13 @@
-import { state } from '@state/state';
 import { cell } from '@components/cell';
 
 const field = {
-	render(container) {
+	render(container, state) {
 		const element = document.createElement('div');
 		element.className = 'field';
-		element.setAttribute('style', `--size: ${state.field};`);
+		element.setAttribute('style', `--size: ${state.state.field};`);
+		console.log('fff', state);
 
-		cell.render(element);
+		cell.render(element, state);
 
 		container.appendChild(element);
 	},

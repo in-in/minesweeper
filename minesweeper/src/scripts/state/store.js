@@ -1,25 +1,25 @@
 class Store {
 	constructor(name) {
-		let islocalStorageAvailable;
+		let isStorageAvailable;
 		try {
 			window.localStorage.setItem('test', 'test');
 			window.localStorage.removeItem('test');
-			islocalStorageAvailable = true;
+			isStorageAvailable = true;
 		} catch (e) {
-			islocalStorageAvailable = false;
+			isStorageAvailable = false;
 		}
 		this.name = btoa(name);
-		this.islocalStorageAvailable = islocalStorageAvailable;
+		this.isStorageAvailable = isStorageAvailable;
 	}
 
-	save(items) {
-		const json = JSON.stringify(items);
+	save(state) {
+		const json = JSON.stringify(state);
 		window.localStorage.setItem(this.name, json);
 	}
 
-	load() {
-		const items = window.localStorage.getItem(this.name);
-		return (items && items.length) ? JSON.parse(items) : [];
+	load(initialState) {
+		const state = window.localStorage.getItem(this.name);
+		return (state && state.length) ? JSON.parse(state) : initialState;
 	}
 }
 
