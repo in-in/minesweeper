@@ -51,7 +51,7 @@ const images = {
 	resourceQuery: { not: [/inline/] },
 	type: 'asset/resource',
 	generator: {
-		filename: 'images/[name]_[hash:5][ext]',
+		filename: 'assets/images/[name].[contenthash:8][ext]',
 	},
 };
 
@@ -65,7 +65,7 @@ const fonts = {
 	test: /\.(woff2|woff)$/i,
 	type: 'asset/resource',
 	generator: {
-		filename: '[name][ext]',
+		filename: 'assets/fonts/[name].[contenthash:8][ext]',
 	},
 };
 
@@ -73,7 +73,6 @@ const config = {
 	mode: isDev ? 'development' : 'production',
 	entry: {
 		index: join(PATHS.src, 'pages/index.pug'),
-		main: join(PATHS.scripts, 'main.js'),
 	},
 	output: {
 		path: PATHS.dist,
@@ -93,6 +92,12 @@ const config = {
 	plugins: [
 		new PugPlugin({
 			pretty: true,
+			js: {
+				filename: '[name].[contenthash:8].js',
+			},
+			css: {
+				filename: '[name].[contenthash:8].css',
+			},
 		}),
 		new StylelintPlugin({
 			files: '**/*.(scss)',

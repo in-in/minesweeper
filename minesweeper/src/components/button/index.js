@@ -8,6 +8,11 @@ const button = {
 		if (dataAttr) {
 			element.dataset[dataAttrKey] = dataAttrVal;
 		}
+
+		element.addEventListener('click', (ev) => {
+			console.log(ev);
+		});
+
 		container.appendChild(element);
 	},
 };
