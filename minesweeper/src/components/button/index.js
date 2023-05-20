@@ -8,7 +8,7 @@ const button = {
 
 		if (dataAttr) {
 			element.dataset[dataAttrKey] = dataAttrVal;
-			if (+dataAttrVal === +state.state.level) {
+			if (+dataAttrVal === +state.currentState.level) {
 				element.classList.add('button__active');
 			}
 		}
@@ -19,7 +19,7 @@ const button = {
 				target.parentNode.querySelectorAll('[data-level]')
 					.forEach((el) => el.classList.remove('button__active'));
 				target.classList.add('button__active');
-				state.changeLevel(target.dataset.level);
+				state.changeLevel(Number(target.dataset.level));
 			}
 		});
 

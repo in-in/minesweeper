@@ -9,20 +9,32 @@ class State {
 		// 	focus: false,
 		// 	valid: false,
 		// };
-		this.state = initialState;
+		this.currentState = initialState;
 		this.store = new Store(name);
 
 		if (this.store.isStorageAvailable) {
-			this.state = this.store.load(initialState);
+			this.currentState = this.store.load(initialState);
 		}
 
 		// this.orderItems();
 	}
 
+	static random() {
+		console.log('random');
+	}
+
 	changeLevel(level) {
-		this.state.level = level;
-		this.store.save(this.state);
-		pubsub.publish('changeLevel', this.state);
+		this.currentState.level = level;
+		this.store.save(this.currentState);
+		pubsub.publish('changeLevel', this);
+	}
+
+	startGame(cell) {
+		const { level } = this.currentState;
+		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
+		this.store.save(this.currentState);
+		State.random();
+		pubsub.publish('startGame', cell);
 	}
 
 	// saveItems() {

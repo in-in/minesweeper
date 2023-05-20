@@ -9,7 +9,7 @@ const wrapper = {
 		element.className = 'wrapper';
 
 		dashboard.render(element, state);
-		field.render(element, state.state);
+		field.render(element, state);
 		level.render(element, state);
 		scoretable.render(element, state);
 
