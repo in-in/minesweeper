@@ -1,5 +1,6 @@
-import { Store } from './store';
-import { initialState } from './initialState';
+import { Store } from '@state/store';
+import { initialState } from '@state/initialState';
+import { pubsub } from '@state/pubsub';
 
 class State {
 	constructor(name) {
@@ -16,6 +17,12 @@ class State {
 		}
 
 		// this.orderItems();
+	}
+
+	changeLevel(level) {
+		this.state.level = level;
+		this.store.save(this.state);
+		pubsub.publish('changeLevel', this.state);
 	}
 
 	// saveItems() {

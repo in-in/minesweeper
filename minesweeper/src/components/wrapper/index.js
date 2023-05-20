@@ -8,10 +8,10 @@ const wrapper = {
 		const element = document.createElement('div');
 		element.className = 'wrapper';
 
-		dashboard.render(element);
-		field.render(element, state);
-		level.render(element);
-		scoretable.render(element);
+		dashboard.render(element, state);
+		field.render(element, state.state);
+		level.render(element, state);
+		scoretable.render(element, state);
 
 		container.appendChild(element);
 	},

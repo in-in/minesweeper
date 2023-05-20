@@ -22,6 +22,10 @@
 		filter: invert(90%);
 	}
 
+	&__active {
+		filter: invert(90%);
+	}
+
 	&__primary {
 		background-color: $color-primary;
 	}

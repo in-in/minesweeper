@@ -1,5 +1,5 @@
 const initialState = {
-	field: 10,
+	level: 10,
 };
 
 export { initialState };

@@ -1,6 +1,6 @@
 const cell = {
 	render(container, state) {
-		const amountOfCells = state.state.field * state.state.field;
+		const amountOfCells = state.level * state.level;
 		for (let i = 1; i <= amountOfCells; i++) {
 			const element = document.createElement('div');
 			element.className = 'cell';
