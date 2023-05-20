@@ -24,6 +24,7 @@
 
 	&__active {
 		filter: invert(90%);
+		pointer-events: none;
 	}
 
 	&__primary {
