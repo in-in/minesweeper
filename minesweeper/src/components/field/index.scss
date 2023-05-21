@@ -11,4 +11,16 @@
 	overflow: hidden;
 	margin: auto;
 	aspect-ratio: 1;
+
+	&[style='--size: 25'] {
+		font-size: em(13);
+	}
+
+	&[style='--size: 15'] {
+		font-size: em(20);
+	}
+
+	&[style='--size: 10'] {
+		font-size: em(30);
+	}
 }

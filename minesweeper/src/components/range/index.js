@@ -1,5 +1,5 @@
 const range = {
-	render(container) {
+	render(container, state) {
 		const element = document.createElement('div');
 		element.className = 'range';
 
@@ -20,6 +20,13 @@ const range = {
 			option.setAttribute('value', el);
 			option.textContent = el;
 			select.appendChild(option);
+		});
+
+		select.value = state.currentState.minesAmount;
+
+		element.addEventListener('change', (ev) => {
+			const { target } = ev;
+			state.changeMinesAmount(Number(target.value));
 		});
 
 		container.appendChild(element);

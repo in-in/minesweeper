@@ -1,7 +1,14 @@
 @use 'config' as *;
 
 .cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
 	border: em(1) solid $color-dark;
 	background-color: $color-light;
+	color: $color-dark;
+	font-size: inherit;
+	line-height: 1;
 	aspect-ratio: 1;
 }

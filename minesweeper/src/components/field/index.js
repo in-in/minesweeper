@@ -7,9 +7,10 @@ const field = {
 		const { currentState } = state;
 		const element = document.createElement('div');
 		element.className = 'field';
-		element.setAttribute('style', `--size: ${currentState.level};`);
+		element.setAttribute('style', `--size: ${currentState.level}`);
 
 		cell.render(element, state);
+
 		return element;
 	},
 	render(container, state) {

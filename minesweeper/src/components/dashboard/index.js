@@ -8,7 +8,7 @@ const dashboard = {
 		const element = document.createElement('div');
 		element.className = 'dashboard';
 
-		range.render(element);
+		range.render(element, state);
 		toggle.render(element, 'sound');
 		toggle.render(element, 'day/night');
 		stat.render(element, 'timer');

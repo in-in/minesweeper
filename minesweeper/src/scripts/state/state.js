@@ -29,12 +29,30 @@ class State {
 		pubsub.publish('changeLevel', this);
 	}
 
+	changeMinesAmount(value) {
+		this.currentState.minesAmount = value;
+		this.store.save(this.currentState);
+		// pubsub.publish('changeMinesAmount', value);
+	}
+
 	startGame(cell) {
 		const { level } = this.currentState;
-		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
-		this.store.save(this.currentState);
+		// this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
+		const arr = [];
+		let tempArr = [];
+		for (let i = 1; i <= level * level; i++) {
+			if (i % level === 0) {
+				tempArr.push(i);
+				arr.push(tempArr);
+				tempArr = [];
+			} else {
+				tempArr.push(i);
+			}
+		}
+		this.currentState.field = arr;
 		State.random();
-		pubsub.publish('startGame', cell);
+		this.store.save(this.currentState);
+		pubsub.publish('startGame', this);
 	}
 
 	// saveItems() {
