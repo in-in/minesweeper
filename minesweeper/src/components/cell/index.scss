@@ -11,4 +11,8 @@
 	font-size: inherit;
 	line-height: 1;
 	aspect-ratio: 1;
+
+	&[data-cell='9'] {
+		background-color: #e03131;
+	}
 }

@@ -2,25 +2,30 @@ import { pubsub } from '@state/pubsub';
 
 const cell = {
 	el: [],
-	create() {
+	create(id) {
 		const element = document.createElement('div');
 		element.className = 'cell';
+		element.dataset.cellId = id;
 		return element;
 	},
 	render(container, state) {
-		const { currentState } = state;
-		const amountOfCells = currentState.level * currentState.level;
+		const { level } = state.currentState;
 		cell.el = [];
 
-		for (let i = 1; i <= amountOfCells; i++) {
-			const element = cell.create(state);
+		const initialField = Array(level).fill(0).map(() => Array(level).fill(0));
 
-			element.addEventListener('click', (ev) => {
-				const { target } = ev;
-				state.startGame(target);
-			});
+		for (let r = 0; r < initialField.length; r++) {
+			for (let c = 0; c < initialField[r].length; c++) {
+				const id = `${r}-${c}`;
+				const element = cell.create(id);
 
-			cell.el.push(element);
+				element.addEventListener('click', (ev) => {
+					const { target } = ev;
+					state.startGame(target);
+				});
+
+				cell.el.push(element);
+			}
 		}
 
 		container.replaceChildren(...cell.el);
@@ -32,10 +37,12 @@ const cell = {
 		const currentEl = cell.el;
 		const newEl = [];
 
-		for (let i = 0; i < field.length; i++) {
-			for (let j = 0; j < field[i].length; j++) {
-				const element = cell.create(state);
-				element.textContent = field[i][j];
+		for (let r = 0; r < field.length; r++) {
+			for (let c = 0; c < field[r].length; c++) {
+				const id = `${r}-${c}`;
+				const element = cell.create(id);
+				element.dataset.cell = field[r][c];
+				element.textContent = field[r][c];
 				newEl.push(element);
 			}
 		}

@@ -19,8 +19,22 @@ class State {
 		// this.orderItems();
 	}
 
-	static random() {
-		console.log('random');
+	placeMines(ignoreCell) {
+		const { level, minesAmount, field } = this.currentState;
+		const getRandom = () => Math.floor(Math.random() * ((level - 1) + 1));
+		const mines = new Set();
+
+		while (minesAmount !== mines.size) {
+			const mineCell = `${getRandom()}-${getRandom()}`;
+			if (ignoreCell !== mineCell) {
+				mines.add(mineCell);
+			}
+		}
+
+		[...mines].forEach((e) => {
+			const [r, c] = e.split('-');
+			field[r][c] = 9;
+		});
 	}
 
 	changeLevel(level) {
@@ -37,20 +51,8 @@ class State {
 
 	startGame(cell) {
 		const { level } = this.currentState;
-		// this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
-		const arr = [];
-		let tempArr = [];
-		for (let i = 1; i <= level * level; i++) {
-			if (i % level === 0) {
-				tempArr.push(i);
-				arr.push(tempArr);
-				tempArr = [];
-			} else {
-				tempArr.push(i);
-			}
-		}
-		this.currentState.field = arr;
-		State.random();
+		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
+		this.placeMines(cell.dataset.cellId);
 		this.store.save(this.currentState);
 		pubsub.publish('startGame', this);
 	}
