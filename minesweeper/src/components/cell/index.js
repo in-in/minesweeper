@@ -42,7 +42,6 @@ const cell = {
 				const id = `${r}-${c}`;
 				const element = cell.create(id);
 				element.dataset.cell = field[r][c];
-				element.textContent = field[r][c];
 				newEl.push(element);
 			}
 		}
