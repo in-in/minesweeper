@@ -19,6 +19,30 @@ class State {
 		// this.orderItems();
 	}
 
+	static getNeighbors(i, j, arr) {
+		const neighbors = [];
+		const indexes = [
+			[i - 1, j],
+			[i, j - 1],
+			[i - 1, j - 1],
+			[i + 1, j],
+			[i, j + 1],
+			[i + 1, j + 1],
+			[i + 1, j - 1],
+			[i - 1, j + 1],
+		];
+
+		indexes.forEach(([a, b]) => {
+			const value = arr?.[a]?.[b];
+
+			if (value === 0 || value) {
+				neighbors.push(`${a}-${b}`);
+			}
+		});
+
+		return neighbors;
+	}
+
 	placeMines(ignoreCell) {
 		const { level, minesAmount, field } = this.currentState;
 		const getRandom = () => Math.floor(Math.random() * ((level - 1) + 1));
@@ -35,6 +59,28 @@ class State {
 			const [r, c] = e.split('-');
 			field[r][c] = 9;
 		});
+
+		for (let r = 0; r < field.length; r++) {
+			for (let c = 0; c < field[r].length; c++) {
+				const cell = `${r}-${c}`;
+				if (![...mines].includes(cell)) {
+					const [a, b] = cell.split('-');
+
+					const neighbors = State.getNeighbors(+a, +b, field);
+
+					const minedNeighbors = neighbors.reduce((acc, curr) => {
+						if ([...mines].includes(curr)) {
+							// eslint-disable-next-line no-param-reassign
+							acc += 1;
+						}
+
+						return acc;
+					}, 0);
+
+					field[r][c] = minedNeighbors;
+				}
+			}
+		}
 	}
 
 	changeLevel(level) {
