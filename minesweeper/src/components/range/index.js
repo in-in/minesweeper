@@ -1,4 +1,7 @@
+import { pubsub } from '@state/pubsub';
+
 const range = {
+	selectEl: {},
 	render(container, state) {
 		const element = document.createElement('div');
 		element.className = 'range';
@@ -24,12 +27,23 @@ const range = {
 
 		select.value = state.currentState.minesAmount;
 
+		range.selectEl = select;
+
 		element.addEventListener('change', (ev) => {
 			const { target } = ev;
 			state.changeMinesAmount(Number(target.value));
 		});
 
 		container.appendChild(element);
+
+		pubsub.subscribe('startGame', range.update);
+	},
+	update(state) {
+		const { phase } = state.currentState;
+
+		if (phase === 'game') {
+			range.selectEl.setAttribute('disabled', true);
+		}
 	},
 };
 

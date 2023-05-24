@@ -1,11 +1,12 @@
+import { pubsub } from '@state/pubsub';
 import { button } from '@components/button';
 import data from '@data/data.json';
 
 const level = {
+	levelEl: {},
 	render(container, state) {
 		const element = document.createElement('div');
 		element.className = 'level';
-		container.appendChild(element);
 
 		Object.entries(data.level).forEach(([key, val]) => {
 			button.render(element, state, {
@@ -14,6 +15,16 @@ const level = {
 				dataAttr: ['level', val],
 			});
 		});
+
+		level.levelEl = element;
+
+		container.appendChild(element);
+
+		pubsub.subscribe('startGame', level.update);
+	},
+	update() {
+		Object.values(level.levelEl.children)
+			.forEach((el) => el.setAttribute('disabled', true));
 	},
 };
 
