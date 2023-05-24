@@ -33,7 +33,7 @@ const cell = {
 		pubsub.subscribe('startGame', cell.update);
 	},
 	update(state) {
-		const { field } = state.currentState;
+		const { field, currentCellId } = state.currentState;
 		const currentEl = cell.el;
 		const newEl = [];
 
@@ -42,7 +42,17 @@ const cell = {
 				const id = `${r}-${c}`;
 				const element = cell.create(id);
 				element.dataset.cell = field[r][c];
+
+				if (currentCellId === id) {
+					element.classList.add('cell__open');
+				}
+
 				newEl.push(element);
+
+				element.addEventListener('click', (ev) => {
+					const { target } = ev;
+					target.classList.add('cell__open');
+				});
 			}
 		}
 

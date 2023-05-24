@@ -97,9 +97,13 @@ class State {
 
 	startGame(cell) {
 		const { level } = this.currentState;
+		this.currentState.phase = 'game';
+		this.currentState.currentCellId = cell.dataset.cellId;
 		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
 		this.placeMines(cell.dataset.cellId);
+
 		this.store.save(this.currentState);
+
 		pubsub.publish('startGame', this);
 	}
 
