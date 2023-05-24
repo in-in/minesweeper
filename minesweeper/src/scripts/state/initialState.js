@@ -1,6 +1,6 @@
 const initialState = {
 	level: 10,
-	minesAmount: 42,
+	minesAmount: 10,
 };
 
 export { initialState };
