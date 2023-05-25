@@ -4,19 +4,12 @@ import { pubsub } from '@state/pubsub';
 
 class State {
 	constructor(name) {
-		// this.itemId = 1;
-		// this.form = {
-		// 	focus: false,
-		// 	valid: false,
-		// };
 		this.currentState = initialState;
 		this.store = new Store(name);
 
 		if (this.store.isStorageAvailable) {
 			this.currentState = this.store.load(initialState);
 		}
-
-		// this.orderItems();
 	}
 
 	static getNeighbors(i, j, arr) {
@@ -97,7 +90,7 @@ class State {
 
 	startGame(cell) {
 		const { level } = this.currentState;
-		this.currentState.phase = 'game';
+		this.currentState.phase = 'play';
 		this.currentState.currentCellId = cell.dataset.cellId;
 		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
 		this.placeMines(cell.dataset.cellId);
@@ -107,43 +100,15 @@ class State {
 		pubsub.publish('startGame', this);
 	}
 
-	// saveItems() {
-	// 	if (this.store.isStorageAvailable) {
-	// 		this.store.save(this.items);
-	// 	}
-	// }
+	play(cell) {
+		if (cell.dataset.cell === '9') {
+			this.currentState.phase = 'lose';
 
-	// addItem(item) {
-	// 	this.items.unshift({
-	// 		id: this.itemId + 1,
-	// 		status: 0,
-	// 		value: item,
-	// 	});
-	// 	this.saveItems();
-	// }
+			this.store.save(this.currentState);
 
-	// orderItems() {
-	// 	const todo = this.items.filter((item) => item.status === 0);
-	// 	const done = this.items.filter((item) => item.status === 1);
-	// 	this.items = todo.concat(done);
-	// }
-
-	// findItemIndex(id) {
-	// 	return this.items.findIndex((item) => item.id === id);
-	// }
-
-	// deleteItem(id) {
-	// 	const itemIndex = this.findItemIndex(id);
-	// 	this.items.splice(itemIndex, 1);
-	// 	this.saveItems();
-	// }
-
-	// toggleItemStatus(id) {
-	// 	const itemIndex = this.findItemIndex(id);
-	// 	this.items[itemIndex].status = this.items[itemIndex].status ? 0 : 1;
-	// 	this.orderItems();
-	// 	this.saveItems();
-	// }
+			pubsub.publish('loseGame', [this, 'Game over. Try again']);
+		}
+	}
 }
 
 export { State };

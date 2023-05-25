@@ -45,6 +45,7 @@ const cell = {
 
 				if (currentCellId === id) {
 					element.classList.add('cell__open');
+					state.play(element);
 				}
 
 				newEl.push(element);
@@ -52,6 +53,7 @@ const cell = {
 				element.addEventListener('click', (ev) => {
 					const { target } = ev;
 					target.classList.add('cell__open');
+					state.play(element);
 				});
 			}
 		}

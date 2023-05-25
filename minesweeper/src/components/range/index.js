@@ -41,7 +41,7 @@ const range = {
 	update(state) {
 		const { phase } = state.currentState;
 
-		if (phase === 'game') {
+		if (phase === 'play') {
 			range.selectEl.setAttribute('disabled', true);
 		}
 	},

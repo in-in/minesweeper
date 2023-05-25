@@ -21,6 +21,7 @@ const field = {
 		container.appendChild(element);
 
 		pubsub.subscribe('changeLevel', field.update);
+		pubsub.subscribe('loseGame', field.end);
 	},
 	update(state) {
 		const newEl = field.create(state);
@@ -29,6 +30,13 @@ const field = {
 		currentEl.replaceWith(newEl);
 
 		field.el = newEl;
+	},
+	end(state) {
+		const msg = state[1];
+		Object.values(field.el.children)
+			.forEach((el) => el.setAttribute('disabled', true));
+		field.el.classList.add('field__message');
+		field.el.dataset.msg = msg;
 	},
 };
 
