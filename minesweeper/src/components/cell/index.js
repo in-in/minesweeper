@@ -39,9 +39,9 @@ const cell = {
 
 		for (let r = 0; r < field.length; r++) {
 			for (let c = 0; c < field[r].length; c++) {
-				const id = `${r}-${c}`;
+				const { id } = field[r][c];
 				const element = cell.create(id);
-				element.dataset.cell = field[r][c];
+				element.dataset.cell = field[r][c].value;
 
 				if (currentCellId === id) {
 					element.classList.add('cell__open');

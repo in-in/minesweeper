@@ -28,7 +28,7 @@ class State {
 		indexes.forEach(([a, b]) => {
 			const value = arr?.[a]?.[b];
 
-			if (value === 0 || value) {
+			if (value) {
 				neighbors.push(`${a}-${b}`);
 			}
 		});
@@ -36,13 +36,16 @@ class State {
 		return neighbors;
 	}
 
+	static getRandom(max) {
+		return Math.floor(Math.random() * ((max - 1) + 1));
+	}
+
 	placeMines(ignoreCell) {
 		const { level, minesAmount, field } = this.currentState;
-		const getRandom = () => Math.floor(Math.random() * ((level - 1) + 1));
 		const mines = new Set();
 
 		while (minesAmount !== mines.size) {
-			const mineCell = `${getRandom()}-${getRandom()}`;
+			const mineCell = `${State.getRandom(level)}-${State.getRandom(level)}`;
 			if (ignoreCell !== mineCell) {
 				mines.add(mineCell);
 			}
@@ -50,12 +53,14 @@ class State {
 
 		[...mines].forEach((e) => {
 			const [r, c] = e.split('-');
-			field[r][c] = 9;
+			field[r][c].value = 9;
+			field[r][c].id = `${r}-${c}`;
 		});
 
 		for (let r = 0; r < field.length; r++) {
 			for (let c = 0; c < field[r].length; c++) {
 				const cell = `${r}-${c}`;
+
 				if (![...mines].includes(cell)) {
 					const [a, b] = cell.split('-');
 
@@ -70,7 +75,8 @@ class State {
 						return acc;
 					}, 0);
 
-					field[r][c] = minedNeighbors;
+					field[r][c].value = minedNeighbors;
+					field[r][c].id = cell;
 				}
 			}
 		}
@@ -92,7 +98,13 @@ class State {
 		const { level } = this.currentState;
 		this.currentState.phase = 'play';
 		this.currentState.currentCellId = cell.dataset.cellId;
-		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill(0));
+		this.currentState.field = Array(level).fill(0).map(() => Array(level).fill()
+			.map(() => ({
+				id: '',
+				value: 0,
+				isOpen: false,
+				isFlagSet: false,
+			})));
 		this.placeMines(cell.dataset.cellId);
 
 		this.store.save(this.currentState);
@@ -107,6 +119,8 @@ class State {
 			this.store.save(this.currentState);
 
 			pubsub.publish('loseGame', [this, 'Game over. Try again']);
+		} else {
+			// console.log('cell.dataset.cell', cell.dataset.cell);
 		}
 	}
 
