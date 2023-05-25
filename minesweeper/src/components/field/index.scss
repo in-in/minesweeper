@@ -14,6 +14,7 @@
 
 	&__message {
 		position: relative;
+		text-align: center;
 
 		&::after {
 			content: attr(data-msg);

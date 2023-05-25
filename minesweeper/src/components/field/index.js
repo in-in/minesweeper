@@ -22,6 +22,7 @@ const field = {
 
 		pubsub.subscribe('changeLevel', field.update);
 		pubsub.subscribe('loseGame', field.end);
+		pubsub.subscribe('winGame', field.end);
 		pubsub.subscribe('restart', field.update);
 	},
 	update(state) {

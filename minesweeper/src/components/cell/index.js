@@ -45,6 +45,7 @@ const cell = {
 
 				if (currentCellId === id) {
 					element.classList.add('cell__open');
+					element.setAttribute('disabled', true);
 					state.play(element);
 				}
 
@@ -53,6 +54,7 @@ const cell = {
 				element.addEventListener('click', (ev) => {
 					const { target } = ev;
 					target.classList.add('cell__open');
+					target.setAttribute('disabled', true);
 					state.play(element);
 				});
 			}

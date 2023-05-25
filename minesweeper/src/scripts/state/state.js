@@ -113,6 +113,9 @@ class State {
 	}
 
 	play(cell) {
+		const { cellId } = cell.dataset;
+		const { field } = this.currentState;
+
 		if (cell.dataset.cell === '9') {
 			this.currentState.phase = 'lose';
 
@@ -120,7 +123,30 @@ class State {
 
 			pubsub.publish('loseGame', [this, 'Game over. Try again']);
 		} else {
-			// console.log('cell.dataset.cell', cell.dataset.cell);
+			for (let r = 0; r < field.length; r++) {
+				for (let c = 0; c < field[r].length; c++) {
+					if (field[r][c].id === cellId) {
+						field[r][c].isOpen = true;
+					}
+				}
+			}
+			const closedCell = field.flat().reduce((acc, curr) => {
+				if (curr.value !== 9 && !curr.isOpen) {
+					// eslint-disable-next-line no-param-reassign
+					acc += 1;
+				}
+				return acc;
+			}, 0);
+
+			if (closedCell === 0) {
+				this.currentState.phase = 'win';
+
+				this.store.save(this.currentState);
+
+				pubsub.publish('winGame', [this, 'Hooray! You found all mines in ## seconds and N moves!']);
+			}
+
+			this.store.save(this.currentState);
 		}
 	}
 
