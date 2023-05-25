@@ -17,6 +17,7 @@ const dashboard = {
 		button.render(element, state, {
 			modifier: 'button__primary dashboard_button',
 			text: 'New<br>Game',
+			dataAttr: ['restart', true],
 		});
 
 		container.appendChild(element);

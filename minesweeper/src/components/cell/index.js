@@ -21,7 +21,7 @@ const cell = {
 
 				element.addEventListener('click', (ev) => {
 					const { target } = ev;
-					state.startGame(target);
+					state.start(target);
 				});
 
 				cell.el.push(element);
@@ -30,7 +30,7 @@ const cell = {
 
 		container.replaceChildren(...cell.el);
 
-		pubsub.subscribe('startGame', cell.update);
+		pubsub.subscribe('start', cell.update);
 	},
 	update(state) {
 		const { field, currentCellId } = state.currentState;
@@ -59,6 +59,7 @@ const cell = {
 		}
 
 		currentEl.forEach((el, idx) => el.replaceWith(newEl[idx]));
+		cell.el = newEl;
 	},
 };
 

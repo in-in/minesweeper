@@ -88,7 +88,7 @@ class State {
 		// pubsub.publish('changeMinesAmount', value);
 	}
 
-	startGame(cell) {
+	start(cell) {
 		const { level } = this.currentState;
 		this.currentState.phase = 'play';
 		this.currentState.currentCellId = cell.dataset.cellId;
@@ -97,7 +97,7 @@ class State {
 
 		this.store.save(this.currentState);
 
-		pubsub.publish('startGame', this);
+		pubsub.publish('start', this);
 	}
 
 	play(cell) {
@@ -108,6 +108,15 @@ class State {
 
 			pubsub.publish('loseGame', [this, 'Game over. Try again']);
 		}
+	}
+
+	restart() {
+		this.placeMines();
+		this.currentState.phase = 'idle';
+
+		this.store.save(this.currentState);
+
+		pubsub.publish('restart', this);
 	}
 }
 

@@ -36,13 +36,21 @@ const range = {
 
 		container.appendChild(element);
 
-		pubsub.subscribe('startGame', range.update);
+		pubsub.subscribe('start', range.start);
+		pubsub.subscribe('restart', range.restart);
 	},
-	update(state) {
+	start(state) {
 		const { phase } = state.currentState;
 
 		if (phase === 'play') {
 			range.selectEl.setAttribute('disabled', true);
+		}
+	},
+	restart(state) {
+		const { phase } = state.currentState;
+
+		if (phase === 'idle') {
+			range.selectEl.removeAttribute('disabled');
 		}
 	},
 };

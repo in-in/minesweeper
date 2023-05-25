@@ -15,11 +15,16 @@ const button = {
 
 		element.addEventListener('click', (ev) => {
 			const { target } = ev;
+
 			if (target.dataset.level) {
 				target.parentNode.querySelectorAll('[data-level]')
 					.forEach((el) => el.classList.remove('button__active'));
 				target.classList.add('button__active');
 				state.changeLevel(Number(target.dataset.level));
+			}
+
+			if (target.dataset.restart) {
+				state.restart();
 			}
 		});
 

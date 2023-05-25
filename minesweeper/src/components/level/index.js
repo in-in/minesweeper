@@ -20,11 +20,16 @@ const level = {
 
 		container.appendChild(element);
 
-		pubsub.subscribe('startGame', level.update);
+		pubsub.subscribe('start', level.start);
+		pubsub.subscribe('restart', level.restart);
 	},
-	update() {
+	start() {
 		Object.values(level.levelEl.children)
 			.forEach((el) => el.setAttribute('disabled', true));
+	},
+	restart() {
+		Object.values(level.levelEl.children)
+			.forEach((el) => el.removeAttribute('disabled'));
 	},
 };
 
