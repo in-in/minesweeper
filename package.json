@@ -3,7 +3,7 @@
 	"scripts": {
 		"build": "NODE_ENV=prod webpack --config .config/webpack.config.js",
 		"start": "NODE_ENV=dev webpack serve --config .config/webpack.config.js",
-		"deploy": "npm run build && npx gh-pages -d dist -e minesweeper"
+		"deploy": "npm run build && npx gh-pages -d dist"
 	},
 	"browserslist": [
 		"last 1 Chrome versions"
