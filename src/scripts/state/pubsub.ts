@@ -1,4 +1,4 @@
-export const pubsub = {
+const pubsub = {
 	events: {},
 	subscribe(evName, fn) {
 		this.events[evName] = this.events[evName] || [];
@@ -12,3 +12,5 @@ export const pubsub = {
 		}
 	},
 };
+
+export { pubsub };

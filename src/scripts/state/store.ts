@@ -2,8 +2,8 @@ class Store {
 	constructor(name) {
 		let isStorageAvailable;
 		try {
-			window.localStorage.setItem('test', 'test');
-			window.localStorage.removeItem('test');
+			window.localStorage.setItem("test", "test");
+			window.localStorage.removeItem("test");
 			isStorageAvailable = true;
 		} catch (e) {
 			isStorageAvailable = false;
@@ -19,7 +19,7 @@ class Store {
 
 	load(initialState) {
 		const state = window.localStorage.getItem(this.name);
-		return (state && state.length) ? JSON.parse(state) : initialState;
+		return state && state.length ? JSON.parse(state) : initialState;
 	}
 }
 

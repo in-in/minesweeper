@@ -1,0 +1,28 @@
+{
+	"extends": [
+		"@tsconfig/strictest/tsconfig"
+	],
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"noEmitOnError": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "nodenext",
+		"baseUrl": "./",
+		"paths": {
+			"@components/*": [
+				"src/components/*"
+			],
+			"@state/*": [
+				"src/scripts/state/*"
+			],
+			"@data/*": [
+				"src/data/*"
+			]
+		}
+	},
+	"include": [
+		"src/**/*",
+		"tests/**/*"
+	]
+}

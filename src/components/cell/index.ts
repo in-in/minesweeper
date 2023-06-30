@@ -1,10 +1,10 @@
-import { pubsub } from '@state/pubsub';
+import { pubsub } from "@state/pubsub";
 
 const cell = {
 	el: [],
 	create(id) {
-		const element = document.createElement('div');
-		element.className = 'cell';
+		const element = document.createElement("div");
+		element.className = "cell";
 		element.dataset.cellId = id;
 		return element;
 	},
@@ -12,14 +12,16 @@ const cell = {
 		const { level } = state.currentState;
 		cell.el = [];
 
-		const initialField = Array(level).fill(0).map(() => Array(level).fill(0));
+		const initialField = Array(level)
+			.fill(0)
+			.map(() => Array(level).fill(0));
 
 		for (let r = 0; r < initialField.length; r++) {
 			for (let c = 0; c < initialField[r].length; c++) {
 				const id = `${r}-${c}`;
 				const element = cell.create(id);
 
-				element.addEventListener('click', (ev) => {
+				element.addEventListener("click", (ev) => {
 					const { target } = ev;
 					state.start(target);
 				});
@@ -30,7 +32,7 @@ const cell = {
 
 		container.replaceChildren(...cell.el);
 
-		pubsub.subscribe('start', cell.update);
+		pubsub.subscribe("start", cell.update);
 	},
 	update(state) {
 		const { field, currentCellId } = state.currentState;
@@ -44,17 +46,17 @@ const cell = {
 				element.dataset.cell = field[r][c].value;
 
 				if (currentCellId === id) {
-					element.classList.add('cell__open');
-					element.setAttribute('disabled', true);
+					element.classList.add("cell__open");
+					element.setAttribute("disabled", true);
 					state.play(element);
 				}
 
 				newEl.push(element);
 
-				element.addEventListener('click', (ev) => {
+				element.addEventListener("click", (ev) => {
 					const { target } = ev;
-					target.classList.add('cell__open');
-					target.setAttribute('disabled', true);
+					target.classList.add("cell__open");
+					target.setAttribute("disabled", true);
 					state.play(element);
 				});
 			}
