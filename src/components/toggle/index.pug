@@ -1,5 +1,0 @@
-mixin toggle(label)
-	- let id = label.replace(/[^a-z0-9]/ig, '-')
-	div(class='toggle')&attributes(attributes)
-		label(class='toggle_title' for=`toggle-${id}`)!= label
-		input(type='checkbox' name=`toggle-${id}` id=`toggle-${id}` class='toggle_input')
