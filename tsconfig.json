@@ -8,21 +8,23 @@
 		"noEmitOnError": true,
 		"resolveJsonModule": true,
 		"moduleResolution": "nodenext",
+		"jsx": "react",
 		"baseUrl": "./",
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules",
+			}
+		],
 		"paths": {
 			"@components/*": [
 				"src/components/*"
 			],
-			"@state/*": [
-				"src/scripts/state/*"
+			"@styles/*": [
+				"src/styles/*"
 			],
-			"@data/*": [
-				"src/data/*"
-			]
 		}
 	},
 	"include": [
-		"src/**/*",
-		"tests/**/*"
+		"src/**/*"
 	]
 }

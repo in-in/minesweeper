@@ -1,32 +1,31 @@
 const { join } = require("node:path");
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+// const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
 const EslingPlugin = require("eslint-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const PugPlugin = require("pug-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { PATHS } = require("./paths");
 
 const isDev = process.env.NODE_ENV !== "prod";
 
-const html = {
-	test: /\.pug$/,
-	loader: PugPlugin.loader,
-	options: {
-		data: {
-			isDev,
-		},
-	},
-};
-
 const ts = {
-	test: /\.ts$/i,
+	test: /\.([cm]?ts|tsx)$/i,
 	use: "ts-loader",
 };
 
 const styles = {
-	test: /\.scss$/,
+	test: /\.scss$/i,
 	use: [
-		"css-loader",
+		MiniCssExtractPlugin.loader,
+		{
+			loader: "css-loader",
+			options: {
+					modules: {
+						localIdentName: isDev ? "[folder]__[local]_[hash:base64:5]" : "[hash:base64]"
+					},
+				},
+		},
 		{
 			loader: "postcss-loader",
 			options: {
@@ -39,10 +38,7 @@ const styles = {
 			loader: "sass-loader",
 			options: {
 				sassOptions: {
-					indentType: "tab",
-					indentWidth: 1,
-					outputStyle: "expanded",
-					includePaths: [PATHS.components, PATHS.styles],
+					includePaths: [PATHS.styles],
 				},
 			},
 		},
@@ -65,7 +61,7 @@ const inlineSvg = {
 };
 
 const fonts = {
-	test: /\.(woff2|woff)$/i,
+	test: /\.woff2$/i,
 	type: "asset/resource",
 	generator: {
 		filename: "assets/fonts/[name].[contenthash:8][ext]",
@@ -75,8 +71,11 @@ const fonts = {
 const config = {
 	mode: isDev ? "development" : "production",
 	entry: {
-		index: join(PATHS.src, "pages/index.pug"),
-		main: join(PATHS.scripts, "main.ts"),
+		app: {
+			import: join(PATHS.src, "index.tsx"),
+			dependOn: "vendor",
+		},
+		vendor: ["react", "react-dom"],
 	},
 	output: {
 		filename: "[name].[contenthash].js",
@@ -85,17 +84,16 @@ const config = {
 	},
 	resolve: {
 		plugins: [new TsconfigPathsPlugin()],
-		extensions: [".ts", ".tsx", ".js"],
+		extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss"],
 	},
 	plugins: [
-		new PugPlugin({
-			pretty: true,
-			js: {
-				filename: "[name].[contenthash:8].js",
-			},
-			css: {
-				filename: "[name].[contenthash:8].css",
-			},
+		new HtmlWebpackPlugin({
+			template: join(PATHS.src, "index.html"),
+			filename: "index.html",
+			favicon: join(PATHS.images, "favicon.svg"),
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[name].[contenthash].css",
 		}),
 		new StylelintPlugin({
 			files: "**/*.(scss)",
@@ -107,19 +105,21 @@ const config = {
 	],
 	optimization: {
 		minimizer: [
-			new ImageMinimizerPlugin({
-				loader: false,
-				minimizer: {
-					implementation: ImageMinimizerPlugin.imageminGenerate,
-					options: {
-						plugins: [],
-					},
-				},
-			}),
+			// new ImageMinimizerPlugin({
+			// 	loader: false,
+			// 	minimizer: {
+			// 		implementation: ImageMinimizerPlugin.imageminGenerate,
+			// 		options: {
+			// 			plugins: [],
+			// 		},
+			// 	},
+			// }),
 		],
 	},
+	devtool: isDev ? "eval" : false,
 	devServer: {
 		host: "0.0.0.0",
+		hot: true,
 		port: 7777,
 		client: {
 			logging: "error",
@@ -128,9 +128,9 @@ const config = {
 				warnings: false,
 			},
 		},
-		// static: {
-		// 	directory: PATHS.dist,
-		// },
+		static: {
+			directory: PATHS.dist,
+		},
 		watchFiles: {
 			paths: ["src/**/*.*"],
 			options: {
@@ -142,7 +142,7 @@ const config = {
 		},
 	},
 	module: {
-		rules: [html, ts, styles, inlineSvg, images, fonts],
+		rules: [ts, styles, inlineSvg, images, fonts],
 	},
 };
 
