@@ -21,10 +21,12 @@ const styles = {
 		{
 			loader: "css-loader",
 			options: {
-					modules: {
-						localIdentName: isDev ? "[folder]__[local]_[hash:base64:5]" : "[hash:base64]"
-					},
+				modules: {
+					localIdentName: isDev
+						? "[folder]__[local]_[hash:base64:5]"
+						: "[hash:base64]",
 				},
+			},
 		},
 		{
 			loader: "postcss-loader",
@@ -86,7 +88,7 @@ const config = {
 		plugins: [new TsconfigPathsPlugin()],
 		extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss"],
 		alias: {
-			'@fonts': PATHS.fonts
+			"@fonts": PATHS.fonts,
 		},
 	},
 	plugins: [
