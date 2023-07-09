@@ -1,5 +1,5 @@
 const { join } = require("node:path");
-// const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
 const EslingPlugin = require("eslint-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
@@ -46,25 +46,25 @@ const styles = {
 };
 
 const images = {
-	test: /\.(png|webp|jpg|jpeg|svg)$/i,
-	resourceQuery: { not: [/inline/] },
+	test: /\.(png|webp|jpe?g|svg)$/i,
+	// resourceQuery: { not: [/inline/] },
 	type: "asset/resource",
 	generator: {
-		filename: "assets/images/[name].[contenthash:8][ext]",
+		filename: "[path][name].[contenthash][ext]",
 	},
 };
 
-const inlineSvg = {
-	test: /\.(svg)$/i,
-	type: "asset/inline",
-	resourceQuery: /inline/,
-};
+// const inlineSvg = {
+// 	test: /\.(svg)$/i,
+// 	type: "asset/inline",
+// 	resourceQuery: /inline/,
+// };
 
 const fonts = {
 	test: /\.woff2$/i,
 	type: "asset/resource",
 	generator: {
-		filename: "assets/fonts/[name].[contenthash:8][ext]",
+		filename: "[path][name].[contenthash][ext]",
 	},
 };
 
@@ -78,13 +78,16 @@ const config = {
 		vendor: ["react", "react-dom"],
 	},
 	output: {
-		filename: "[name].[contenthash].js",
+		filename: "assets/[name].[contenthash].js",
 		path: PATHS.dist,
 		clean: true,
 	},
 	resolve: {
 		plugins: [new TsconfigPathsPlugin()],
 		extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss"],
+		alias: {
+			'@fonts': PATHS.fonts
+		},
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -93,7 +96,7 @@ const config = {
 			favicon: join(PATHS.images, "favicon.svg"),
 		}),
 		new MiniCssExtractPlugin({
-			filename: "[name].[contenthash].css",
+			filename: "assets/[name].[contenthash].css",
 		}),
 		new StylelintPlugin({
 			files: "**/*.(scss)",
@@ -105,15 +108,29 @@ const config = {
 	],
 	optimization: {
 		minimizer: [
-			// new ImageMinimizerPlugin({
-			// 	loader: false,
-			// 	minimizer: {
-			// 		implementation: ImageMinimizerPlugin.imageminGenerate,
-			// 		options: {
-			// 			plugins: [],
-			// 		},
-			// 	},
-			// }),
+			new ImageMinimizerPlugin({
+				minimizer: {
+					implementation: ImageMinimizerPlugin.sharpMinify,
+					options: {
+						encodeOptions: {
+							jpeg: {
+								quality: 80,
+								progressive: true,
+							},
+							png: {
+								compressionLevel: 7,
+								progressive: true,
+								quality: 80,
+							},
+							webp: {
+								quality: 70,
+								alphaQuality: 80,
+								effort: 6,
+							},
+						},
+					},
+				},
+			}),
 		],
 	},
 	devtool: isDev ? "eval" : false,
@@ -142,7 +159,8 @@ const config = {
 		},
 	},
 	module: {
-		rules: [ts, styles, inlineSvg, images, fonts],
+		// rules: [ts, styles, inlineSvg, images, fonts],
+		rules: [ts, styles, images, fonts],
 	},
 };
 

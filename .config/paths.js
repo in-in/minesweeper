@@ -17,17 +17,14 @@ const PATHS = {
 	get styles() {
 		return join(this.src, "styles");
 	},
-	get scripts() {
-		return join(this.src, "scripts");
-	},
 	get state() {
 		return join(this.scripts, "state");
 	},
 	get images() {
-		return join(this.src, "images");
+		return join(this.root, "assets", "images");
 	},
 	get fonts() {
-		return join(this.src, "fonts");
+		return join(this.root, "assets", "fonts");
 	},
 	get data() {
 		return join(this.src, "data");

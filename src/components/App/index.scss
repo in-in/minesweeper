@@ -2,7 +2,7 @@
 
 .layout {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
@@ -11,4 +11,32 @@
 	font-family: $typography-family-main;
 	font-size: locks($size-font-base, $size-font-max);
 	font-weight: 400;
+}
+
+.title {
+	width: 100%;
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+.img {
+	display: block;
+	width: 100%;
+	max-width: 200px;
+	height: auto;
+}
+
+.back,
+.back1 {
+	width: 300px;
+	background-color: rgb(207 81 123 / 79.5%);
+	background-image: url('@assets/images/3d-rendering-3.png');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	aspect-ratio: 1;
+}
+
+.back1 {
+	background-image: url('@assets/images/RENDER.webp');
 }
