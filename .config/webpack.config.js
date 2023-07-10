@@ -11,7 +11,16 @@ const isDev = process.env.NODE_ENV !== "prod";
 
 const ts = {
 	test: /\.([cm]?ts|tsx)$/i,
-	use: "ts-loader",
+	use: [
+		{
+			loader: "ts-loader",
+			options: {
+				compilerOptions: {
+					noPropertyAccessFromIndexSignature: false,
+				},
+			},
+		},
+	],
 };
 
 const styles = {
