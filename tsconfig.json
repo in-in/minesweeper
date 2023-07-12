@@ -22,11 +22,11 @@
 			"@styles/*": [
 				"src/styles/*"
 			],
-			"@assets/*": [
-				"assets/*"
+			"@images/*": [
+				"assets/images/*"
 			],
-			"Assets/*": [
-				"assets/*"
+			"@svg/*": [
+				"assets/images/*"
 			],
 		}
 	},
