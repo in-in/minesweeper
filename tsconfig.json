@@ -25,6 +25,9 @@
 			"@assets/*": [
 				"assets/*"
 			],
+			"Assets/*": [
+				"assets/*"
+			],
 		}
 	},
 	"include": [

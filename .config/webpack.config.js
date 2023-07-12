@@ -57,19 +57,37 @@ const styles = {
 };
 
 const images = {
-	test: /\.(png|webp|jpe?g|svg)$/i,
-	// resourceQuery: { not: [/inline/] },
+	test: /\.(png|webp|jpe?g)$/i,
 	type: "asset/resource",
 	generator: {
 		filename: "[path][name].[contenthash][ext]",
 	},
 };
 
-// const inlineSvg = {
-// 	test: /\.(svg)$/i,
-// 	type: "asset/inline",
-// 	resourceQuery: /inline/,
-// };
+const svg = {
+	test: /\.svg$/i,
+	oneOf: [
+		{
+			resourceQuery: /url/,
+			type: "asset/resource",
+		},
+		{
+			resourceQuery: { not: [/url/] },
+			issuer: /\.[jt]sx?$/,
+			use: [
+				{
+					loader: "@svgr/webpack",
+					options: {
+						typescript: true,
+					},
+				},
+			],
+		},
+	],
+	generator: {
+		filename: "[path][name].[contenthash][ext]",
+	},
+};
 
 const fonts = {
 	test: /\.woff2$/i,
@@ -170,8 +188,7 @@ const config = {
 		},
 	},
 	module: {
-		// rules: [ts, styles, inlineSvg, images, fonts],
-		rules: [ts, styles, images, fonts],
+		rules: [ts, styles, images, svg, fonts],
 	},
 };
 

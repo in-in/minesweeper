@@ -27,10 +27,11 @@
 }
 
 .back,
-.back1 {
+.back1,
+.back2 {
 	width: 300px;
 	background-color: rgb(207 81 123 / 79.5%);
-	background-image: url('@assets/images/3d-rendering-3.png');
+	background-image: url('@assets/images/rendering.png');
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -39,4 +40,14 @@
 
 .back1 {
 	background-image: url('@assets/images/RENDER.webp');
+}
+
+.back2 {
+	background-image: url('@assets/images/plane.svg');
+}
+
+.icon {
+	width: 200px;
+	border: 1px solid #088;
+	color: rgb(199 112 25);
 }
