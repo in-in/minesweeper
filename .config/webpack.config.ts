@@ -1,11 +1,13 @@
-const { join } = require("node:path");
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const StylelintPlugin = require("stylelint-webpack-plugin");
-const EslingPlugin = require("eslint-webpack-plugin");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { PATHS } = require("./paths");
+import { join } from "node:path";
+import { type Configuration } from "webpack";
+import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
+import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
+import StylelintPlugin from "stylelint-webpack-plugin";
+import EslingPlugin from "eslint-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { PATHS } from "./paths";
+import "webpack-dev-server";
 
 const isDev = process.env.NODE_ENV !== "prod";
 
@@ -97,7 +99,7 @@ const fonts = {
 	},
 };
 
-const config = {
+const config: Configuration = {
 	mode: isDev ? "development" : "production",
 	entry: {
 		app: {
@@ -132,7 +134,7 @@ const config = {
 			fix: true,
 		}),
 		new EslingPlugin({
-			extensions: "ts",
+			extensions: ["ts"],
 		}),
 	],
 	optimization: {

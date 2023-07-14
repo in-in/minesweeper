@@ -1,4 +1,4 @@
-const { join } = require("node:path");
+import { join } from "node:path";
 
 const PATHS = {
 	root: process.cwd(),
@@ -17,9 +17,6 @@ const PATHS = {
 	get styles() {
 		return join(this.src, "styles");
 	},
-	get state() {
-		return join(this.scripts, "state");
-	},
 	get images() {
 		return join(this.root, "assets", "images");
 	},
@@ -31,4 +28,4 @@ const PATHS = {
 	},
 };
 
-module.exports = { PATHS };
+export { PATHS };

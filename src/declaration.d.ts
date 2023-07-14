@@ -13,3 +13,9 @@ declare module "*.svg" {
 	const content: (props: SVGProps<SVGElement>) => ReactElement;
 	export default content;
 }
+
+declare namespace NodeJS {
+	export interface ProcessEnv {
+		NODE_ENV: "dev" | "prod";
+	}
+}
