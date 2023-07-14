@@ -1,9 +1,11 @@
 import React from "react";
-import st from "./index.module.scss";
+
 import src1 from "@images/nathan.jpg";
 import src2 from "@images/stanos.jpg";
 import trainUrl from "@images/train.svg?url";
 import Bomb from "@svg/bomb.svg";
+
+import st from "./index.module.scss";
 
 const App = (): JSX.Element => (
 	<div className={st.layout}>

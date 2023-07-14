@@ -1,15 +1,20 @@
-import { join } from "node:path";
-import { type Configuration } from "webpack";
-import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
-import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
-import StylelintPlugin from "stylelint-webpack-plugin";
-import EslingPlugin from "eslint-webpack-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { PATHS } from "./paths";
 import "webpack-dev-server";
 
+import EslingPlugin from "eslint-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { join } from "node:path";
+import StylelintPlugin from "stylelint-webpack-plugin";
+import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
+import { type Configuration } from "webpack";
+
+import { PATHS } from "./paths";
+
 const isDev = process.env.NODE_ENV !== "prod";
+
+const assetFilename = "[path][name].[contenthash][ext]";
+const assetModuleType = "asset/resource";
 
 const ts = {
 	test: /\.([cm]?ts|tsx)$/i,
@@ -60,9 +65,9 @@ const styles = {
 
 const images = {
 	test: /\.(png|webp|jpe?g)$/i,
-	type: "asset/resource",
+	type: assetModuleType,
 	generator: {
-		filename: "[path][name].[contenthash][ext]",
+		filename: assetFilename,
 	},
 };
 
@@ -71,7 +76,7 @@ const svg = {
 	oneOf: [
 		{
 			resourceQuery: /url/,
-			type: "asset/resource",
+			type: assetModuleType,
 		},
 		{
 			resourceQuery: { not: [/url/] },
@@ -87,15 +92,15 @@ const svg = {
 		},
 	],
 	generator: {
-		filename: "[path][name].[contenthash][ext]",
+		filename: assetFilename,
 	},
 };
 
 const fonts = {
 	test: /\.woff2$/i,
-	type: "asset/resource",
+	type: assetModuleType,
 	generator: {
-		filename: "[path][name].[contenthash][ext]",
+		filename: assetFilename,
 	},
 };
 
