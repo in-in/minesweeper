@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use 'src/styles/config' as *;
+
+.wrapper {
+	display: grid;
+	grid-template-areas:
+		'dashboard'
+		'field'
+		'level'
+		'scoretable';
+	gap: em(16);
+	width: 100%;
+	min-width: map.get($breakpoint, 'start') + px;
+	max-width: map.get($breakpoint, 'end') + px;
+	padding-top: em(16);
+
+	@include breakpoint(m) {
+		grid-template-areas:
+			'field field field dashboard'
+			'field field field level'
+			'scoretable scoretable scoretable scoretable ';
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
