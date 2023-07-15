@@ -3,16 +3,26 @@
 	"private": true,
 	"scripts": {
 		"build": "NODE_ENV=prod webpack --config .config/webpack.config.ts",
+		"cz": "cz",
 		"start": "NODE_ENV=dev webpack serve --config .config/webpack.config.ts"
 	},
-	"prettier": {
-		"quoteProps": "consistent"
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
 	},
 	"browserslist": [
 		"last 2 versions and > 1%",
 		"not dead",
 		"not Samsung > 0"
 	],
+	"prettier": {
+		"quoteProps": "consistent"
+	},
+	"dependencies": {
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
 	"devDependencies": {
 		"@svgr/webpack": "8.0.1",
 		"@swc/register": "0.1.10",
@@ -23,6 +33,7 @@
 		"@types/webpack-dev-server": "4.7.2",
 		"@typescript-eslint/eslint-plugin": "5.61.0",
 		"autoprefixer": "10.4.14",
+		"commitizen": "4.3.0",
 		"css-loader": "6.8.1",
 		"eslint": "8.45.0",
 		"eslint-config-prettier": "8.8.0",
@@ -63,9 +74,5 @@
 		"webpack": "5.88.1",
 		"webpack-cli": "5.1.4",
 		"webpack-dev-server": "4.15.1"
-	},
-	"dependencies": {
-		"react": "18.2.0",
-		"react-dom": "18.2.0"
 	}
 }
