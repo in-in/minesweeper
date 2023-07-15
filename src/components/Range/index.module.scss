@@ -1,0 +1,24 @@
+@use 'src/styles/config' as *;
+
+.range {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: em(8, $size-font-small);
+	font-size: em($size-font-small);
+}
+
+.title {
+	text-align: center;
+	line-height: 1;
+}
+
+.select {
+	width: 100%;
+	accent-color: $color-primary;
+}
+
+.option {
+	color: #991212;
+}
