@@ -1,6 +1,6 @@
 @use 'src/styles/config' as *;
 
-.toggle {
+.stat {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -8,14 +8,12 @@
 	gap: em(8);
 }
 
-.title {
-	text-align: center;
-	font-size: em($size-font-small);
+.label,
+.counter {
+	font-variant-numeric: tabular-nums;
 	line-height: 1;
 }
 
-.input {
-	width: em(16);
-	height: em(16);
-	accent-color: $color-primary;
+.label {
+	font-size: em($size-font-small);
 }
