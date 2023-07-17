@@ -20,8 +20,10 @@
 		"quoteProps": "consistent"
 	},
 	"dependencies": {
+		"@xstate/react": "3.2.2",
 		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"react-dom": "18.2.0",
+		"xstate": "4.38.1"
 	},
 	"devDependencies": {
 		"@svgr/webpack": "8.0.1",
