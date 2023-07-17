@@ -9,10 +9,15 @@ interface AppProps {
 	variant: "primary" | "active";
 }
 
-const Button = ({ inner, variant, modifier }: AppProps): JSX.Element => {
+const Button = ({
+	inner,
+	variant,
+	modifier,
+	...rest
+}: AppProps): JSX.Element => {
 	const btnClass = clsx(st.button, st[variant], modifier);
 	return (
-		<button type="button" className={btnClass}>
+		<button type="button" className={btnClass} {...rest}>
 			{inner}
 		</button>
 	);

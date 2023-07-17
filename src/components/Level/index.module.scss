@@ -1,0 +1,22 @@
+@use 'src/styles/config' as *;
+
+.level {
+	display: flex;
+	grid-area: level;
+	justify-content: center;
+	align-items: center;
+	gap: em(16);
+
+	@include breakpoint(m) {
+		flex-direction: column;
+		justify-content: end;
+	}
+}
+
+.button {
+	text-transform: capitalize;
+
+	@include breakpoint(m) {
+		width: 100%;
+	}
+}
