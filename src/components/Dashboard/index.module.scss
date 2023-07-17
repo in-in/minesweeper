@@ -7,18 +7,18 @@
 	align-items: start;
 	gap: em(16);
 
-	&_button {
-		align-self: stretch;
-		margin-left: auto;
-	}
-
 	@include breakpoint(m) {
 		flex-direction: column-reverse;
 		justify-content: start;
 		align-items: center;
+	}
+}
 
-		&_button {
-			margin-left: 0;
-		}
+.button {
+	align-self: stretch;
+	margin-left: auto;
+
+	@include breakpoint(m) {
+		margin-left: 0;
 	}
 }

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Button } from "@components/Button";
 import { Range } from "@components/Range";
 import { Stat } from "@components/Stat";
 import { Toggle } from "@components/Toggle";
@@ -14,6 +15,15 @@ const Dashboard = (): JSX.Element => (
 		<Stat label="timer" />
 		<Stat label="turns" />
 		<Stat label="mines" />
+		<Button
+			inner={
+				<>
+					New <br /> Game
+				</>
+			}
+			variant="primary"
+			modifier={[st.button ?? ""]}
+		/>
 	</div>
 );
 
