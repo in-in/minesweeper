@@ -4,7 +4,7 @@ import st from "./index.module.scss";
 
 const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 const createSelectOptions = createRangeArray.map((el) => (
-	<option className={st.option} value={el}>
+	<option key={el} className={st.option} value={el}>
 		{el}
 	</option>
 ));
