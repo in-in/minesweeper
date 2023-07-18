@@ -23,8 +23,8 @@ const PATHS = {
 	get fonts() {
 		return join(this.root, "assets", "fonts");
 	},
-	get data() {
-		return join(this.src, "data");
+	get state() {
+		return join(this.src, "state");
 	},
 };
 

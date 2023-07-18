@@ -19,6 +19,9 @@
 			"@components/*": [
 				"src/components/*"
 			],
+			"@state/*": [
+				"src/state/*"
+			],
 			"@styles/*": [
 				"src/styles/*"
 			],

@@ -123,6 +123,7 @@ const config: Configuration = {
 		extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss"],
 		alias: {
 			"@fonts": PATHS.fonts,
+			"@state": PATHS.fonts,
 		},
 	},
 	plugins: [
