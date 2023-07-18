@@ -7,6 +7,7 @@ enum State {
 }
 
 const machine = createMachine({
+	predictableActionArguments: true,
 	schema: {
 		// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 		events: {} as { type: "START" } | { type: "WIN" } | { type: "RESTART" },
