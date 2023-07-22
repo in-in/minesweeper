@@ -1,12 +1,12 @@
 version: '3.7'
 
 services:
-
-  minesweeper:
+  web:
     container_name: minesweeper
     build:
       context: .
       dockerfile: Dockerfile
+    command: bash -c "npm install && npm start"
     volumes:
       - './:/home/node/app'
       - '/home/node/app/node_modules'
@@ -16,3 +16,11 @@ services:
       CHOKIDAR_USEPOLLING: 'true'
     stdin_open: true
     tty: true
+    dns:
+      - 1.1.1.1
+
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1420
