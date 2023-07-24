@@ -1,45 +1,98 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { createMachine } from "xstate";
 
-enum State {
-	"Idle" = "idle",
-	"Play" = "play",
-	"Finish" = "finish",
-}
+import { StateMain, StateLevel, type Level } from "@customTypes/customTypes";
 
-const machine = createMachine({
-	predictableActionArguments: true,
-	schema: {
-		// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-		events: {} as { type: "START" } | { type: "WIN" } | { type: "RESTART" },
+const machine = createMachine(
+	{
+		predictableActionArguments: true,
+		schema: {
+			context: {
+				currentLevel: {} as Level,
+			},
+			events: {} as
+				| { type: "START" }
+				| { type: "WIN" }
+				| { type: "RESTART" }
+				| { type: "TO_MEDIUM" }
+				| { type: "TO_HARD" }
+				| { type: "TO_EASY" },
+		},
+		id: "main",
+		context: {
+			currentLevel: {
+				easy: 10,
+			},
+		},
+		initial: StateMain.Idle,
+		states: {
+			[StateMain.Idle]: {
+				type: "compound",
+				initial: "easy",
+				states: {
+					[StateLevel.Easy]: {
+						on: {
+							TO_MEDIUM: {
+								target: StateLevel.Medium,
+								actions: ["actionsToMedium"],
+							},
+							TO_HARD: {
+								target: StateLevel.Hard,
+								actions: ["actionsToHard"],
+							},
+						},
+					},
+					[StateLevel.Medium]: {
+						on: {
+							TO_EASY: { target: StateLevel.Easy, actions: ["actionsToEasy"] },
+							TO_HARD: { target: StateLevel.Hard, actions: ["actionsToHard"] },
+						},
+					},
+					[StateLevel.Hard]: {
+						on: {
+							TO_EASY: { target: StateLevel.Easy, actions: ["actionsToEasy"] },
+							TO_MEDIUM: {
+								target: StateLevel.Medium,
+								actions: ["actionsToMedium"],
+							},
+						},
+					},
+				},
+				on: {
+					START: {
+						target: StateMain.Play,
+					},
+				},
+			},
+			[StateMain.Play]: {
+				on: {
+					WIN: {
+						target: StateMain.Finish,
+					},
+				},
+			},
+			[StateMain.Finish]: {
+				on: {
+					RESTART: {
+						target: StateMain.Idle,
+					},
+				},
+			},
+		},
 	},
-	id: "main",
-	initial: State.Idle,
-	states: {
-		[State.Idle]: {
-			on: {
-				START: {
-					target: State.Play,
-				},
+	{
+		actions: {
+			actionsToEasy: (context) => {
+				context.currentLevel = { easy: 10 };
 			},
-		},
-		[State.Play]: {
-			on: {
-				WIN: {
-					target: State.Finish,
-				},
+			actionsToMedium: (context) => {
+				context.currentLevel = { medium: 15 };
 			},
-		},
-		[State.Finish]: {
-			on: {
-				RESTART: {
-					target: State.Idle,
-				},
+			actionsToHard: (context) => {
+				context.currentLevel = { hard: 25 };
 			},
 		},
 	},
-});
-
-const { initialState } = machine;
-console.log(initialState);
+);
 
 export { machine };
