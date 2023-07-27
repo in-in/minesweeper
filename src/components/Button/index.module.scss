@@ -5,7 +5,8 @@
 	flex-shrink: 0;
 	justify-content: center;
 	align-items: center;
-	padding: em(5) em(10);
+	padding: em(10);
+	border-radius: $size-border-radius;
 	color: $color-dark-3xl;
 	font-size: inherit;
 	font-weight: $typography-weight-regular;
@@ -19,7 +20,7 @@
 	}
 
 	@include active() {
-		filter: invert(90%);
+		filter: invert(80%);
 	}
 
 	&:disabled {
@@ -33,6 +34,7 @@
 }
 
 .active {
-	filter: invert(90%);
+	background-color: $color-accent;
+	color: $color-primary;
 	pointer-events: none;
 }

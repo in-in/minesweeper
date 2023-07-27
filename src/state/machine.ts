@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { createMachine } from "xstate";
 
-import { StateMain, StateLevel, type Level } from "@customTypes/customTypes";
+import {
+	StateMain,
+	StateLevel,
+	type Level,
+	type GlobalEvent,
+} from "@customTypes/customTypes";
 
 const machine = createMachine(
 	{
@@ -10,13 +15,7 @@ const machine = createMachine(
 			context: {
 				currentLevel: {} as Level,
 			},
-			events: {} as
-				| { type: "START" }
-				| { type: "WIN" }
-				| { type: "RESTART" }
-				| { type: "TO_MEDIUM" }
-				| { type: "TO_HARD" }
-				| { type: "TO_EASY" },
+			events: {} as GlobalEvent,
 		},
 		id: "main",
 		context: {

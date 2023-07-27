@@ -7,37 +7,31 @@ import { machine } from "@state/machine";
 import st from "./index.module.scss";
 
 const Level = (): JSX.Element => {
-	const [, send] = useMachine(machine);
+	const [state, send] = useMachine(machine);
+	const { currentLevel } = state.context;
+	const buttons = [
+		["easy", "TO_EASY"],
+		["medium", "TO_MEDIUM"],
+		["hard", "TO_HARD"],
+	] as const;
 
 	return (
 		<div className={st.level}>
-			<Button
-				data-level={10}
-				inner={<>Easy</>}
-				variant="primary"
-				onClick={(): void => {
-					send("TO_EASY");
-				}}
-				modifier={[st.button ?? ""]}
-			/>
-			<Button
-				data-level={15}
-				inner={<>Medium</>}
-				variant="primary"
-				onClick={(): void => {
-					send("TO_MEDIUM");
-				}}
-				modifier={[st.button ?? ""]}
-			/>
-			<Button
-				data-level={25}
-				inner={<>Hard</>}
-				variant="primary"
-				onClick={(): void => {
-					send("TO_HARD");
-				}}
-				modifier={[st.button ?? ""]}
-			/>
+			{buttons.map((el) => {
+				return (
+					<Button
+						key={el[0]}
+						inner={el[0]}
+						variant={
+							Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
+						}
+						onClick={(): void => {
+							send({ type: el[1] });
+						}}
+						modifier={[st.button ?? ""]}
+					/>
+				);
+			})}
 		</div>
 	);
 };
