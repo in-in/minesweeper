@@ -1,7 +1,6 @@
 export type GlobalEvent =
-	| { type: "START" }
-	| { type: "WIN" }
-	| { type: "RESTART" }
+	| { type: "TOGGLE" }
+	| { type: "FINISH" }
 	| { type: "TO_MEDIUM" }
 	| { type: "TO_HARD" }
 	| { type: "TO_EASY" };
@@ -18,4 +17,9 @@ export const StateLevel = {
 	Easy: "easy",
 	Medium: "medium",
 	Hard: "hard",
+} as const;
+
+export const StateFinish = {
+	Win: "win",
+	Lose: "lose",
 } as const;

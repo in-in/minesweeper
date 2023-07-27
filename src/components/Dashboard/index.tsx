@@ -10,7 +10,9 @@ import { machine } from "@state/machine";
 import st from "./index.module.scss";
 
 const Dashboard = (): JSX.Element => {
-	const [current, send] = useMachine(machine);
+	const [state, send] = useMachine(machine);
+	const buttonText = state.matches("idle") ? "Start" : "Stop";
+
 	return (
 		<div className={st.dashboard}>
 			<Range />
@@ -21,17 +23,13 @@ const Dashboard = (): JSX.Element => {
 			<Stat label="mines" />
 			<Button
 				inner={
-					current.matches("idle") ? (
-						<>
-							New <br /> Game
-						</>
-					) : (
-						"Restart"
-					)
+					<>
+						{buttonText} <br /> Game
+					</>
 				}
 				variant="primary"
 				onClick={(): void => {
-					send("START");
+					send("TOGGLE");
 				}}
 				modifier={[st.button ?? ""]}
 			/>

@@ -4,6 +4,7 @@ import { createMachine } from "xstate";
 import {
 	StateMain,
 	StateLevel,
+	StateFinish,
 	type Level,
 	type GlobalEvent,
 } from "@customTypes/customTypes";
@@ -58,25 +59,34 @@ const machine = createMachine(
 					},
 				},
 				on: {
-					START: {
+					TOGGLE: {
 						target: StateMain.Play,
 					},
 				},
 			},
 			[StateMain.Play]: {
 				on: {
-					WIN: {
+					FINISH: {
 						target: StateMain.Finish,
 					},
-				},
-			},
-			[StateMain.Finish]: {
-				on: {
-					RESTART: {
+					TOGGLE: {
 						target: StateMain.Idle,
 					},
 				},
 			},
+			[StateMain.Finish]: {
+				always: [
+					{ target: StateFinish.Win, cond: "didPlayerWin" },
+					{ target: StateFinish.Lose, cond: "didPlayerLose" },
+				],
+				on: {
+					TOGGLE: {
+						target: StateMain.Idle,
+					},
+				},
+			},
+			[StateFinish.Win]: { type: "final" },
+			[StateFinish.Lose]: { type: "final" },
 		},
 	},
 	{
@@ -89,6 +99,16 @@ const machine = createMachine(
 			},
 			actionsToHard: (context) => {
 				context.currentLevel = { hard: 25 };
+			},
+		},
+		guards: {
+			didPlayerWin: (context, event) => {
+				console.log(context, event);
+				return true;
+			},
+			didPlayerLose: (context, event) => {
+				console.log(context, event);
+				return true;
 			},
 		},
 	},
