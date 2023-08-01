@@ -1,13 +1,12 @@
-import { useMachine } from "@xstate/react";
 import React from "react";
 
+import { machineContext } from "@components/App";
 import { Button } from "@components/Button";
-import { machine } from "@state/machine";
 
 import st from "./index.module.scss";
 
 const Level = (): JSX.Element => {
-	const [state, send] = useMachine(machine);
+	const [state, send] = machineContext.useActor();
 	const { currentLevel } = state.context;
 	const buttons = [
 		["easy", "TO_EASY"],
@@ -26,7 +25,7 @@ const Level = (): JSX.Element => {
 							Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
 						}
 						onClick={(): void => {
-							send({ type: el[1] });
+							send(el[1]);
 						}}
 						modifier={[st.button ?? ""]}
 					/>
