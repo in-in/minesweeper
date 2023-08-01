@@ -9,9 +9,10 @@ import {
 	type GlobalEvent,
 } from "@customTypes/customTypes";
 
-const machine = createMachine(
+const mainMachine = createMachine(
 	{
 		predictableActionArguments: true,
+		preserveActionOrder: true,
 		schema: {
 			context: {
 				currentLevel: {} as Level,
@@ -92,6 +93,7 @@ const machine = createMachine(
 	{
 		actions: {
 			actionsToEasy: (context) => {
+				console.log("actionsToEasy", context);
 				context.currentLevel = { easy: 10 };
 			},
 			actionsToMedium: (context) => {
@@ -114,4 +116,4 @@ const machine = createMachine(
 	},
 );
 
-export { machine };
+export { mainMachine };
