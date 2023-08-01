@@ -1,15 +1,15 @@
 import React from "react";
 
-import { machineContext } from "@components/App";
 import { Button } from "@components/Button";
 import { Range } from "@components/Range";
 import { Stat } from "@components/Stat";
 import { Toggle } from "@components/Toggle";
+import { mainMachineContext } from "@state/mainMachineContext";
 
 import st from "./index.module.scss";
 
 const Dashboard = (): JSX.Element => {
-	const [state, send] = machineContext.useActor();
+	const [state, send] = mainMachineContext.useActor();
 	const buttonText = state.matches("idle") ? "Start" : "Stop";
 
 	return (

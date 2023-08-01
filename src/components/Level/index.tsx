@@ -1,12 +1,12 @@
 import React from "react";
 
-import { machineContext } from "@components/App";
 import { Button } from "@components/Button";
+import { mainMachineContext } from "@state/mainMachineContext";
 
 import st from "./index.module.scss";
 
 const Level = (): JSX.Element => {
-	const [state, send] = machineContext.useActor();
+	const [state, send] = mainMachineContext.useActor();
 	const { currentLevel } = state.context;
 	const buttons = [
 		["easy", "TO_EASY"],
