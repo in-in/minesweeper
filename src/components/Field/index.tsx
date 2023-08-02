@@ -1,17 +1,33 @@
-// import { clsx } from "clsx";
-import React from "react";
+import React, { type CSSProperties } from "react";
+
+import { Cell } from "@components/Cell";
+import { mainMachineContext } from "@state/mainMachineContext";
 
 import st from "./index.module.scss";
 
-// interface AppProps {
-// 	modifier?: string[];
-// 	inner: JSX.Element;
-// 	variant: "primary" | "active";
-// }
-
 const Field = (): JSX.Element => {
-	// const btnClass = clsx(st.button, st[variant], modifier);
-	return <div className={st.field}></div>;
+	const currentLevel = mainMachineContext.useSelector(
+		(state) => Object.values(state.context.currentLevel)[0],
+	);
+	const style = { "--size": currentLevel } as CSSProperties;
+
+	const cells = [];
+
+	if (currentLevel !== undefined) {
+		for (let row = 0; row < currentLevel; row++) {
+			for (let col = 0; col < currentLevel; col++) {
+				cells.push(
+					<Cell key={`${row}-${col}`} cellRowId={row} cellColId={col} />,
+				);
+			}
+		}
+	}
+
+	return (
+		<div className={st.field} style={style}>
+			{cells}
+		</div>
+	);
 };
 
 export { Field };
