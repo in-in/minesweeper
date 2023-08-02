@@ -2,6 +2,7 @@ const commonRules = {
 	"prettier/prettier": ["error"],
 	"logical-assignment-operators": ["error", "always"],
 	"no-invalid-this": "error",
+	"@typescript-eslint/consistent-type-assertions": "off",
 	"perfectionist/sort-imports": [
 		"error",
 		{
@@ -38,8 +39,13 @@ module.exports = {
 		node: true,
 	},
 	parserOptions: commonParserOptions,
-	extends: ["standard", "plugin:sonarjs/recommended", "prettier"],
-	plugins: ["sonarjs", "perfectionist", "prettier"],
+	extends: [
+		"standard",
+		"plugin:sonarjs/recommended",
+		"plugin:jsx-a11y/recommended",
+		"prettier",
+	],
+	plugins: ["sonarjs", "perfectionist", "jsx-a11y", "prettier"],
 	rules: commonRules,
 	reportUnusedDisableDirectives: true,
 	overrides: [
