@@ -6,6 +6,7 @@ import {
 	StateFinish,
 	type Level,
 	type GlobalEvent,
+	type minesAmount,
 } from "@customTypes/customTypes";
 
 const mainMachine = createMachine(
@@ -15,6 +16,7 @@ const mainMachine = createMachine(
 		schema: {
 			context: {
 				currentLevel: {} as Level,
+				minesAmount: {} as minesAmount,
 			},
 			events: {} as GlobalEvent,
 		},
@@ -23,6 +25,7 @@ const mainMachine = createMachine(
 			currentLevel: {
 				easy: 10,
 			},
+			minesAmount: 10,
 		},
 		initial: StateMain.Idle,
 		states: {
@@ -62,6 +65,9 @@ const mainMachine = createMachine(
 					TOGGLE: {
 						target: StateMain.Play,
 					},
+					UPDATE_MINES_AMOUNT: {
+						actions: ["updateMinesAmount"],
+					},
 				},
 			},
 			[StateMain.Play]: {
@@ -95,11 +101,10 @@ const mainMachine = createMachine(
 				console.log("actionsToEasy", context);
 				context.currentLevel = { easy: 10 };
 			},
-			actionsToMedium: (context) => {
-				context.currentLevel = { medium: 15 };
-			},
-			actionsToHard: (context) => {
-				context.currentLevel = { hard: 25 };
+			updateMinesAmount: (ctx, event) => {
+				if (event.type === "UPDATE_MINES_AMOUNT") {
+					ctx.minesAmount = event.value;
+				}
 			},
 		},
 		guards: {
