@@ -37,26 +37,26 @@ const mainMachine = createMachine(
 						on: {
 							TO_MEDIUM: {
 								target: StateLevel.Medium,
-								actions: ["actionsToMedium"],
+								actions: ["changeLevel"],
 							},
 							TO_HARD: {
 								target: StateLevel.Hard,
-								actions: ["actionsToHard"],
+								actions: ["changeLevel"],
 							},
 						},
 					},
 					[StateLevel.Medium]: {
 						on: {
-							TO_EASY: { target: StateLevel.Easy, actions: ["actionsToEasy"] },
-							TO_HARD: { target: StateLevel.Hard, actions: ["actionsToHard"] },
+							TO_EASY: { target: StateLevel.Easy, actions: ["changeLevel"] },
+							TO_HARD: { target: StateLevel.Hard, actions: ["changeLevel"] },
 						},
 					},
 					[StateLevel.Hard]: {
 						on: {
-							TO_EASY: { target: StateLevel.Easy, actions: ["actionsToEasy"] },
+							TO_EASY: { target: StateLevel.Easy, actions: ["changeLevel"] },
 							TO_MEDIUM: {
 								target: StateLevel.Medium,
-								actions: ["actionsToMedium"],
+								actions: ["changeLevel"],
 							},
 						},
 					},
@@ -97,9 +97,19 @@ const mainMachine = createMachine(
 	},
 	{
 		actions: {
-			actionsToEasy: (context) => {
-				console.log("actionsToEasy", context);
-				context.currentLevel = { easy: 10 };
+			changeLevel: (ctx, event) => {
+				if (event.type === "TO_EASY" && event.level === "easy") {
+					ctx.currentLevel = { easy: 10 };
+					ctx.minesAmount = 10;
+				}
+				if (event.type === "TO_MEDIUM" && event.level === "medium") {
+					ctx.currentLevel = { medium: 15 };
+					ctx.minesAmount = 15;
+				}
+				if (event.type === "TO_HARD" && event.level === "hard") {
+					ctx.currentLevel = { hard: 25 };
+					ctx.minesAmount = 25;
+				}
 			},
 			updateMinesAmount: (ctx, event) => {
 				if (event.type === "UPDATE_MINES_AMOUNT") {

@@ -25,7 +25,10 @@ const Level = (): JSX.Element => {
 							Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
 						}
 						onClick={(): void => {
-							send(el[1]);
+							send({
+								type: el[1],
+								level: el[0],
+							});
 						}}
 						modifier={[st.button ?? ""]}
 					/>
