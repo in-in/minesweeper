@@ -8,11 +8,11 @@ interface CellProps {
 }
 
 const Cell = ({ cellRowId, cellColId }: CellProps): JSX.Element => (
-	<div
+	<button
 		className={st.cell}
 		data-cellrowid={cellRowId}
 		data-cellcolid={cellColId}
-	></div>
+	></button>
 );
 
 export { Cell };
