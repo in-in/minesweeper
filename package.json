@@ -1,10 +1,6 @@
 {
 	"name": "minesweeper",
 	"private": true,
-	"engines": {
-		"node": "20.5.0",
-		"npm": "9.8.0"
-	},
 	"scripts": {
 		"build": "NODE_ENV=prod webpack --config .config/webpack.config.ts",
 		"cz": "cz",
@@ -81,5 +77,8 @@
 		"webpack": "5.88.2",
 		"webpack-cli": "5.1.4",
 		"webpack-dev-server": "4.15.1"
+	},
+	"engines": {
+		"node": "18.17.0"
 	}
 }
