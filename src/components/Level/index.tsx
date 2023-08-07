@@ -16,24 +16,28 @@ const Level = (): JSX.Element => {
 
 	return (
 		<div className={st.level}>
-			{buttons.map((el) => {
-				return (
-					<Button
-						key={el[0]}
-						inner={el[0]}
-						variant={
-							Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
-						}
-						onClick={(): void => {
-							send({
-								type: el[1],
-								level: el[0],
-							});
-						}}
-						modifier={[st.button ?? ""]}
-					/>
-				);
-			})}
+			<p className={st.title}>Level</p>
+			<ul className={st.group}>
+				{buttons.map((el) => {
+					return (
+						<li key={el[0]}>
+							<Button
+								inner={el[0]}
+								variant={
+									Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
+								}
+								onClick={(): void => {
+									send({
+										type: el[1],
+										level: el[0],
+									});
+								}}
+								modifier={[st.button ?? ""]}
+							/>
+						</li>
+					);
+				})}
+			</ul>
 		</div>
 	);
 };

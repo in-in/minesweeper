@@ -3,9 +3,27 @@
 .level {
 	display: flex;
 	grid-area: level;
+	flex-direction: column;
+	gap: em(8);
+}
+
+.title {
+	text-align: center;
+	font-size: em($size-font-small);
+	line-height: 1;
+}
+
+.group {
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: em(16);
+
+	li {
+		@include breakpoint(m) {
+			width: 100%;
+		}
+	}
 
 	@include breakpoint(m) {
 		flex-direction: column;
@@ -14,9 +32,6 @@
 }
 
 .button {
+	width: inherit;
 	text-transform: capitalize;
-
-	@include breakpoint(m) {
-		width: 100%;
-	}
 }
