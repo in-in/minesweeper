@@ -16,9 +16,7 @@ const Field = (): JSX.Element => {
 	if (currentLevel !== undefined) {
 		for (let row = 0; row < currentLevel; row++) {
 			for (let col = 0; col < currentLevel; col++) {
-				cells.push(
-					<Cell key={`${row}-${col}`} cellRowId={row} cellColId={col} />,
-				);
+				cells.push(<Cell key={`${row}-${col}`} cellRowId={row} cellColId={col} />);
 			}
 		}
 	}
