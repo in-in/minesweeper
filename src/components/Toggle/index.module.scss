@@ -5,18 +5,18 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: em(8);
+	gap: to-em(8);
 	user-select: none;
 }
 
 .title {
 	text-align: center;
-	font-size: em($size-font-small);
+	font-size: to-em($size-font-small);
 	line-height: 1;
 }
 
 .input {
-	width: em(16);
-	height: em(16);
+	width: to-em(16);
+	height: to-em(16);
 	accent-color: $color-primary;
 }

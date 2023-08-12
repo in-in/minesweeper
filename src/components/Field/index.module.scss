@@ -12,15 +12,15 @@
 	aspect-ratio: 1;
 
 	&[style='--size: 25'] {
-		font-size: em(13);
+		font-size: to-em(13);
 	}
 
 	&[style='--size: 15'] {
-		font-size: em(20);
+		font-size: to-em(20);
 	}
 
 	&[style='--size: 10'] {
-		font-size: em(30);
+		font-size: to-em(30);
 	}
 }
 

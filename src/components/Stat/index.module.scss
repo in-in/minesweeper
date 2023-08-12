@@ -5,7 +5,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: em(8);
+	gap: to-em(8);
 	user-select: none;
 }
 
@@ -16,5 +16,5 @@
 }
 
 .label {
-	font-size: em($size-font-small);
+	font-size: to-em($size-font-small);
 }

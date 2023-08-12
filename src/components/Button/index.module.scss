@@ -5,7 +5,7 @@
 	flex-shrink: 0;
 	justify-content: center;
 	align-items: center;
-	padding: em(10);
+	padding: to-em(10);
 	border-radius: $size-border-radius;
 	color: $color-dark-3xl;
 	font-size: inherit;

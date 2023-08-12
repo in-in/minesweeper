@@ -5,7 +5,7 @@
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	border: em(1) solid $color-dark;
+	border: to-em(1) solid $color-dark;
 	background-color: #495057;
 	color: $color-dark;
 	font-size: inherit;

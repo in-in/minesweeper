@@ -8,11 +8,11 @@
 		'field'
 		'level'
 		'scoretable';
-	gap: em(16);
+	gap: to-em(16);
 	width: 100%;
 	min-width: map.get($breakpoint, 'start') + px;
 	max-width: map.get($breakpoint, 'end') + px;
-	padding-top: em(16);
+	padding-top: to-em(16);
 
 	@include breakpoint(m) {
 		grid-template-areas:

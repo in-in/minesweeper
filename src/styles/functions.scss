@@ -3,11 +3,11 @@
 @use 'sass:meta';
 @use 'vars' as *;
 
-@function em($px, $context: $size-font-base) {
+@function to-em($px, $context: $size-font-base) {
 	@return math.div($px, $context) + em;
 }
 
-@function rem($px, $base: $size-font-base) {
+@function to-rem($px, $base: $size-font-base) {
 	@return math.div($px, $base) + rem;
 }
 
@@ -18,9 +18,9 @@
 	$viewport-max: map.get($breakpoint, 'end'),
 ) {
 	$slope: math.div(($size-max - $size-min), ($viewport-max - $viewport-min));
-	$preferred-size: rem($size-max - $viewport-max * $slope);
+	$preferred-size: to-rem($size-max - $viewport-max * $slope);
 
-	@return clamp(#{rem($size-min)}, #{$preferred-size} + #{100vw * $slope}, #{rem($size-max)});
+	@return clamp(#{to-rem($size-min)}, #{$preferred-size} + #{100vw * $slope}, #{to-rem($size-max)});
 }
 
 @function breakpoint-context($val) {

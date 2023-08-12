@@ -4,12 +4,12 @@
 	display: flex;
 	grid-area: level;
 	flex-direction: column;
-	gap: em(8);
+	gap: to-em(8);
 }
 
 .title {
 	text-align: center;
-	font-size: em($size-font-small);
+	font-size: to-em($size-font-small);
 	line-height: 1;
 }
 
@@ -17,7 +17,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: em(16);
+	gap: to-em(16);
 
 	li {
 		@include breakpoint(m) {
