@@ -1,17 +1,6 @@
-export type GlobalEvent =
-	| { type: "TOGGLE" }
-	| { type: "FINISH" }
-	| { type: "TO_MEDIUM"; level: string }
-	| { type: "TO_HARD"; level: string }
-	| { type: "TO_EASY"; level: string }
-	| { type: "UPDATE_MINES_AMOUNT"; value: minesAmount };
-
 export type Level = { easy: 10 } | { medium: 15 } | { hard: 25 };
 
-type Enumerate<
-	N extends number,
-	Acc extends number[] = [],
-> = Acc["length"] extends N
+type Enumerate<N extends number, Acc extends number[] = []> = Acc["length"] extends N
 	? Acc[number]
 	: Enumerate<N, [...Acc, Acc["length"]]>;
 
@@ -38,3 +27,8 @@ export const StateFinish = {
 	Win: "win",
 	Lose: "lose",
 } as const;
+
+export interface mainContext {
+	currentLevel: Level;
+	minesAmount: minesAmount;
+}

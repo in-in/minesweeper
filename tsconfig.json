@@ -28,6 +28,9 @@
 			"@customTypes/*": [
 				"src/customTypes/*"
 			],
+			"@utils/*": [
+				"src/utils/*"
+			],
 			"@images/*": [
 				"assets/images/*"
 			],

@@ -1,13 +1,9 @@
 import React from "react";
 
-import { type minesAmount } from "@customTypes/customTypes";
-import { mainMachineContext } from "@state/mainMachineContext";
-
 import st from "./index.module.scss";
 
 const Range = (): JSX.Element => {
-	const [state, send] = mainMachineContext.useActor();
-	const minesAmount = state.context.minesAmount;
+	const minesAmount = 10;
 
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
@@ -28,10 +24,7 @@ const Range = (): JSX.Element => {
 				id="mines"
 				value={minesAmount}
 				onChange={(event): void => {
-					send({
-						type: "UPDATE_MINES_AMOUNT",
-						value: Number(event.target.value) as minesAmount,
-					});
+					console.log(event);
 				}}
 			>
 				{createSelectOptions}

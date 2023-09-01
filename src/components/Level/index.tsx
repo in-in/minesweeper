@@ -1,13 +1,11 @@
 import React from "react";
 
 import { Button } from "@components/Button";
-import { mainMachineContext } from "@state/mainMachineContext";
 
 import st from "./index.module.scss";
 
 const Level = (): JSX.Element => {
-	const [state, send] = mainMachineContext.useActor();
-	const { currentLevel } = state.context;
+	const currentLevel = 10;
 	const buttons = [
 		["easy", "TO_EASY"],
 		["medium", "TO_MEDIUM"],
@@ -26,12 +24,7 @@ const Level = (): JSX.Element => {
 								variant={
 									Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
 								}
-								onClick={(): void => {
-									send({
-										type: el[1],
-										level: el[0],
-									});
-								}}
+								onClick={(): void => {}}
 								modifier={[st.button ?? ""]}
 							/>
 						</li>
