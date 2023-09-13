@@ -28,7 +28,7 @@ export const StateFinish = {
 	Lose: "lose",
 } as const;
 
-export interface mainContext {
+export interface GameState {
 	currentLevel: Level;
 	minesAmount: minesAmount;
 }

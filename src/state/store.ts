@@ -1,16 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-const reducer = {};
-
-const preloadedState = {
-	level: 10,
-	minesAmount: 10,
-	phase: "idle",
-};
+import mainReducer from "@state/mainSlice";
 
 const store = configureStore({
-	reducer,
-	preloadedState,
+	reducer: {
+		main: mainReducer,
+	},
 });
 
 export { store };
