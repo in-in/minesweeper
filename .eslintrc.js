@@ -1,13 +1,16 @@
 const commonRules = {
-	"prettier/prettier": ["error"],
-	"logical-assignment-operators": ["error", "always"],
-	"no-invalid-this": "error",
 	"@typescript-eslint/consistent-type-assertions": "off",
+	"logical-assignment-operators": ["error", "always"],
+	"no-await-in-loop": "error",
+	"no-invalid-this": "error",
+	"no-promise-executor-return": "error",
+	"no-return-await": "error",
+	"prettier/prettier": ["error"],
+	"require-atomic-updates": "error",
 	"perfectionist/sort-imports": [
 		"error",
 		{
 			"type": "alphabetical",
-			"read-tsconfig": true,
 			"groups": [
 				"side-effect",
 				["builtin-type", "type", "builtin", "external"],
@@ -15,6 +18,15 @@ const commonRules = {
 				["parent-type", "sibling-type", "index-type", "parent", "sibling", "index"],
 				"style",
 				"unknown",
+			],
+			"internal-pattern": [
+				"@components/**",
+				"@state/**",
+				"@styles/**",
+				"@customTypes/**",
+				"@utils/**",
+				"@images/**",
+				"@svg/**",
 			],
 		},
 	],
