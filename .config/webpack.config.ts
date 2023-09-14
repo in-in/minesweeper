@@ -170,7 +170,7 @@ const config: Configuration = {
 			}),
 		],
 	},
-	devtool: isDev ? "eval" : false,
+	devtool: isDev ? "eval-cheap-source-map" : false,
 	devServer: {
 		host: "0.0.0.0",
 		hot: true,
