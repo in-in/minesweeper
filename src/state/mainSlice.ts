@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { type GameState, type Level } from "@customTypes/customTypes";
+import { type RootState } from "@state/store";
 
 const initialState: GameState = {
 	currentLevel: {
@@ -19,6 +20,13 @@ const counterSlice = createSlice({
 		},
 	},
 });
+
+const selectCurrentLevel = (state: RootState): Level => state.main.currentLevel;
+
+export const selectCurrentLevelValue = createSelector(
+	selectCurrentLevel,
+	(level) => Object.values(level)[0] ?? 10,
+);
 
 export const { switchLevel } = counterSlice.actions;
 export default counterSlice.reducer;
