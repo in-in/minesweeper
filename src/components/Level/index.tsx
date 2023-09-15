@@ -1,30 +1,29 @@
 import React from "react";
 
 import { Button } from "@components/Button";
+import { selectCurrentLevelName, switchLevel } from "@state/mainSlice";
+import * as constants from "@utils/constants";
+import { useAppSelector, useAppDispatch } from "@utils/hooks";
 
 import st from "./index.module.scss";
 
 const Level = (): React.ReactNode => {
-	const currentLevel = 10;
-	const buttons = [
-		["easy", "TO_EASY"],
-		["medium", "TO_MEDIUM"],
-		["hard", "TO_HARD"],
-	] as const;
+	const currentLevelName = useAppSelector(selectCurrentLevelName);
+	const buttons = constants.LEVELS;
+	const dispatch = useAppDispatch();
 
 	return (
 		<div className={st.level}>
 			<p className={st.title}>Level</p>
 			<ul className={st.group}>
 				{buttons.map((el) => {
+					const [key] = Object.keys(el);
 					return (
-						<li key={el[0]}>
+						<li key={key}>
 							<Button
-								inner={el[0]}
-								variant={
-									Object.keys(currentLevel)[0] === el[0] ? "active" : "primary"
-								}
-								onClick={(): void => {}}
+								inner={key}
+								variant={currentLevelName === key ? "active" : "primary"}
+								onClick={() => dispatch(switchLevel(el))}
 								modifier={[st.button ?? ""]}
 							/>
 						</li>

@@ -28,5 +28,10 @@ export const selectCurrentLevelValue = createSelector(
 	(level) => Object.values(level)[0] ?? 10,
 );
 
+export const selectCurrentLevelName = createSelector(
+	selectCurrentLevel,
+	(level) => Object.keys(level)[0] ?? "easy",
+);
+
 export const { switchLevel } = counterSlice.actions;
 export default counterSlice.reducer;
