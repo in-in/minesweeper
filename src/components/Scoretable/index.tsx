@@ -3,7 +3,7 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-const Scoretable = (): JSX.Element => {
+const Scoretable = (): React.ReactNode => {
 	return (
 		<div className={st.scoretable}>
 			<div className={st.row}>

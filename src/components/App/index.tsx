@@ -4,7 +4,7 @@ import { Wrapper } from "@components/Wrapper";
 
 import st from "./index.module.scss";
 
-const App = (): JSX.Element => (
+const App = (): React.ReactNode => (
 	<div className={st.layout}>
 		<Wrapper />
 	</div>

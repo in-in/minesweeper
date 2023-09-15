@@ -2,7 +2,7 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-const Range = (): JSX.Element => {
+const Range = (): React.ReactNode => {
 	const minesAmount = 10;
 
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);

@@ -7,7 +7,7 @@ interface CellProps {
 	cellColId: number;
 }
 
-const Cell = ({ cellRowId, cellColId }: CellProps): JSX.Element => (
+const Cell = ({ cellRowId, cellColId }: CellProps): React.ReactNode => (
 	<button
 		className={st.cell}
 		data-cellrowid={cellRowId}

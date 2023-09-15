@@ -4,7 +4,7 @@ import { Button } from "@components/Button";
 
 import st from "./index.module.scss";
 
-const Level = (): JSX.Element => {
+const Level = (): React.ReactNode => {
 	const currentLevel = 10;
 	const buttons = [
 		["easy", "TO_EASY"],

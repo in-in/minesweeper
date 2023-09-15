@@ -7,7 +7,7 @@ import { Toggle } from "@components/Toggle";
 
 import st from "./index.module.scss";
 
-const Dashboard = (): JSX.Element => {
+const Dashboard = (): React.ReactNode => {
 	return (
 		<div className={st.dashboard}>
 			<Range />

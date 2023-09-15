@@ -7,7 +7,7 @@ interface AppProps {
 	counter?: number;
 }
 
-const Stat = ({ label, counter = 0 }: AppProps): JSX.Element => {
+const Stat = ({ label, counter = 0 }: AppProps): React.ReactNode => {
 	const id = label.replace(/[^a-z0-9]/gi, "-");
 	return (
 		<div className={st.stat} id={`stat-${id}`}>

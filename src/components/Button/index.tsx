@@ -5,7 +5,7 @@ import st from "./index.module.scss";
 
 interface AppProps {
 	modifier?: string[];
-	inner: JSX.Element | string;
+	inner: React.ReactNode;
 	variant: "primary" | "active";
 	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -16,7 +16,7 @@ const Button = ({
 	modifier,
 	onClick,
 	...rest
-}: AppProps): JSX.Element => {
+}: AppProps): React.ReactNode => {
 	const btnClass = clsx(st.button, st[variant], modifier);
 	return (
 		<button onClick={onClick} type="button" className={btnClass} {...rest}>

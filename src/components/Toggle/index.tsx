@@ -6,7 +6,7 @@ interface AppProps {
 	label: string;
 }
 
-const Toggle = ({ label }: AppProps): JSX.Element => {
+const Toggle = ({ label }: AppProps): React.ReactNode => {
 	const id = label.replace(/[^a-z0-9]/gi, "-");
 	return (
 		<div className={st.toggle}>

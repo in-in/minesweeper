@@ -7,7 +7,7 @@ import { Scoretable } from "@components/Scoretable";
 
 import st from "./index.module.scss";
 
-const Wrapper = (): JSX.Element => (
+const Wrapper = (): React.ReactNode => (
 	<div className={st.wrapper}>
 		<Dashboard />
 		<Field />
