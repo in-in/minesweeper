@@ -9,7 +9,7 @@ type IntRange<F extends number, T extends number> = Exclude<
 	Enumerate<F>
 >;
 
-export type minesAmount = IntRange<10, 100>;
+export type MinesAmount = IntRange<10, 100>;
 
 export const StateMain = {
 	Idle: "idle",
@@ -30,5 +30,8 @@ export const StateFinish = {
 
 export interface GameState {
 	currentLevel: Level;
-	minesAmount: minesAmount;
+	minesAmount: MinesAmount;
 }
+
+export type CSSCustomProperties = React.CSSProperties &
+	Record<`--${string}`, number | string>;
