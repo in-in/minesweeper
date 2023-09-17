@@ -1,7 +1,7 @@
 import { createListenerMiddleware, addListener } from "@reduxjs/toolkit";
 import type { TypedStartListening, TypedAddListener } from "@reduxjs/toolkit";
 
-import { projectName } from "@utils/projectName";
+import { localStorageWrapper } from "@utils/localStorageWrapper";
 
 import type { RootState, AppDispatch } from "./store";
 
@@ -19,10 +19,10 @@ export const addAppListener = addListener as TypedAddListener<
 
 listenerMiddleware.startListening({
 	predicate: () => true,
-	effect: (_action, listenerApi) => {
-		const state = JSON.stringify(listenerApi.getState());
+	effect: (_, { getState }) => {
+		const state = JSON.stringify(getState());
 		try {
-			localStorage.setItem(projectName, state);
+			localStorageWrapper()?.setItem(state);
 		} catch (error) {
 			console.log(error);
 		}
