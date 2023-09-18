@@ -1,7 +1,11 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { type GameState, type Level } from "@customTypes/customTypes";
+import {
+	type GameState,
+	type Level,
+	type MinesAmount,
+} from "@customTypes/customTypes";
 import { type RootState } from "@state/store";
 import * as constants from "@utils/constants";
 import { localStorageWrapper } from "@utils/localStorageWrapper";
@@ -24,6 +28,9 @@ const counterSlice = createSlice({
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;
 		},
+		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
+			state.minesAmount = action.payload;
+		},
 	},
 });
 
@@ -42,5 +49,8 @@ export const selectCurrentLevelName = createSelector(
 	(level) => Object.keys(level)[0] ?? initialLevelName,
 );
 
-export const { switchLevel } = counterSlice.actions;
+export const selectminesAmount = (state: RootState): MinesAmount =>
+	state.main.minesAmount;
+
+export const { switchLevel, updateMinesAmount } = counterSlice.actions;
 export default counterSlice.reducer;

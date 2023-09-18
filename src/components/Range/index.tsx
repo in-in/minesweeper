@@ -1,10 +1,14 @@
 import React from "react";
 
+import { type MinesAmount } from "@customTypes/customTypes";
+import { updateMinesAmount, selectminesAmount } from "@state/mainSlice";
+import { useAppSelector, useAppDispatch } from "@utils/hooks";
+
 import st from "./index.module.scss";
 
 const Range = (): React.ReactNode => {
-	const minesAmount = 10;
-
+	const minesAmount = useAppSelector(selectminesAmount);
+	const dispatch = useAppDispatch();
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
 	const createSelectOptions = createRangeArray.map((el) => (
@@ -23,8 +27,9 @@ const Range = (): React.ReactNode => {
 				name="mines"
 				id="mines"
 				value={minesAmount}
-				onChange={(event): void => {
-					console.log(event);
+				onChange={(ev) => {
+					const value = Number(ev.target.value) as MinesAmount;
+					return dispatch(updateMinesAmount(value));
 				}}
 			>
 				{createSelectOptions}
