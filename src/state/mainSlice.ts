@@ -4,7 +4,9 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { type GameState, type Level } from "@customTypes/customTypes";
 import { type RootState } from "@state/store";
 import * as constants from "@utils/constants";
+import { localStorageWrapper } from "@utils/localStorageWrapper";
 
+const sliceName = "main";
 const initialState: GameState = {
 	currentLevel: {
 		easy: 10,
@@ -12,9 +14,12 @@ const initialState: GameState = {
 	minesAmount: 10,
 };
 
+const localState: GameState =
+	localStorageWrapper()?.getItem()?.[sliceName] ?? initialState;
+
 const counterSlice = createSlice({
-	name: "main",
-	initialState,
+	name: sliceName,
+	initialState: localState,
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;

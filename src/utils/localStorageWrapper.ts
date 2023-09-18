@@ -1,8 +1,9 @@
+import { type RootState } from "@state/store";
 import { projectName } from "@utils/projectName";
 
 type LocalStorageWrapper = {
 	setItem: (value: string, key?: string) => void;
-	getItem: (key: string) => string | null;
+	getItem: (key?: string) => RootState | null;
 } | null;
 
 function isLocalStorageAvailable(): boolean {
@@ -26,8 +27,12 @@ function localStorageWrapper(): LocalStorageWrapper {
 		setItem(value: string, key = projectName): void {
 			localStorage.setItem(key, value);
 		},
-		getItem(key = projectName): string | null {
-			return localStorage.getItem(key);
+		getItem(key = projectName): RootState | null {
+			const localStore = localStorage.getItem(key);
+			if (typeof localStore === "string") {
+				return JSON.parse(localStore) as RootState;
+			}
+			return null;
 		},
 	};
 }
