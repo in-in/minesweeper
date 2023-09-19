@@ -17,8 +17,9 @@ const Dashboard = (): React.ReactNode => {
 			<Stat label="turns" />
 			<Stat label="mines" />
 			<Button
-				inner={<>Start</>}
+				inner={"Restart"}
 				variant="primary"
+				disabled
 				onClick={(): void => {}}
 				modifier={[st.button ?? ""]}
 			/>

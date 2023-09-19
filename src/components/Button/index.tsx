@@ -3,23 +3,21 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-interface AppProps {
-	modifier?: string[];
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
 	inner: React.ReactNode;
 	variant: "primary" | "active";
-	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+	modifier?: string[];
 }
 
 const Button = ({
 	inner,
 	variant,
 	modifier,
-	onClick,
 	...rest
-}: AppProps): React.ReactNode => {
+}: ButtonProps): React.ReactNode => {
 	const btnClass = clsx(st.button, st[variant], modifier);
 	return (
-		<button onClick={onClick} type="button" className={btnClass} {...rest}>
+		<button type="button" className={btnClass} {...rest}>
 			{inner}
 		</button>
 	);

@@ -25,6 +25,7 @@
 
 	&:disabled {
 		color: $color-dark-s;
+		opacity: 0.7;
 		pointer-events: none;
 	}
 }
