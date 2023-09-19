@@ -20,7 +20,7 @@ const initialState: GameState = {
 const localState: GameState =
 	localStorageWrapper()?.getItem()?.[constants.sliceMain] ?? initialState;
 
-const counterSlice = createSlice({
+const mainSlice = createSlice({
 	name: constants.sliceMain,
 	initialState: localState,
 	reducers: {
@@ -33,7 +33,8 @@ const counterSlice = createSlice({
 	},
 });
 
-const selectCurrentLevel = (state: RootState): Level => state.main.currentLevel;
+const selectCurrentLevel = (state: RootState): Level =>
+	state[constants.sliceMain].currentLevel;
 const [initialLevelName] = Object.keys(constants.LEVELS[0]);
 const initialLevelValue =
 	constants.LEVELS[0][initialLevelName as keyof (typeof constants.LEVELS)[0]];
@@ -49,7 +50,7 @@ export const selectCurrentLevelName = createSelector(
 );
 
 export const selectminesAmount = (state: RootState): MinesAmount =>
-	state.main.minesAmount;
+	state[constants.sliceMain].minesAmount;
 
-export const { switchLevel, updateMinesAmount } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { switchLevel, updateMinesAmount } = mainSlice.actions;
+export default mainSlice.reducer;
