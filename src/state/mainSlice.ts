@@ -10,7 +10,6 @@ import { type RootState } from "@state/store";
 import * as constants from "@utils/constants";
 import { localStorageWrapper } from "@utils/localStorageWrapper";
 
-const sliceName = "main";
 const initialState: GameState = {
 	currentLevel: {
 		easy: 10,
@@ -19,10 +18,10 @@ const initialState: GameState = {
 };
 
 const localState: GameState =
-	localStorageWrapper()?.getItem()?.[sliceName] ?? initialState;
+	localStorageWrapper()?.getItem()?.[constants.sliceMain] ?? initialState;
 
 const counterSlice = createSlice({
-	name: sliceName,
+	name: constants.sliceMain,
 	initialState: localState,
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
