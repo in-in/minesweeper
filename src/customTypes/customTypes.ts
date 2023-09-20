@@ -21,19 +21,4 @@ export interface GameState {
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;
 
-// export const StateMain = {
-// 	Idle: "idle",
-// 	Play: "play",
-// 	Finish: "finish",
-// } as const;
-
-// export const StateLevel = {
-// 	Easy: "easy",
-// 	Medium: "medium",
-// 	Hard: "hard",
-// } as const;
-
-// export const StateFinish = {
-// 	Win: "win",
-// 	Lose: "lose",
-// } as const;
+export type GameStatus = "idle" | "play" | "win" | "lose";

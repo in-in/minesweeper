@@ -1,6 +1,7 @@
 import React from "react";
 
 import { type MinesAmount } from "@customTypes/customTypes";
+import { selectIsPlayStatus } from "@state/gameStateSlice";
 import { updateMinesAmount, selectminesAmount } from "@state/mainSlice";
 import { useAppSelector, useAppDispatch } from "@utils/hooks";
 
@@ -8,6 +9,7 @@ import st from "./index.module.scss";
 
 const Range = (): React.ReactNode => {
 	const minesAmount = useAppSelector(selectminesAmount);
+	const isPlayStatus = useAppSelector(selectIsPlayStatus);
 	const dispatch = useAppDispatch();
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
@@ -26,6 +28,7 @@ const Range = (): React.ReactNode => {
 				className={st.select}
 				name="mines"
 				id="mines"
+				disabled={isPlayStatus}
 				value={minesAmount}
 				onChange={(ev) => {
 					const value = Number(ev.target.value) as MinesAmount;
