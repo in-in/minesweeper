@@ -1,9 +1,9 @@
-import type * as constants from "@/utils/constants";
+import { type LEVELS } from "@/utils/constants";
 
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;
 
-export type Level = (typeof constants.LEVELS)[number];
+export type Level = (typeof LEVELS)[number];
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc["length"] extends N
 	? Acc[number]

@@ -7,11 +7,11 @@ import {
 	type MinesAmount,
 } from "@/customTypes/customTypes";
 import { type RootState } from "@/store/store";
-import * as constants from "@/utils/constants";
+import { SLICE_MAIN, INITIAL_STATE, LEVELS } from "@/utils/constants";
 
 const mainSlice = createSlice({
-	name: constants.sliceMain,
-	initialState: constants.initialState[constants.sliceMain] as MainState,
+	name: SLICE_MAIN,
+	initialState: INITIAL_STATE[SLICE_MAIN] as MainState,
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;
@@ -23,10 +23,9 @@ const mainSlice = createSlice({
 });
 
 const selectCurrentLevel = (state: RootState): Level =>
-	state[constants.sliceMain].currentLevel;
-const [initialLevelName] = Object.keys(constants.LEVELS[0]);
-const initialLevelValue =
-	constants.LEVELS[0][initialLevelName as keyof (typeof constants.LEVELS)[0]];
+	state[SLICE_MAIN].currentLevel;
+const [initialLevelName] = Object.keys(LEVELS[0]);
+const initialLevelValue = LEVELS[0][initialLevelName as keyof (typeof LEVELS)[0]];
 
 export const selectCurrentLevelValue = createSelector(
 	selectCurrentLevel,
@@ -39,7 +38,7 @@ export const selectCurrentLevelName = createSelector(
 );
 
 export const selectminesAmount = (state: RootState): MinesAmount =>
-	state[constants.sliceMain].minesAmount;
+	state[SLICE_MAIN].minesAmount;
 
 export const { switchLevel, updateMinesAmount } = mainSlice.actions;
 export default mainSlice.reducer;

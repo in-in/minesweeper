@@ -3,14 +3,14 @@ import React from "react";
 import { Button } from "@/components/Button";
 import { selectIsPlayStatus } from "@/store/gameSlice";
 import { selectCurrentLevelName, switchLevel } from "@/store/mainSlice";
-import * as constants from "@/utils/constants";
+import { LEVELS } from "@/utils/constants";
 import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);
-	const buttons = constants.LEVELS;
+	const buttons = LEVELS;
 	const isPlayStatus = useAppSelector(selectIsPlayStatus);
 
 	const dispatch = useAppDispatch();

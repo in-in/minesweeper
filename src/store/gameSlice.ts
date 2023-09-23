@@ -3,12 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { type GameStatus } from "@/customTypes/customTypes";
 import { type RootState } from "@/store/store";
-import * as constants from "@/utils/constants";
+import { SLICE_GAME } from "@/utils/constants";
 
 const initialState: { status: GameStatus } = { status: "idle" };
 
 const gameSlice = createSlice({
-	name: constants.sliceGame,
+	name: SLICE_GAME,
 	initialState,
 	reducers: {
 		updateGameStatus(state, action: PayloadAction<GameStatus>) {
@@ -17,8 +17,7 @@ const gameSlice = createSlice({
 	},
 });
 
-const selectGameStatus = (state: RootState): GameStatus =>
-	state[constants.sliceGame].status;
+const selectGameStatus = (state: RootState): GameStatus => state[SLICE_GAME].status;
 
 export const selectIsPlayStatus = createSelector(
 	selectGameStatus,
