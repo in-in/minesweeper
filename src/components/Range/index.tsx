@@ -1,7 +1,7 @@
 import React from "react";
 
 import { type MinesAmount } from "@customTypes/customTypes";
-import { selectIsPlayStatus } from "@state/gameStateSlice";
+import { selectIsPlayStatus } from "@state/gameSlice";
 import { updateMinesAmount, selectminesAmount } from "@state/mainSlice";
 import { useAppSelector, useAppDispatch } from "@utils/hooks";
 

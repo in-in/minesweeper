@@ -2,27 +2,16 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import {
-	type GameState,
 	type Level,
+	type MainState,
 	type MinesAmount,
 } from "@customTypes/customTypes";
 import { type RootState } from "@state/store";
 import * as constants from "@utils/constants";
-import { localStorageWrapper } from "@utils/localStorageWrapper";
-
-const initialState: GameState = {
-	currentLevel: {
-		easy: 10,
-	},
-	minesAmount: 10,
-};
-
-const localState: GameState =
-	localStorageWrapper()?.getItem()?.[constants.sliceMain] ?? initialState;
 
 const mainSlice = createSlice({
 	name: constants.sliceMain,
-	initialState: localState,
+	initialState: constants.initialState[constants.sliceMain] as MainState,
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;

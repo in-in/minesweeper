@@ -2,7 +2,7 @@ import React from "react";
 
 import { Cell } from "@components/Cell";
 import { type CSSCustomProperties } from "@customTypes/customTypes";
-import { updateGameState } from "@state/gameStateSlice";
+import { updateGameStatus } from "@state/gameSlice";
 import { selectCurrentLevelValue } from "@state/mainSlice";
 import { useAppSelector, useAppDispatch } from "@utils/hooks";
 
@@ -24,7 +24,7 @@ const Field = (): React.ReactNode => {
 						key={`${row}-${col}`}
 						cellRowId={row}
 						cellColId={col}
-						onClick={() => dispatch(updateGameState("play"))}
+						onClick={() => dispatch(updateGameStatus("play"))}
 					/>,
 				);
 			}

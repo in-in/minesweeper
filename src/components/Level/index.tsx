@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Button } from "@components/Button";
-import { selectIsPlayStatus } from "@state/gameStateSlice";
+import { selectIsPlayStatus } from "@state/gameSlice";
 import { selectCurrentLevelName, switchLevel } from "@state/mainSlice";
 import * as constants from "@utils/constants";
 import { useAppSelector, useAppDispatch } from "@utils/hooks";

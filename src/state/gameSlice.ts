@@ -7,23 +7,23 @@ import * as constants from "@utils/constants";
 
 const initialState: { status: GameStatus } = { status: "idle" };
 
-const gameStateSlice = createSlice({
-	name: constants.sliceGameState,
+const gameSlice = createSlice({
+	name: constants.sliceGame,
 	initialState,
 	reducers: {
-		updateGameState(state, action: PayloadAction<GameStatus>) {
+		updateGameStatus(state, action: PayloadAction<GameStatus>) {
 			state.status = action.payload;
 		},
 	},
 });
 
-const selectGameStateStatus = (state: RootState): GameStatus =>
-	state[constants.sliceGameState].status;
+const selectGameStatus = (state: RootState): GameStatus =>
+	state[constants.sliceGame].status;
 
 export const selectIsPlayStatus = createSelector(
-	selectGameStateStatus,
+	selectGameStatus,
 	(status) => status === "play",
 );
 
-export const { updateGameState } = gameStateSlice.actions;
-export default gameStateSlice.reducer;
+export const { updateGameStatus } = gameSlice.actions;
+export default gameSlice.reducer;
