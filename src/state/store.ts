@@ -1,16 +1,27 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import gameStateReducer from "@state/gameStateSlice";
+import { type GlobalState } from "@customTypes/customTypes";
+import gameReducer from "@state/gameSlice";
 import mainReducer from "@state/mainSlice";
 import * as constants from "@utils/constants";
+import { localStorageWrapper } from "@utils/localStorageWrapper";
 
 import { listenerMiddleware } from "./listenerMiddleware";
+
+let preloadedState = constants.initialState as GlobalState;
+
+const persistState = localStorageWrapper()?.getItem();
+
+if (persistState != null) {
+	preloadedState = persistState;
+}
 
 const store = configureStore({
 	reducer: {
 		[constants.sliceMain]: mainReducer,
-		[constants.sliceGameState]: gameStateReducer,
+		[constants.sliceGame]: gameReducer,
 	},
+	preloadedState,
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });

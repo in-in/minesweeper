@@ -1,5 +1,8 @@
 import type * as constants from "@utils/constants";
 
+export type CSSCustomProperties = React.CSSProperties &
+	Record<`--${string}`, number | string>;
+
 export type Level = (typeof constants.LEVELS)[number];
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc["length"] extends N
@@ -13,12 +16,16 @@ type IntRange<F extends number, T extends number> = Exclude<
 
 export type MinesAmount = IntRange<10, 100>;
 
-export interface GameState {
+export interface MainState {
 	currentLevel: Level;
 	minesAmount: MinesAmount;
 }
 
-export type CSSCustomProperties = React.CSSProperties &
-	Record<`--${string}`, number | string>;
-
 export type GameStatus = "idle" | "play" | "win" | "lose";
+
+export interface GlobalState {
+	main: MainState;
+	game: {
+		status: GameStatus;
+	};
+}
