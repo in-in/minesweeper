@@ -2,7 +2,7 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-interface CellProps extends React.ComponentPropsWithoutRef<"button"> {
+interface CellProps extends React.ComponentProps<"button"> {
 	cellRowId: number;
 	cellColId: number;
 }

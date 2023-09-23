@@ -3,7 +3,7 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+interface ButtonProps extends React.ComponentProps<"button"> {
 	inner: React.ReactNode;
 	variant: "primary" | "active";
 	modifier?: string[];
