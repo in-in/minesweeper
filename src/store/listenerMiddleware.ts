@@ -1,9 +1,8 @@
 import { createListenerMiddleware, addListener } from "@reduxjs/toolkit";
 import type { TypedStartListening, TypedAddListener } from "@reduxjs/toolkit";
 
-import { localStorageWrapper } from "@utils/localStorageWrapper";
-
-import type { RootState, AppDispatch } from "./store";
+import type { RootState, AppDispatch } from "@/store/store";
+import { localStorageWrapper } from "@/utils/localStorageWrapper";
 
 export const listenerMiddleware = createListenerMiddleware();
 

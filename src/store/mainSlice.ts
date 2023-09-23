@@ -5,9 +5,9 @@ import {
 	type Level,
 	type MainState,
 	type MinesAmount,
-} from "@customTypes/customTypes";
-import { type RootState } from "@state/store";
-import * as constants from "@utils/constants";
+} from "@/customTypes/customTypes";
+import { type RootState } from "@/store/store";
+import * as constants from "@/utils/constants";
 
 const mainSlice = createSlice({
 	name: constants.sliceMain,

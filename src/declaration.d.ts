@@ -3,7 +3,7 @@ declare module "*.scss" {
 	export default content;
 }
 
-declare module "@images/*" {
+declare module "@/images/*" {
 	const content: string;
 	export default content;
 }

@@ -16,27 +16,9 @@
 			}
 		],
 		"paths": {
-			"@components/*": [
-				"src/components/*"
-			],
-			"@state/*": [
-				"src/state/*"
-			],
-			"@styles/*": [
-				"src/styles/*"
-			],
-			"@customTypes/*": [
-				"src/customTypes/*"
-			],
-			"@utils/*": [
-				"src/utils/*"
-			],
-			"@images/*": [
-				"assets/images/*"
-			],
-			"@svg/*": [
-				"assets/images/*"
-			],
+			"@/*": [
+				"src/*"
+			]
 		}
 	},
 	"ts-node": {

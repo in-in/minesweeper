@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Button } from "@components/Button";
-import { Range } from "@components/Range";
-import { Stat } from "@components/Stat";
-import { Toggle } from "@components/Toggle";
-import { selectIsPlayStatus, updateGameStatus } from "@state/gameSlice";
-import { useAppSelector, useAppDispatch } from "@utils/hooks";
+import { Button } from "@/components/Button";
+import { Range } from "@/components/Range";
+import { Stat } from "@/components/Stat";
+import { Toggle } from "@/components/Toggle";
+import { selectIsPlayStatus, updateGameStatus } from "@/store/gameSlice";
+import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 

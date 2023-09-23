@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Cell } from "@components/Cell";
-import { type CSSCustomProperties } from "@customTypes/customTypes";
-import { updateGameStatus } from "@state/gameSlice";
-import { selectCurrentLevelValue } from "@state/mainSlice";
-import { useAppSelector, useAppDispatch } from "@utils/hooks";
+import { Cell } from "@/components/Cell";
+import { type CSSCustomProperties } from "@/customTypes/customTypes";
+import { updateGameStatus } from "@/store/gameSlice";
+import { selectCurrentLevelValue } from "@/store/mainSlice";
+import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 

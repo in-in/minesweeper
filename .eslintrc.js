@@ -19,15 +19,7 @@ const commonRules = {
 				"style",
 				"unknown",
 			],
-			"internal-pattern": [
-				"@components/**",
-				"@state/**",
-				"@styles/**",
-				"@customTypes/**",
-				"@utils/**",
-				"@images/**",
-				"@svg/**",
-			],
+			"internal-pattern": ["@/**"],
 		},
 	],
 };

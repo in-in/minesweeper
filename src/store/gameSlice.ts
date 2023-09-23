@@ -1,9 +1,9 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { type GameStatus } from "@customTypes/customTypes";
-import { type RootState } from "@state/store";
-import * as constants from "@utils/constants";
+import { type GameStatus } from "@/customTypes/customTypes";
+import { type RootState } from "@/store/store";
+import * as constants from "@/utils/constants";
 
 const initialState: { status: GameStatus } = { status: "idle" };
 

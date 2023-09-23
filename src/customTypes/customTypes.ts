@@ -1,4 +1,4 @@
-import type * as constants from "@utils/constants";
+import type * as constants from "@/utils/constants";
 
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;

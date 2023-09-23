@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { type GlobalState } from "@customTypes/customTypes";
-import gameReducer from "@state/gameSlice";
-import mainReducer from "@state/mainSlice";
-import * as constants from "@utils/constants";
-import { localStorageWrapper } from "@utils/localStorageWrapper";
+import { type GlobalState } from "@/customTypes/customTypes";
+import gameReducer from "@/store/gameSlice";
+import mainReducer from "@/store/mainSlice";
+import * as constants from "@/utils/constants";
+import { localStorageWrapper } from "@/utils/localStorageWrapper";
 
 import { listenerMiddleware } from "./listenerMiddleware";
 

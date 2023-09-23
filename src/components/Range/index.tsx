@@ -1,9 +1,9 @@
 import React from "react";
 
-import { type MinesAmount } from "@customTypes/customTypes";
-import { selectIsPlayStatus } from "@state/gameSlice";
-import { updateMinesAmount, selectminesAmount } from "@state/mainSlice";
-import { useAppSelector, useAppDispatch } from "@utils/hooks";
+import { type MinesAmount } from "@/customTypes/customTypes";
+import { selectIsPlayStatus } from "@/store/gameSlice";
+import { updateMinesAmount, selectminesAmount } from "@/store/mainSlice";
+import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
