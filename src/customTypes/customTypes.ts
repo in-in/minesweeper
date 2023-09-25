@@ -16,16 +16,18 @@ type IntRange<F extends number, T extends number> = Exclude<
 
 export type MinesAmount = IntRange<10, 100>;
 
+export type GameStatus = "idle" | "play" | "win" | "lose";
+
 export interface MainState {
 	currentLevel: Level;
 	minesAmount: MinesAmount;
 }
 
-export type GameStatus = "idle" | "play" | "win" | "lose";
+export interface GameState {
+	status: GameStatus;
+}
 
 export interface GlobalState {
 	main: MainState;
-	game: {
-		status: GameStatus;
-	};
+	game: GameState;
 }

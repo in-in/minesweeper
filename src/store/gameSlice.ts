@@ -1,18 +1,16 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { type GameStatus } from "@/customTypes/customTypes";
+import { type GameStatus, type GameState } from "@/customTypes/customTypes";
 import { type RootState } from "@/store/store";
-import { SLICE_GAME } from "@/utils/constants";
-
-const initialState: { status: GameStatus } = { status: "idle" };
+import { SLICE_GAME, INITIAL_STATE } from "@/utils/constants";
 
 const gameSlice = createSlice({
 	name: SLICE_GAME,
-	initialState,
+	initialState: INITIAL_STATE[SLICE_GAME] as GameState,
 	reducers: {
-		updateGameStatus(state, action: PayloadAction<GameStatus>) {
-			state.status = action.payload;
+		updateGameStatus(state, action: PayloadAction<GameState>) {
+			state.status = action.payload.status;
 		},
 	},
 });

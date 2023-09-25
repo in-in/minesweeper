@@ -24,7 +24,9 @@ const Field = (): React.ReactNode => {
 						key={`${row}-${col}`}
 						cellRowId={row}
 						cellColId={col}
-						onClick={() => dispatch(updateGameStatus("play"))}
+						onClick={() => {
+							dispatch(updateGameStatus({ status: "play" }));
+						}}
 					/>,
 				);
 			}

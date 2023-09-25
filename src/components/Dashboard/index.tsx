@@ -25,7 +25,7 @@ const Dashboard = (): React.ReactNode => {
 				inner={"Restart"}
 				variant="primary"
 				disabled={!isPlayStatus}
-				onClick={() => dispatch(updateGameStatus("idle"))}
+				onClick={() => dispatch(updateGameStatus({ status: "idle" }))}
 				modifier={[st.button ?? ""]}
 			/>
 		</div>
