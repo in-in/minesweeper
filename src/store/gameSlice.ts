@@ -10,7 +10,8 @@ const gameSlice = createSlice({
 	initialState: INITIAL_STATE[SLICE_GAME] as GameState,
 	reducers: {
 		updateGameStatus(state, action: PayloadAction<GameState>) {
-			state.status = action.payload.status;
+			state = action.payload;
+			return state;
 		},
 	},
 });

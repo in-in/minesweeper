@@ -25,7 +25,15 @@ const Field = (): React.ReactNode => {
 						cellRowId={row}
 						cellColId={col}
 						onClick={() => {
-							dispatch(updateGameStatus({ status: "play" }));
+							dispatch(
+								updateGameStatus({
+									status: "play",
+									ignoredCell: {
+										row,
+										col,
+									},
+								}),
+							);
 						}}
 					/>,
 				);

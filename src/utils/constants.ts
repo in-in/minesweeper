@@ -8,5 +8,6 @@ export const INITIAL_STATE = {
 	},
 	[SLICE_GAME]: {
 		status: "idle",
+		ignoredCell: null,
 	},
 } as const;

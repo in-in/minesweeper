@@ -18,6 +18,11 @@ export type MinesAmount = IntRange<10, 100>;
 
 export type GameStatus = "idle" | "play" | "win" | "lose";
 
+export interface IgnoredCell {
+	row: number;
+	col: number;
+}
+
 export interface MainState {
 	currentLevel: Level;
 	minesAmount: MinesAmount;
@@ -25,6 +30,7 @@ export interface MainState {
 
 export interface GameState {
 	status: GameStatus;
+	ignoredCell?: IgnoredCell | null;
 }
 
 export interface GlobalState {
