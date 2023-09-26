@@ -2,8 +2,11 @@ import React from "react";
 
 import { Cell } from "@/components/Cell";
 import { type CSSCustomProperties } from "@/customTypes/customTypes";
-import { updateGameStatus, selectField } from "@/store/gameSlice";
-import { selectCurrentLevelValue } from "@/store/mainSlice";
+import {
+	updateStatus,
+	selectField,
+	selectCurrentLevelValue,
+} from "@/store/mainSlice";
 import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
@@ -25,7 +28,7 @@ const Field = (): React.ReactNode => {
 					data-testid={id}
 					onClick={() => {
 						dispatch(
-							updateGameStatus({
+							updateStatus({
 								status: "play",
 								ignoredCell: id,
 							}),

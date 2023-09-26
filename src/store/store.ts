@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { type GlobalState } from "@/customTypes/customTypes";
-import gameReducer from "@/store/gameSlice";
 import mainReducer from "@/store/mainSlice";
-import { SLICE_MAIN, INITIAL_STATE, SLICE_GAME } from "@/utils/constants";
+import { SLICE_MAIN, INITIAL_STATE } from "@/utils/constants";
 import { localStorageWrapper } from "@/utils/localStorageWrapper";
 
 import { listenerMiddleware } from "./listenerMiddleware";
@@ -19,7 +18,6 @@ if (persistState != null) {
 const store = configureStore({
 	reducer: {
 		[SLICE_MAIN]: mainReducer,
-		[SLICE_GAME]: gameReducer,
 	},
 	preloadedState,
 	middleware: (getDefaultMiddleware) =>
