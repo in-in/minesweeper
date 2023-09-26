@@ -9,5 +9,8 @@ export const INITIAL_STATE = {
 	[SLICE_GAME]: {
 		status: "idle",
 		ignoredCell: null,
+		field: Array.from({ length: 10 }, (_, row) =>
+			Array.from({ length: 10 }, (_, col) => `${row}-${col}`),
+		).flatMap((row) => row),
 	},
-} as const;
+};

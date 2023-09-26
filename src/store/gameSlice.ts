@@ -9,14 +9,23 @@ const gameSlice = createSlice({
 	name: SLICE_GAME,
 	initialState: INITIAL_STATE[SLICE_GAME] as GameState,
 	reducers: {
-		updateGameStatus(state, action: PayloadAction<GameState>) {
-			state = action.payload;
+		updateGameStatus(
+			state,
+			action: PayloadAction<Pick<GameState, "status" | "ignoredCell">>,
+		) {
+			state.status = action.payload.status;
+			if (action.payload.ignoredCell != null) {
+				state.ignoredCell = action.payload.ignoredCell;
+			}
 			return state;
 		},
 	},
 });
 
 const selectGameStatus = (state: RootState): GameStatus => state[SLICE_GAME].status;
+
+export const selectField = (state: RootState): GameState["field"] =>
+	state[SLICE_GAME].field;
 
 export const selectIsPlayStatus = createSelector(
 	selectGameStatus,
