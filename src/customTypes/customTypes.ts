@@ -24,7 +24,7 @@ export interface MainState {
 	currentLevel: Level;
 	minesAmount: MinesAmount;
 	status: Status;
-	ignoredCell?: CellId | null;
+	ignoredCell: CellId | null;
 	field: CellId[];
 }
 

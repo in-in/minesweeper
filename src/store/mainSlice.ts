@@ -23,14 +23,15 @@ const mainSlice = createSlice({
 		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
 			state.minesAmount = action.payload;
 		},
-		updateStatus(
-			state,
-			action: PayloadAction<Pick<MainState, "status" | "ignoredCell">>,
-		) {
-			state.status = action.payload.status;
-			if (action.payload.ignoredCell != null) {
-				state.ignoredCell = action.payload.ignoredCell;
+		start(state, action: PayloadAction<MainState["ignoredCell"]>) {
+			state.status = "play";
+			if (action.payload != null) {
+				state.ignoredCell = action.payload;
 			}
+		},
+		restart(state) {
+			state.status = "idle";
+			state.ignoredCell = null;
 		},
 	},
 });
@@ -61,5 +62,5 @@ export const selectIsPlayStatus = createSelector(
 	(status) => status === "play",
 );
 
-export const { switchLevel, updateMinesAmount, updateStatus } = mainSlice.actions;
+export const { switchLevel, updateMinesAmount, start, restart } = mainSlice.actions;
 export default mainSlice.reducer;

@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
 import { Toggle } from "@/components/Toggle";
-import { selectIsPlayStatus, updateStatus } from "@/store/mainSlice";
+import { selectIsPlayStatus, restart } from "@/store/mainSlice";
 import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
@@ -25,7 +25,7 @@ const Dashboard = (): React.ReactNode => {
 				inner={"Restart"}
 				variant="primary"
 				disabled={!isPlayStatus}
-				onClick={() => dispatch(updateStatus({ status: "idle" }))}
+				onClick={() => dispatch(restart())}
 				modifier={[st.button ?? ""]}
 			/>
 		</div>

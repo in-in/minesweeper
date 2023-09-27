@@ -2,11 +2,7 @@ import React from "react";
 
 import { Cell } from "@/components/Cell";
 import { type CSSCustomProperties } from "@/customTypes/customTypes";
-import {
-	updateStatus,
-	selectField,
-	selectCurrentLevelValue,
-} from "@/store/mainSlice";
+import { start, selectField, selectCurrentLevelValue } from "@/store/mainSlice";
 import { useAppSelector, useAppDispatch } from "@/utils/hooks";
 
 import st from "./index.module.scss";
@@ -26,14 +22,7 @@ const Field = (): React.ReactNode => {
 					cellRowId={0}
 					cellColId={0}
 					data-testid={id}
-					onClick={() => {
-						dispatch(
-							updateStatus({
-								status: "play",
-								ignoredCell: id,
-							}),
-						);
-					}}
+					onClick={() => dispatch(start(id))}
 				/>
 			))}
 		</div>
