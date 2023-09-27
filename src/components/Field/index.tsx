@@ -16,12 +16,11 @@ const Field = (): React.ReactNode => {
 
 	return (
 		<div className={st.field} style={style}>
-			{field.map((id) => (
+			{field.map(({ id }) => (
 				<Cell
 					key={id}
 					cellRowId={0}
 					cellColId={0}
-					data-testid={id}
 					onClick={() => dispatch(start(id))}
 				/>
 			))}

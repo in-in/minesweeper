@@ -19,13 +19,19 @@ export type MinesAmount = IntRange<10, 100>;
 export type Status = "idle" | "play" | "win" | "lose";
 
 export type CellId = `${number}-${number}`;
+export type CellFlag = IntRange<0, 10>;
+
+export interface Cell {
+	id: CellId;
+	flag: CellFlag;
+}
 
 export interface MainState {
 	currentLevel: Level;
 	minesAmount: MinesAmount;
 	status: Status;
 	ignoredCell: CellId | null;
-	field: CellId[];
+	field: Cell[];
 }
 
 export interface GlobalState {
