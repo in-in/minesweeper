@@ -8,6 +8,7 @@ import {
 	type Status,
 } from "@/customTypes/customTypes";
 import { type RootState } from "@/store/store";
+import { buildField } from "@/utils/buildField";
 import { SLICE_MAIN, INITIAL_STATE, LEVELS } from "@/utils/constants";
 
 const mainSlice = createSlice({
@@ -16,6 +17,8 @@ const mainSlice = createSlice({
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;
+			const payloadValues = Object.values(action.payload)[0] as number;
+			state.field = buildField(payloadValues);
 		},
 		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
 			state.minesAmount = action.payload;
@@ -28,7 +31,6 @@ const mainSlice = createSlice({
 			if (action.payload.ignoredCell != null) {
 				state.ignoredCell = action.payload.ignoredCell;
 			}
-			return state;
 		},
 	},
 });
