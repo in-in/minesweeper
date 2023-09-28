@@ -16,13 +16,8 @@ const Field = (): React.ReactNode => {
 
 	return (
 		<div className={st.field} style={style}>
-			{field.map(({ id }) => (
-				<Cell
-					key={id}
-					cellRowId={0}
-					cellColId={0}
-					onClick={() => dispatch(start(id))}
-				/>
+			{field.map(({ id, flag }) => (
+				<Cell key={id} flag={flag} onClick={() => dispatch(start(id))} />
 			))}
 		</div>
 	);

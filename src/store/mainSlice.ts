@@ -32,6 +32,10 @@ const mainSlice = createSlice({
 		restart(state) {
 			state.status = "idle";
 			state.ignoredCell = null;
+			state.field = buildField(Object.values(state.currentLevel)[0] as number);
+		},
+		updateField(state, action: PayloadAction<MainState["field"]>) {
+			state.field = action.payload;
 		},
 	},
 });
@@ -62,5 +66,6 @@ export const selectIsPlayStatus = createSelector(
 	(status) => status === "play",
 );
 
-export const { switchLevel, updateMinesAmount, start, restart } = mainSlice.actions;
+export const { switchLevel, updateMinesAmount, start, restart, updateField } =
+	mainSlice.actions;
 export default mainSlice.reducer;
