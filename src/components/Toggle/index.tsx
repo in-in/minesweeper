@@ -14,10 +14,10 @@ const Toggle = ({ label }: AppProps): React.ReactNode => {
 				{label}
 			</label>
 			<input
-				type="checkbox"
 				className={st.input}
-				name={`toggle-${id}`}
 				id={`toggle-${id}`}
+				name={`toggle-${id}`}
+				type="checkbox"
 			/>
 		</div>
 	);

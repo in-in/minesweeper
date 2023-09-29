@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { type GlobalState } from "@/customTypes/customTypes";
+
 import mainReducer from "@/store/mainSlice";
-import { SLICE_MAIN, INITIAL_STATE } from "@/utils/constants";
+import { INITIAL_STATE, SLICE_MAIN } from "@/utils/constants";
 import { localStorageWrapper } from "@/utils/localStorageWrapper";
 
 import { listenerMiddleware } from "./listenerMiddleware";

@@ -17,7 +17,7 @@ const Button = ({
 }: ButtonProps): React.ReactNode => {
 	const btnClass = clsx(st.button, st[variant], modifier);
 	return (
-		<button type="button" className={btnClass} {...rest}>
+		<button className={btnClass} type="button" {...rest}>
 			{inner}
 		</button>
 	);

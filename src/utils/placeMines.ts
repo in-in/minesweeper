@@ -1,4 +1,4 @@
-import { type MainState, type Cell, type CellId } from "@/customTypes/customTypes";
+import { type Cell, type CellId, type MainState } from "@/customTypes/customTypes";
 
 import { buildField } from "./buildField";
 

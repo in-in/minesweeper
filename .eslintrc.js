@@ -11,15 +11,43 @@ const commonRules = {
 		"error",
 		{
 			"type": "alphabetical",
+			"ignore-case": true,
+			"custom-groups": {
+				value: {
+					customTypes: ["customTypes", "@/customTypes/**"],
+				},
+				type: {
+					customTypes: ["customTypes", "@/customTypes/**"],
+				},
+			},
 			"groups": [
 				"side-effect",
 				["builtin-type", "type", "builtin", "external"],
+				"customTypes",
 				["internal-type", "internal"],
 				["parent-type", "sibling-type", "index-type", "parent", "sibling", "index"],
 				"style",
 				"unknown",
 			],
 			"internal-pattern": ["@/**"],
+		},
+	],
+	"perfectionist/sort-named-imports": [
+		"error",
+		{
+			"ignore-case": true,
+		},
+	],
+	"perfectionist/sort-named-exports": [
+		"error",
+		{
+			"ignore-case": true,
+		},
+	],
+	"perfectionist/sort-jsx-props": [
+		"error",
+		{
+			groups: ["shorthand", "multiline", "unknown"],
 		},
 	],
 };

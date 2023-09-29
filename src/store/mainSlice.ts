@@ -1,5 +1,5 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 import {
 	type Level,
@@ -7,9 +7,10 @@ import {
 	type MinesAmount,
 	type Status,
 } from "@/customTypes/customTypes";
+
 import { type RootState } from "@/store/store";
 import { buildField } from "@/utils/buildField";
-import { SLICE_MAIN, INITIAL_STATE, LEVELS } from "@/utils/constants";
+import { INITIAL_STATE, LEVELS, SLICE_MAIN } from "@/utils/constants";
 
 const mainSlice = createSlice({
 	name: SLICE_MAIN,

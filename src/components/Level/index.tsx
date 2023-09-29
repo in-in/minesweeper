@@ -2,12 +2,12 @@ import React from "react";
 
 import { Button } from "@/components/Button";
 import {
-	selectIsPlayStatus,
 	selectCurrentLevelName,
+	selectIsPlayStatus,
 	switchLevel,
 } from "@/store/mainSlice";
 import { LEVELS } from "@/utils/constants";
-import { useAppSelector, useAppDispatch } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
@@ -27,11 +27,11 @@ const Level = (): React.ReactNode => {
 					return (
 						<li key={key}>
 							<Button
-								inner={key}
 								disabled={isPlayStatus}
-								variant={currentLevelName === key ? "active" : "primary"}
-								onClick={() => dispatch(switchLevel(el))}
+								inner={key}
 								modifier={[st.button ?? ""]}
+								onClick={() => dispatch(switchLevel(el))}
+								variant={currentLevelName === key ? "active" : "primary"}
 							/>
 						</li>
 					);

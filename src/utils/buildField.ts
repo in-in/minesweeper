@@ -1,4 +1,4 @@
-import { type CellId, type Cell, type CellFlag } from "@/customTypes/customTypes";
+import { type Cell, type CellFlag, type CellId } from "@/customTypes/customTypes";
 
 export function buildField(length: number, mines: CellId[] = []): Cell[] {
 	return Array.from({ length }, (_, row) =>

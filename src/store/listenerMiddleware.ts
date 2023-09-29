@@ -1,8 +1,8 @@
-import { createListenerMiddleware, addListener } from "@reduxjs/toolkit";
-import type { TypedStartListening, TypedAddListener } from "@reduxjs/toolkit";
+import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
+import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
 import { start, updateField } from "@/store/mainSlice";
-import type { RootState, AppDispatch } from "@/store/store";
+import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 import { isRootState } from "@/utils/isRootState";
 import { localStorageWrapper } from "@/utils/localStorageWrapper";

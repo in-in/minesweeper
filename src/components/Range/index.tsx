@@ -1,12 +1,13 @@
 import React from "react";
 
 import { type MinesAmount } from "@/customTypes/customTypes";
+
 import {
-	updateMinesAmount,
-	selectminesAmount,
 	selectIsPlayStatus,
+	selectminesAmount,
+	updateMinesAmount,
 } from "@/store/mainSlice";
-import { useAppSelector, useAppDispatch } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
@@ -17,7 +18,7 @@ const Range = (): React.ReactNode => {
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
 	const createSelectOptions = createRangeArray.map((el) => (
-		<option key={el} className={st.option} value={el}>
+		<option className={st.option} key={el} value={el}>
 			{el}
 		</option>
 	));
@@ -28,15 +29,15 @@ const Range = (): React.ReactNode => {
 				mines <br /> amount
 			</label>
 			<select
-				className={st.select}
-				name="mines"
-				id="mines"
-				disabled={isPlayStatus}
-				value={minesAmount}
 				onChange={(ev) => {
 					const value = Number(ev.target.value) as MinesAmount;
 					return dispatch(updateMinesAmount(value));
 				}}
+				className={st.select}
+				disabled={isPlayStatus}
+				id="mines"
+				name="mines"
+				value={minesAmount}
 			>
 				{createSelectOptions}
 			</select>
