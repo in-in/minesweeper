@@ -2,6 +2,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 import {
+	type Cell,
+	type CellId,
 	type Level,
 	type MainState,
 	type MinesAmount,
@@ -24,19 +26,33 @@ const mainSlice = createSlice({
 		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
 			state.minesAmount = action.payload;
 		},
-		start(state, action: PayloadAction<MainState["ignoredCell"]>) {
-			state.status = "play";
-			if (action.payload != null) {
-				state.ignoredCell = action.payload;
-			}
-		},
 		restart(state) {
 			state.status = "idle";
 			state.ignoredCell = null;
 			state.field = buildField(Object.values(state.currentLevel)[0] as number);
 		},
-		updateField(state, action: PayloadAction<MainState["field"]>) {
+		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
+		},
+		changeStatus(state, action: PayloadAction<CellId>) {
+			switch (state.status) {
+				case "idle": {
+					state.status = "play";
+					if (action.payload != null) {
+						state.ignoredCell = action.payload;
+					}
+					break;
+				}
+				case "play": {
+					const currentCellFlag = state.field.find(
+						(element) => element.id === action.payload,
+					);
+					if (currentCellFlag?.flag === 9) {
+						state.status = "lose";
+					}
+					break;
+				}
+			}
 		},
 	},
 });
@@ -49,8 +65,7 @@ const initialLevelValue = LEVELS[0][initialLevelName as keyof (typeof LEVELS)[0]
 export const selectminesAmount = (state: RootState): MinesAmount =>
 	state[SLICE_MAIN].minesAmount;
 
-export const selectField = (state: RootState): MainState["field"] =>
-	state[SLICE_MAIN].field;
+export const selectField = (state: RootState): Cell[] => state[SLICE_MAIN].field;
 
 export const selectCurrentLevelValue = createSelector(
 	selectCurrentLevel,
@@ -62,11 +77,11 @@ export const selectCurrentLevelName = createSelector(
 	(level) => Object.keys(level)[0] ?? initialLevelName,
 );
 
-export const selectIsPlayStatus = createSelector(
+export const selectIsIdleStatus = createSelector(
 	(state: RootState): Status => state[SLICE_MAIN].status,
-	(status) => status === "play",
+	(status) => status === "idle",
 );
 
-export const { switchLevel, updateMinesAmount, start, restart, updateField } =
+export const { changeStatus, restart, switchLevel, updateField, updateMinesAmount } =
 	mainSlice.actions;
 export default mainSlice.reducer;

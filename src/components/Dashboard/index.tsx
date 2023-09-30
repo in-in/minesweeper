@@ -4,13 +4,13 @@ import { Button } from "@/components/Button";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
 import { Toggle } from "@/components/Toggle";
-import { restart, selectIsPlayStatus } from "@/store/mainSlice";
+import { restart, selectIsIdleStatus } from "@/store/mainSlice";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
 const Dashboard = (): React.ReactNode => {
-	const isPlayStatus = useAppSelector(selectIsPlayStatus);
+	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const dispatch = useAppDispatch();
 
 	return (
@@ -22,7 +22,7 @@ const Dashboard = (): React.ReactNode => {
 			<Stat label="turns" />
 			<Stat label="mines" />
 			<Button
-				disabled={!isPlayStatus}
+				disabled={isIdleStatus}
 				inner={"Restart"}
 				modifier={[st.button ?? ""]}
 				onClick={() => dispatch(restart())}

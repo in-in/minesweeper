@@ -1,7 +1,7 @@
 import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
-import { start, updateField } from "@/store/mainSlice";
+import { changeStatus, updateField } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 import { isRootState } from "@/utils/isRootState";
@@ -35,7 +35,7 @@ listenerMiddleware.startListening({
 listenerMiddleware.startListening({
 	predicate: (action, _currentState, previousState) => {
 		return (
-			start.match(action) &&
+			changeStatus.match(action) &&
 			isRootState(previousState, SLICE_MAIN) &&
 			previousState[SLICE_MAIN].status === "idle"
 		);

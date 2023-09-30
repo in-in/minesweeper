@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/Button";
 import {
 	selectCurrentLevelName,
-	selectIsPlayStatus,
+	selectIsIdleStatus,
 	switchLevel,
 } from "@/store/mainSlice";
 import { LEVELS } from "@/utils/constants";
@@ -14,7 +14,7 @@ import st from "./index.module.scss";
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);
 	const buttons = LEVELS;
-	const isPlayStatus = useAppSelector(selectIsPlayStatus);
+	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 
 	const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ const Level = (): React.ReactNode => {
 					return (
 						<li key={key}>
 							<Button
-								disabled={isPlayStatus}
+								disabled={!isIdleStatus}
 								inner={key}
 								modifier={[st.button ?? ""]}
 								onClick={() => dispatch(switchLevel(el))}

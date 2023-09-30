@@ -3,7 +3,7 @@ import React from "react";
 import { type MinesAmount } from "@/customTypes/customTypes";
 
 import {
-	selectIsPlayStatus,
+	selectIsIdleStatus,
 	selectminesAmount,
 	updateMinesAmount,
 } from "@/store/mainSlice";
@@ -13,7 +13,7 @@ import st from "./index.module.scss";
 
 const Range = (): React.ReactNode => {
 	const minesAmount = useAppSelector(selectminesAmount);
-	const isPlayStatus = useAppSelector(selectIsPlayStatus);
+	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const dispatch = useAppDispatch();
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
@@ -34,7 +34,7 @@ const Range = (): React.ReactNode => {
 					return dispatch(updateMinesAmount(value));
 				}}
 				className={st.select}
-				disabled={isPlayStatus}
+				disabled={!isIdleStatus}
 				id="mines"
 				name="mines"
 				value={minesAmount}
