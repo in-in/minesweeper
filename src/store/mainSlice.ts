@@ -77,9 +77,16 @@ export const selectCurrentLevelName = createSelector(
 	(level) => Object.keys(level)[0] ?? initialLevelName,
 );
 
+const selectStatus = (state: RootState): Status => state[SLICE_MAIN].status;
+
 export const selectIsIdleStatus = createSelector(
-	(state: RootState): Status => state[SLICE_MAIN].status,
+	selectStatus,
 	(status) => status === "idle",
+);
+
+export const selectIsFinishStatus = createSelector(
+	selectStatus,
+	(status) => status === "lose" || status === "win",
 );
 
 export const { changeStatus, restart, switchLevel, updateField, updateMinesAmount } =

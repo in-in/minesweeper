@@ -70,6 +70,7 @@
 	}
 
 	&[disabled] {
+		filter: opacity(0.5) blur(0.5em);
 		pointer-events: none;
 	}
 }
