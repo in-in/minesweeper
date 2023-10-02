@@ -31,7 +31,7 @@ const ts = {
 };
 
 const styles = {
-	test: /\.scss$/i,
+	test: /\.(sc|c)ss$/i,
 	use: [
 		MiniCssExtractPlugin.loader,
 		{
