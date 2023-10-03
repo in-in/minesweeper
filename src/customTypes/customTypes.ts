@@ -19,11 +19,13 @@ export type MinesAmount = IntRange<10, 100>;
 export type Status = "idle" | "play" | "win" | "lose";
 
 export type CellId = `${number}-${number}`;
-export type CellFlag = IntRange<0, 10>;
+export type CellMarker = IntRange<0, 10>;
+export type CellState = "closed" | "opened" | "flagged";
 
 export interface Cell {
 	id: CellId;
-	flag: CellFlag;
+	marker: CellMarker;
+	state: CellState;
 }
 
 export interface MainState {

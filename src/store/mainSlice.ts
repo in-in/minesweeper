@@ -44,10 +44,10 @@ const mainSlice = createSlice({
 					break;
 				}
 				case "play": {
-					const currentCellFlag = state.field.find(
+					const currentCellMarker = state.field.find(
 						(element) => element.id === action.payload,
 					);
-					if (currentCellFlag?.flag === 9) {
+					if (currentCellMarker?.marker === 9) {
 						state.status = "lose";
 						state.finishMessageText = "Better luck next time! Try it again";
 						state.finishMessageTitle = "You have lost this round";

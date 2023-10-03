@@ -1,10 +1,10 @@
-import { type CellFlag, type CellId } from "@/customTypes/customTypes";
+import { type CellId, type CellMarker } from "@/customTypes/customTypes";
 
 export function getSurroundingMineCount(
 	id: CellId,
 	limit: number,
 	mines: CellId[],
-): CellFlag {
+): CellMarker {
 	const [i = 0, j = 0] = id.split("-").map(Number);
 	const indexes = [
 		[i - 1, j],
@@ -25,7 +25,8 @@ export function getSurroundingMineCount(
 		)
 		.flatMap((f) => (f != null ? [f] : []))
 		.reduce(
-			(sum: CellFlag, id) => (mines.includes(id) ? ((sum += 1) as CellFlag) : sum),
+			(sum: CellMarker, id) =>
+				mines.includes(id) ? ((sum += 1) as CellMarker) : sum,
 			0,
 		);
 }
