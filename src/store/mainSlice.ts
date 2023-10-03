@@ -49,6 +49,8 @@ const mainSlice = createSlice({
 					);
 					if (currentCellFlag?.flag === 9) {
 						state.status = "lose";
+						state.finishMessageText = "Better luck next time! Try it again";
+						state.finishMessageTitle = "You have lost this round";
 					}
 					break;
 				}
@@ -87,6 +89,12 @@ export const selectIsIdleStatus = createSelector(
 export const selectIsFinishStatus = createSelector(
 	selectStatus,
 	(status) => status === "lose" || status === "win",
+);
+
+export const selectFinishMessage = createSelector(
+	(state: RootState): string => state[SLICE_MAIN].finishMessageTitle,
+	(state: RootState): string => state[SLICE_MAIN].finishMessageText,
+	(title, text) => ({ title, text }),
 );
 
 export const { changeStatus, restart, switchLevel, updateField, updateMinesAmount } =

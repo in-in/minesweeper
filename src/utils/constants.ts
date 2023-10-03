@@ -9,5 +9,7 @@ export const INITIAL_STATE = {
 		status: "idle",
 		ignoredCell: null,
 		field: buildField(10),
+		finishMessageTitle: " ",
+		finishMessageText: " ",
 	},
 };

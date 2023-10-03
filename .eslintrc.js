@@ -1,5 +1,6 @@
 const commonRules = {
 	"@typescript-eslint/consistent-type-assertions": "off",
+	"jsx-a11y/no-autofocus": "off",
 	"logical-assignment-operators": ["error", "always"],
 	"no-await-in-loop": "error",
 	"no-invalid-this": "error",

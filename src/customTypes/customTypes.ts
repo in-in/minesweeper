@@ -32,6 +32,8 @@ export interface MainState {
 	status: Status;
 	ignoredCell: CellId | null;
 	field: Cell[];
+	finishMessageTitle: string;
+	finishMessageText: string;
 }
 
 export interface GlobalState {
