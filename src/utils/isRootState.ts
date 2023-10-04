@@ -1,5 +1,5 @@
 import type { RootState } from "@/store/store";
 
-export function isRootState(value: unknown, sliceName: string): value is RootState {
-	return typeof value === "object" && value !== null && sliceName in value;
+export function isRootState(state: unknown, sliceName: string): state is RootState {
+	return typeof state === "object" && state !== null && sliceName in state;
 }
