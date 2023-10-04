@@ -1,7 +1,7 @@
 import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
-import { changeCellState, changeStatus, updateField } from "@/store/mainSlice";
+import { changeCellState, play, start, updateField } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 import { isRootState } from "@/utils/isRootState";
@@ -35,7 +35,7 @@ listenerMiddleware.startListening({
 listenerMiddleware.startListening({
 	predicate: (action, _currentState, previousState) => {
 		return (
-			changeStatus.match(action) &&
+			start.match(action) &&
 			isRootState(previousState, SLICE_MAIN) &&
 			previousState[SLICE_MAIN].status === "idle"
 		);
@@ -50,13 +50,12 @@ listenerMiddleware.startListening({
 		}
 	},
 });
-
 listenerMiddleware.startListening({
-	predicate: (action, _currentState, previousState) => {
+	predicate: (action, currentState) => {
 		return (
-			changeStatus.match(action) &&
-			isRootState(previousState, SLICE_MAIN) &&
-			previousState[SLICE_MAIN].status === "play"
+			play.match(action) &&
+			isRootState(currentState, SLICE_MAIN) &&
+			currentState[SLICE_MAIN].status === "play"
 		);
 	},
 	effect: (_action, listenerApi) => {

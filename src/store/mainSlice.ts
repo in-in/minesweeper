@@ -40,27 +40,23 @@ const mainSlice = createSlice({
 				return cell.id === state.currentCell ? { ...cell, state: "opened" } : cell;
 			});
 		},
-		changeStatus(state, action: PayloadAction<CellId>) {
-			state.currentCell = action.payload;
-
-			switch (state.status) {
-				case "idle": {
-					state.status = "play";
-					if (action.payload != null) {
-						state.ignoredCell = action.payload;
-					}
-					break;
-				}
-				case "play": {
-					const currentCellMarker = state.field.find(
-						(element) => element.id === action.payload,
-					);
-					if (currentCellMarker?.marker === 9) {
-						state.status = "lose";
-						state.finishMessageTitle = "You have lost this round";
-						state.finishMessageText = "Better luck next time! Try it again";
-					}
-					break;
+		start(state, action: PayloadAction<CellId>) {
+			if (state.status === "idle") {
+				state.status = "play";
+				state.currentCell = action.payload;
+				state.ignoredCell = action.payload;
+			}
+		},
+		play(state, action: PayloadAction<CellId>) {
+			if (state.status === "play") {
+				state.currentCell = action.payload;
+				const currentCellMarker = state.field.find(
+					(element) => element.id === action.payload,
+				);
+				if (currentCellMarker?.marker === 9) {
+					state.status = "lose";
+					state.finishMessageTitle = "You have lost this round";
+					state.finishMessageText = "Better luck next time! Try it again";
 				}
 			}
 		},
@@ -107,8 +103,9 @@ export const selectFinishMessage = createSelector(
 
 export const {
 	changeCellState,
-	changeStatus,
 	restart,
+	start,
+	play,
 	switchLevel,
 	updateField,
 	updateMinesAmount,

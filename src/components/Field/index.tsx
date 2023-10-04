@@ -5,9 +5,10 @@ import { type CSSCustomProperties } from "@/customTypes/customTypes";
 import { Cell } from "@/components/Cell";
 import { Dialog } from "@/components/Dialog";
 import {
-	changeStatus,
+	play,
 	selectCurrentLevelValue,
 	selectField,
+	start,
 } from "@/store/mainSlice";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
@@ -28,7 +29,10 @@ const Field = (): React.ReactNode => {
 					key={id}
 					marker={marker}
 					state={state}
-					onClick={() => dispatch(changeStatus(id))}
+					onClick={() => {
+						dispatch(start(id));
+						dispatch(play(id));
+					}}
 				/>
 			))}
 		</div>
