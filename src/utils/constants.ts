@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
 		minesAmount: 10,
 		status: "idle",
 		ignoredCell: null,
+		currentCell: null,
 		field: buildField(10),
 		finishMessageTitle: " ",
 		finishMessageText: " ",

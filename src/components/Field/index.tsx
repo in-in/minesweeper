@@ -23,8 +23,13 @@ const Field = (): React.ReactNode => {
 	return (
 		<div className={st.field} style={style}>
 			<Dialog />
-			{field.map(({ id, marker }) => (
-				<Cell key={id} marker={marker} onClick={() => dispatch(changeStatus(id))} />
+			{field.map(({ id, marker, state }) => (
+				<Cell
+					key={id}
+					marker={marker}
+					state={state}
+					onClick={() => dispatch(changeStatus(id))}
+				/>
 			))}
 		</div>
 	);

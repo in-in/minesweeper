@@ -33,6 +33,7 @@ export interface MainState {
 	minesAmount: MinesAmount;
 	status: Status;
 	ignoredCell: CellId | null;
+	currentCell: CellId | null;
 	field: Cell[];
 	finishMessageTitle: string;
 	finishMessageText: string;

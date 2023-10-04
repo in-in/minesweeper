@@ -29,12 +29,20 @@ const mainSlice = createSlice({
 		restart(state) {
 			state.status = "idle";
 			state.ignoredCell = null;
+			state.currentCell = null;
 			state.field = buildField(Object.values(state.currentLevel)[0] as number);
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
 		},
+		changeCellState(state) {
+			state.field = state.field.map((cell) => {
+				return cell.id === state.currentCell ? { ...cell, state: "opened" } : cell;
+			});
+		},
 		changeStatus(state, action: PayloadAction<CellId>) {
+			state.currentCell = action.payload;
+
 			switch (state.status) {
 				case "idle": {
 					state.status = "play";
@@ -49,8 +57,8 @@ const mainSlice = createSlice({
 					);
 					if (currentCellMarker?.marker === 9) {
 						state.status = "lose";
-						state.finishMessageText = "Better luck next time! Try it again";
 						state.finishMessageTitle = "You have lost this round";
+						state.finishMessageText = "Better luck next time! Try it again";
 					}
 					break;
 				}
@@ -97,6 +105,12 @@ export const selectFinishMessage = createSelector(
 	(title, text) => ({ title, text }),
 );
 
-export const { changeStatus, restart, switchLevel, updateField, updateMinesAmount } =
-	mainSlice.actions;
+export const {
+	changeCellState,
+	changeStatus,
+	restart,
+	switchLevel,
+	updateField,
+	updateMinesAmount,
+} = mainSlice.actions;
 export default mainSlice.reducer;
