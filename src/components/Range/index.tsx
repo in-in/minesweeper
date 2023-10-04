@@ -29,15 +29,15 @@ const Range = (): React.ReactNode => {
 				mines <br /> amount
 			</label>
 			<select
-				onChange={(ev) => {
-					const value = Number(ev.target.value) as MinesAmount;
-					return dispatch(updateMinesAmount(value));
-				}}
 				className={st.select}
 				disabled={!isIdleStatus}
 				id="mines"
 				name="mines"
 				value={minesAmount}
+				onChange={(ev) => {
+					const value = Number(ev.target.value) as MinesAmount;
+					return dispatch(updateMinesAmount(value));
+				}}
 			>
 				{createSelectOptions}
 			</select>

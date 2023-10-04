@@ -48,7 +48,11 @@ const commonRules = {
 	"perfectionist/sort-jsx-props": [
 		"error",
 		{
-			groups: ["shorthand", "multiline", "unknown"],
+			"ignore-case": true,
+			"custom-groups": {
+				callback: "on*",
+			},
+			"groups": ["shorthand", "unknown", "callback", "multiline"],
 		},
 	],
 };

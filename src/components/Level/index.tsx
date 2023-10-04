@@ -30,8 +30,8 @@ const Level = (): React.ReactNode => {
 								disabled={!isIdleStatus}
 								inner={key}
 								modifier={[st.button ?? ""]}
-								onClick={() => dispatch(switchLevel(el))}
 								variant={currentLevelName === key ? "active" : "primary"}
+								onClick={() => dispatch(switchLevel(el))}
 							/>
 						</li>
 					);

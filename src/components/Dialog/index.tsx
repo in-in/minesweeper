@@ -22,21 +22,21 @@ const Dialog = (): React.ReactNode => {
 
 	return (
 		<MUIDialog
+			aria-describedby="alert-dialog-description"
+			aria-labelledby="alert-dialog-title"
+			open={isFinishStatus}
 			sx={{
 				"& .MuiDialog-paper": {
 					alignItems: "center",
 				},
 			}}
-			aria-describedby="alert-dialog-description"
-			aria-labelledby="alert-dialog-title"
-			open={isFinishStatus}
 		>
 			<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
 			<DialogContent>
 				<DialogContentText id="alert-dialog-description">{text}</DialogContentText>
 			</DialogContent>
 			<DialogActions>
-				<Button autoFocus onClick={() => dispatch(restart())} variant="contained">
+				<Button autoFocus variant="contained" onClick={() => dispatch(restart())}>
 					Restart
 				</Button>
 			</DialogActions>

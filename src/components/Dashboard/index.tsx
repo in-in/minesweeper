@@ -25,8 +25,8 @@ const Dashboard = (): React.ReactNode => {
 				disabled={isIdleStatus}
 				inner={"Restart"}
 				modifier={[st.button ?? ""]}
-				onClick={() => dispatch(restart())}
 				variant="primary"
+				onClick={() => dispatch(restart())}
 			/>
 		</div>
 	);
