@@ -1,6 +1,6 @@
 import { type Cell, type CellId, type MainState } from "@/customTypes/customTypes";
 
-import { buildField } from "./buildField";
+import { buildField } from "@/utils/buildField";
 
 function getRandom(max: number): number {
 	return Math.floor(Math.random() * (max - 1 + 1));

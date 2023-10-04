@@ -2,11 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { type GlobalState } from "@/customTypes/customTypes";
 
+import { listenerMiddleware } from "@/store/listenerMiddleware";
 import mainReducer from "@/store/mainSlice";
 import { INITIAL_STATE, SLICE_MAIN } from "@/utils/constants";
 import { localStorageWrapper } from "@/utils/localStorageWrapper";
-
-import { listenerMiddleware } from "./listenerMiddleware";
 
 let preloadedState = INITIAL_STATE as GlobalState;
 

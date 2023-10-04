@@ -1,4 +1,4 @@
-import { buildField } from "./buildField";
+import { buildField } from "@/utils/buildField";
 
 export const LEVELS = [{ easy: 10 }, { medium: 15 }, { hard: 25 }] as const;
 export const SLICE_MAIN = "main";
