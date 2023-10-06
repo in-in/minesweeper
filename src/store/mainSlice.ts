@@ -36,7 +36,6 @@ const mainSlice = createSlice({
 		},
 		restart(state) {
 			state.status = "idle";
-			state.ignoredCell = null;
 			state.currentCell = null;
 			state.openCellCount = 0;
 			state.field = buildField(Object.values(state.currentLevel)[0] as number);
@@ -53,7 +52,6 @@ const mainSlice = createSlice({
 		},
 		start(state) {
 			state.status = "play";
-			state.ignoredCell = state.currentCell;
 		},
 		play(state) {
 			const currentCellMarker = state.field.find(

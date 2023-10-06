@@ -12,7 +12,6 @@ export const INITIAL_STATE = {
 		currentLevel: LEVELS[0],
 		minesAmount: 10,
 		status: "idle",
-		ignoredCell: null,
 		currentCell: null,
 		openCellCount: 0,
 		field: buildField(10),
