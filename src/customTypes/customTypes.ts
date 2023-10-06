@@ -34,6 +34,7 @@ export interface MainState {
 	status: Status;
 	ignoredCell: CellId | null;
 	currentCell: CellId | null;
+	openCellCount: number;
 	field: Cell[];
 	finishMessageTitle: string;
 	finishMessageText: string;

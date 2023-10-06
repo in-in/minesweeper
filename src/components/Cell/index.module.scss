@@ -77,6 +77,7 @@
 
 .open {
 	background-color: $color-light;
+	pointer-events: none;
 
 	&::before {
 		visibility: visible;

@@ -12,7 +12,15 @@ import {
 
 import { type RootState } from "@/store/store";
 import { buildField } from "@/utils/buildField";
-import { INITIAL_STATE, LEVELS, SLICE_MAIN } from "@/utils/constants";
+import {
+	FINISH_LOSS_MESSAGE_TEXT,
+	FINISH_LOSS_MESSAGE_TITLE,
+	FINISH_WIN_MESSAGE_TEXT,
+	FINISH_WIN_MESSAGE_TITLE,
+	INITIAL_STATE,
+	LEVELS,
+	SLICE_MAIN,
+} from "@/utils/constants";
 
 const mainSlice = createSlice({
 	name: SLICE_MAIN,
@@ -30,34 +38,36 @@ const mainSlice = createSlice({
 			state.status = "idle";
 			state.ignoredCell = null;
 			state.currentCell = null;
+			state.openCellCount = 0;
 			state.field = buildField(Object.values(state.currentLevel)[0] as number);
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
 		},
-		changeCellState(state) {
-			state.field = state.field.map((cell) => {
-				return cell.id === state.currentCell ? { ...cell, state: "opened" } : cell;
-			});
+		changeCellState(state, action: PayloadAction<CellId>) {
+			state.currentCell = action.payload;
+			state.field = state.field.map((cell) =>
+				cell.id === state.currentCell ? { ...cell, state: "opened" } : cell,
+			);
+			state.openCellCount = state.openCellCount += 1;
 		},
-		start(state, action: PayloadAction<CellId>) {
-			if (state.status === "idle") {
-				state.status = "play";
-				state.currentCell = action.payload;
-				state.ignoredCell = action.payload;
-			}
+		start(state) {
+			state.status = "play";
+			state.ignoredCell = state.currentCell;
 		},
-		play(state, action: PayloadAction<CellId>) {
-			if (state.status === "play") {
-				state.currentCell = action.payload;
-				const currentCellMarker = state.field.find(
-					(element) => element.id === action.payload,
-				);
-				if (currentCellMarker?.marker === 9) {
-					state.status = "lose";
-					state.finishMessageTitle = "You have lost this round";
-					state.finishMessageText = "Better luck next time! Try it again";
-				}
+		play(state) {
+			const currentCellMarker = state.field.find(
+				(element) => element.id === state.currentCell,
+			);
+
+			if (currentCellMarker?.marker === 9) {
+				state.status = "lose";
+				state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
+				state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
+			} else if (state.openCellCount >= state.field.length - state.minesAmount) {
+				state.status = "win";
+				state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
+				state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
 			}
 		},
 	},

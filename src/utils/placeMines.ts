@@ -18,5 +18,5 @@ export function placeMines(state: MainState): Cell[] {
 		}
 	}
 
-	return buildField(size, [...mines]);
+	return buildField(size, [...mines], ignoredCell);
 }

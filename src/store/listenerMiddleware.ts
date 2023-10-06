@@ -4,7 +4,6 @@ import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 import { changeCellState, play, start, updateField } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
-import { isRootState } from "@/utils/isRootState";
 import { localStorageWrapper } from "@/utils/localStorageWrapper";
 import { placeMines } from "@/utils/placeMines";
 
@@ -20,45 +19,30 @@ export const addAppListener = addListener as TypedAddListener<
 	AppDispatch
 >;
 
-listenerMiddleware.startListening({
+startAppListening({
 	predicate: () => true,
 	effect: (_, { getState }) => {
 		const state = JSON.stringify(getState());
-		try {
-			localStorageWrapper()?.setItem(state);
-		} catch (error) {
-			console.log(error);
-		}
+		localStorageWrapper()?.setItem(state);
 	},
 });
 
-listenerMiddleware.startListening({
-	predicate: (action, _currentState, previousState) => {
-		return (
-			start.match(action) &&
-			isRootState(previousState, SLICE_MAIN) &&
-			previousState[SLICE_MAIN].status === "idle"
-		);
-	},
-	effect: (_action, listenerApi) => {
-		const state = listenerApi.getState();
-
-		if (isRootState(state, SLICE_MAIN)) {
-			const mines = placeMines(state[SLICE_MAIN]);
-			listenerApi.dispatch(updateField(mines));
-			listenerApi.dispatch(changeCellState());
-		}
+startAppListening({
+	predicate: (action, currentState) =>
+		changeCellState.match(action) && currentState[SLICE_MAIN].status === "idle",
+	effect: (_action, { dispatch, getState }) => {
+		dispatch(start());
+		const state = getState();
+		const mines = placeMines(state[SLICE_MAIN]);
+		dispatch(updateField(mines));
+		dispatch(play());
 	},
 });
-listenerMiddleware.startListening({
-	predicate: (action, currentState) => {
-		return (
-			play.match(action) &&
-			isRootState(currentState, SLICE_MAIN) &&
-			currentState[SLICE_MAIN].status === "play"
-		);
-	},
-	effect: (_action, listenerApi) => {
-		listenerApi.dispatch(changeCellState());
+
+startAppListening({
+	predicate: (action, currentState) =>
+		changeCellState.match(action) && currentState[SLICE_MAIN].status === "play",
+	effect: (_action, { dispatch }) => {
+		dispatch(play());
 	},
 });
