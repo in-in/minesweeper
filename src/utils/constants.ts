@@ -14,7 +14,7 @@ export const INITIAL_STATE = {
 		status: "idle",
 		currentCell: null,
 		openCellCount: 0,
-		field: buildField(10),
+		field: buildField({ length: 10 }),
 		finishMessageTitle: " ",
 		finishMessageText: " ",
 	},

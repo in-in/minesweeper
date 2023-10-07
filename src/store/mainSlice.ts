@@ -28,8 +28,9 @@ const mainSlice = createSlice({
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;
-			const payloadValues = Object.values(action.payload)[0] as number;
-			state.field = buildField(payloadValues);
+			state.field = buildField({
+				length: Object.values(action.payload)[0] as number,
+			});
 		},
 		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
 			state.minesAmount = action.payload;
@@ -38,7 +39,9 @@ const mainSlice = createSlice({
 			state.status = "idle";
 			state.currentCell = null;
 			state.openCellCount = 0;
-			state.field = buildField(Object.values(state.currentLevel)[0] as number);
+			state.field = buildField({
+				length: Object.values(state.currentLevel)[0] as number,
+			});
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
