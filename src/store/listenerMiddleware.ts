@@ -1,7 +1,13 @@
 import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
-import { changeCellState, play, start, updateField } from "@/store/mainSlice";
+import {
+	changeCellState,
+	displayHiddenMines,
+	play,
+	start,
+	updateField,
+} from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 import { localStorageWrapper } from "@/utils/localStorageWrapper";
@@ -44,5 +50,14 @@ startAppListening({
 		changeCellState.match(action) && currentState[SLICE_MAIN].status === "play",
 	effect: (_action, { dispatch }) => {
 		dispatch(play());
+	},
+});
+
+startAppListening({
+	predicate: (action, currentState) =>
+		!displayHiddenMines.match(action) && currentState[SLICE_MAIN].status === "lose",
+	effect: (_action, { dispatch, getState }) => {
+		const state = getState();
+		dispatch(displayHiddenMines(state[SLICE_MAIN].field));
 	},
 });

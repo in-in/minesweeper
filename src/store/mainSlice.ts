@@ -71,6 +71,11 @@ const mainSlice = createSlice({
 				state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
 			}
 		},
+		displayHiddenMines(state, action: PayloadAction<Cell[]>) {
+			state.field = action.payload.map((cell) =>
+				cell.marker === 9 ? { ...cell, state: "opened" } : cell,
+			);
+		},
 	},
 });
 
@@ -114,9 +119,10 @@ export const selectFinishMessage = createSelector(
 
 export const {
 	changeCellState,
+	displayHiddenMines,
+	play,
 	restart,
 	start,
-	play,
 	switchLevel,
 	updateField,
 	updateMinesAmount,
