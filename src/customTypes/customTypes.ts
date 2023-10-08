@@ -22,13 +22,13 @@ export type CellId = `${number}-${number}`;
 export type CellMarker = IntRange<0, 10>;
 export type CellState = "closed" | "opened" | "flagged";
 
-export interface Cell {
+export type Cell = {
 	id: CellId;
 	marker: CellMarker;
 	state: CellState;
-}
+};
 
-export interface MainState {
+export type MainState = {
 	currentLevel: Level;
 	minesAmount: MinesAmount;
 	status: Status;
@@ -37,8 +37,8 @@ export interface MainState {
 	field: Cell[];
 	finishMessageTitle: string;
 	finishMessageText: string;
-}
+};
 
-export interface GlobalState {
+export type GlobalState = {
 	main: MainState;
-}
+};

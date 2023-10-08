@@ -5,10 +5,10 @@ import { type CellMarker, type CellState } from "@/customTypes/customTypes";
 
 import st from "./index.module.scss";
 
-interface CellProps extends React.ComponentProps<"button"> {
+type CellProps = {
 	marker: CellMarker;
 	state: CellState;
-}
+} & React.ComponentProps<"button">;
 
 const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => (
 	<button

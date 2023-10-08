@@ -3,11 +3,11 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-interface ButtonProps extends React.ComponentProps<"button"> {
+type ButtonProps = {
 	inner: React.ReactNode;
 	variant: "primary" | "active";
 	modifier?: string[];
-}
+} & React.ComponentProps<"button">;
 
 const Button = ({
 	inner,

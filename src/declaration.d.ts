@@ -15,7 +15,7 @@ declare module "*.svg" {
 }
 
 declare namespace NodeJS {
-	export interface ProcessEnv {
+	export type ProcessEnv = {
 		NODE_ENV: "dev" | "prod";
-	}
+	};
 }

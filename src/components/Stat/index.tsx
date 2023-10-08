@@ -2,12 +2,12 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-interface AppProps {
+type StatProps = {
 	label: string;
 	counter?: number;
-}
+};
 
-const Stat = ({ label, counter = 0 }: AppProps): React.ReactNode => {
+const Stat = ({ label, counter = 0 }: StatProps): React.ReactNode => {
 	const id = label.replace(/[^a-z0-9]/gi, "-");
 	return (
 		<div className={st.stat} id={`stat-${id}`}>

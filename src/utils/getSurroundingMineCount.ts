@@ -1,10 +1,16 @@
 import { type CellId, type CellMarker } from "@/customTypes/customTypes";
 
-export function getSurroundingMineCount(
-	id: CellId,
-	limit: number,
-	mines: CellId[],
-): CellMarker {
+type getSurroundingMineCountOptions = {
+	id: CellId;
+	limit: number;
+	mines: CellId[];
+};
+
+export function getSurroundingMineCount({
+	id,
+	limit,
+	mines,
+}: getSurroundingMineCountOptions): CellMarker {
 	const [i = 0, j = 0] = id.split("-").map(Number);
 	const indexes = [
 		[i - 1, j],

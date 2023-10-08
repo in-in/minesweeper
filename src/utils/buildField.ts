@@ -8,11 +8,11 @@ import {
 
 import { getSurroundingMineCount } from "@/utils/getSurroundingMineCount";
 
-interface buildFieldOptions {
+type buildFieldOptions = {
 	length: number;
 	mines?: CellId[];
 	openCell?: MainState["currentCell"];
-}
+};
 
 export function buildField({
 	length,
@@ -24,7 +24,7 @@ export function buildField({
 			const id: CellId = `${row}-${col}`;
 			const marker: CellMarker = mines.includes(id)
 				? 9
-				: getSurroundingMineCount(id, length, mines);
+				: getSurroundingMineCount({ id, limit: length, mines });
 			const state: CellState = openCell === id ? "opened" : "closed";
 			return { id, marker, state };
 		}),

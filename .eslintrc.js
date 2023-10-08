@@ -1,8 +1,11 @@
 const commonRules = {
 	"@typescript-eslint/consistent-type-assertions": "off",
+	"@typescript-eslint/consistent-type-definitions": ["error", "type"],
 	"jsx-a11y/no-autofocus": "off",
 	"logical-assignment-operators": ["error", "always"],
+	"max-params": ["error", 2],
 	"no-await-in-loop": "error",
+	"no-dupe-args": "error",
 	"no-invalid-this": "error",
 	"no-promise-executor-return": "error",
 	"no-return-await": "error",
@@ -69,13 +72,20 @@ module.exports = {
 		node: true,
 	},
 	parserOptions: commonParserOptions,
+	settings: {
+		react: {
+			version: "detect",
+		},
+	},
 	extends: [
 		"standard",
+		"plugin:react/recommended",
 		"plugin:sonarjs/recommended",
-		"plugin:jsx-a11y/recommended",
+		"plugin:jsx-a11y/strict",
+		"plugin:react-hooks/recommended",
 		"prettier",
 	],
-	plugins: ["sonarjs", "perfectionist", "jsx-a11y", "prettier"],
+	plugins: ["sonarjs", "perfectionist", "prettier"],
 	rules: commonRules,
 	reportUnusedDisableDirectives: true,
 	overrides: [
@@ -83,9 +93,9 @@ module.exports = {
 			files: "**/*.+(ts|tsx)",
 			extends: [
 				"standard-with-typescript",
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:sonarjs/recommended",
-				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/strict-type-checked",
+				"plugin:@typescript-eslint/stylistic-type-checked",
 				"prettier",
 			],
 			rules: {

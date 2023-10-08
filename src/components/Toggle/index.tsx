@@ -2,11 +2,11 @@ import React from "react";
 
 import st from "./index.module.scss";
 
-interface AppProps {
+type ToggleProps = {
 	label: string;
-}
+};
 
-const Toggle = ({ label }: AppProps): React.ReactNode => {
+const Toggle = ({ label }: ToggleProps): React.ReactNode => {
 	const id = label.replace(/[^a-z0-9]/gi, "-");
 	return (
 		<div className={st.toggle}>

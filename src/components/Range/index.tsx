@@ -34,10 +34,9 @@ const Range = (): React.ReactNode => {
 				id="mines"
 				name="mines"
 				value={minesAmount}
-				onChange={(ev) => {
-					const value = Number(ev.target.value) as MinesAmount;
-					return dispatch(updateMinesAmount(value));
-				}}
+				onChange={(ev) =>
+					dispatch(updateMinesAmount(Number(ev.target.value) as MinesAmount))
+				}
 			>
 				{createSelectOptions}
 			</select>
