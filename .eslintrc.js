@@ -3,7 +3,7 @@ const commonRules = {
 	"@typescript-eslint/consistent-type-definitions": ["error", "type"],
 	"jsx-a11y/no-autofocus": "off",
 	"logical-assignment-operators": ["error", "always"],
-	"max-params": ["error", 2],
+	"max-params": ["error", 3],
 	"no-await-in-loop": "error",
 	"no-dupe-args": "error",
 	"no-invalid-this": "error",
