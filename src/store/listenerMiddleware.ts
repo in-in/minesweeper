@@ -1,8 +1,9 @@
-import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
+import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
 
 import {
 	changeCellState,
+	clockTick,
 	displayHiddenMines,
 	play,
 	start,
@@ -24,6 +25,8 @@ export const addAppListener = addListener as TypedAddListener<
 	RootState,
 	AppDispatch
 >;
+
+let intervalId: ReturnType<typeof setInterval>;
 
 startAppListening({
 	predicate: () => true,
@@ -59,5 +62,16 @@ startAppListening({
 	effect: (_action, { dispatch, getState }) => {
 		const state = getState();
 		dispatch(displayHiddenMines(state[SLICE_MAIN].field));
+	},
+});
+
+startAppListening({
+	actionCreator: start,
+	effect: (_action, { dispatch, getState }) => {
+		intervalId = setInterval(() => {
+			getState()[SLICE_MAIN].status !== "play"
+				? clearInterval(intervalId)
+				: dispatch(clockTick());
+		}, 1000);
 	},
 });

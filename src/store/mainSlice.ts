@@ -39,6 +39,7 @@ const mainSlice = createSlice({
 			state.status = "idle";
 			state.currentCell = null;
 			state.openCellCount = 0;
+			state.clockTime = 0;
 			state.field = buildField({
 				length: Object.values(state.currentLevel)[0] as number,
 			});
@@ -75,6 +76,9 @@ const mainSlice = createSlice({
 			state.field = action.payload.map((cell) =>
 				cell.marker === 9 ? { ...cell, state: "opened" } : cell,
 			);
+		},
+		clockTick: (state) => {
+			state.clockTime += 1;
 		},
 	},
 });
@@ -117,8 +121,12 @@ export const selectFinishMessage = createSelector(
 	(title, text) => ({ title, text }),
 );
 
+export const selectClockTime = (state: RootState): number =>
+	state[SLICE_MAIN].clockTime;
+
 export const {
 	changeCellState,
+	clockTick,
 	displayHiddenMines,
 	play,
 	restart,

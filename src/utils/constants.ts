@@ -17,5 +17,6 @@ export const INITIAL_STATE = {
 		field: buildField({ length: 10 }),
 		finishMessageTitle: " ",
 		finishMessageText: " ",
+		clockTime: 0,
 	},
 };

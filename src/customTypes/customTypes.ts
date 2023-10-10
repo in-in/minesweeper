@@ -37,6 +37,7 @@ export type MainState = {
 	field: Cell[];
 	finishMessageTitle: string;
 	finishMessageText: string;
+	clockTime: number;
 };
 
 export type GlobalState = {
