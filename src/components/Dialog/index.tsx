@@ -10,6 +10,7 @@ import React from "react";
 
 import {
 	restart,
+	selectClockTime,
 	selectFinishMessage,
 	selectIsFinishStatus,
 } from "@/store/mainSlice";
@@ -18,7 +19,18 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);
 	const { title, text } = useAppSelector(selectFinishMessage);
+	const clockTime = useAppSelector(selectClockTime);
 	const dispatch = useAppDispatch();
+
+	function replaceStubsInString({
+		text,
+		slot1,
+	}: {
+		text: string;
+		slot1: number;
+	}): string {
+		return text.replace("_stub_", String(slot1));
+	}
 
 	return (
 		<MUIDialog
@@ -33,7 +45,9 @@ const Dialog = (): React.ReactNode => {
 		>
 			<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
 			<DialogContent>
-				<DialogContentText id="alert-dialog-description">{text}</DialogContentText>
+				<DialogContentText id="alert-dialog-description">
+					{replaceStubsInString({ text, slot1: clockTime })}
+				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
 				<Button autoFocus variant="contained" onClick={() => dispatch(restart())}>
