@@ -14,6 +14,7 @@ import {
 	selectFinishMessage,
 	selectIsFinishStatus,
 } from "@/store/mainSlice";
+import { formatClockTime } from "@/utils/formatClockTime";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 const Dialog = (): React.ReactNode => {
@@ -27,9 +28,9 @@ const Dialog = (): React.ReactNode => {
 		slot1,
 	}: {
 		text: string;
-		slot1: number;
+		slot1: string;
 	}): string {
-		return text.replace("_stub_", String(slot1));
+		return text.replace("_stub_", slot1);
 	}
 
 	return (
@@ -46,7 +47,7 @@ const Dialog = (): React.ReactNode => {
 			<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
 			<DialogContent>
 				<DialogContentText id="alert-dialog-description">
-					{replaceStubsInString({ text, slot1: clockTime })}
+					{replaceStubsInString({ text, slot1: formatClockTime(clockTime) })}
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
