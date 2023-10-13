@@ -13,25 +13,19 @@ import {
 	selectClockTime,
 	selectFinishMessage,
 	selectIsFinishStatus,
+	selectOpenCellCount,
 } from "@/store/mainSlice";
 import { formatClockTime } from "@/utils/formatClockTime";
+import { getSuffix } from "@/utils/getSuffix";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { replaceStubsInString } from "@/utils/replaceStubsInString";
 
 const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);
 	const { title, text } = useAppSelector(selectFinishMessage);
 	const clockTime = useAppSelector(selectClockTime);
+	const turns = useAppSelector(selectOpenCellCount);
 	const dispatch = useAppDispatch();
-
-	function replaceStubsInString({
-		text,
-		slot1,
-	}: {
-		text: string;
-		slot1: string;
-	}): string {
-		return text.replace("_stub_", slot1);
-	}
 
 	return (
 		<MUIDialog
@@ -47,7 +41,11 @@ const Dialog = (): React.ReactNode => {
 			<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
 			<DialogContent>
 				<DialogContentText id="alert-dialog-description">
-					{replaceStubsInString({ text, slot1: formatClockTime(clockTime) })}
+					{replaceStubsInString({
+						text,
+						slot1: formatClockTime(clockTime),
+						slot2: `${turns} move${getSuffix(Number(turns))}`,
+					})}
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>

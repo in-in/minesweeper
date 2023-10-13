@@ -1,3 +1,5 @@
+import { getSuffix } from "@/utils/getSuffix";
+
 function formatClockTime(seconds: number): string {
 	if (seconds === 0) {
 		return "no time";
@@ -13,9 +15,8 @@ function formatClockTime(seconds: number): string {
 		second: seconds % MINUTE,
 	};
 
-	const suffix = (n: number): string => (n > 1 ? "s" : "");
 	const createUnitText = (n: number, unit: string): string =>
-		n > 0 ? `${n} ${unit}${suffix(n)}` : "";
+		n > 0 ? `${n} ${unit}${getSuffix(n)}` : "";
 
 	const unitTexts: string[] = [];
 	for (const [key, val] of Object.entries(units)) {
