@@ -80,6 +80,9 @@ const mainSlice = createSlice({
 		clockTick: (state) => {
 			state.clockTime += 1;
 		},
+		pageLoad(state) {
+			state.isLoad = !state.isLoad;
+		},
 	},
 });
 
@@ -132,6 +135,7 @@ export const {
 	restart,
 	start,
 	switchLevel,
+	pageLoad,
 	updateField,
 	updateMinesAmount,
 } = mainSlice.actions;

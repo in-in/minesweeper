@@ -38,6 +38,7 @@ export type MainState = {
 	finishMessageTitle: string;
 	finishMessageText: string;
 	clockTime: number;
+	isLoad: boolean;
 };
 
 export type GlobalState = {

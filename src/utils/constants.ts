@@ -17,5 +17,6 @@ export const INITIAL_STATE = {
 		finishMessageTitle: " ",
 		finishMessageText: " ",
 		clockTime: 0,
+		isLoad: false,
 	},
 };

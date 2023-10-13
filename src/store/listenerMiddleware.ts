@@ -1,10 +1,11 @@
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
-import { addListener, createListenerMiddleware } from "@reduxjs/toolkit";
+import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
 import {
 	changeCellState,
 	clockTick,
 	displayHiddenMines,
+	pageLoad,
 	play,
 	start,
 	updateField,
@@ -66,7 +67,7 @@ startAppListening({
 });
 
 startAppListening({
-	actionCreator: start,
+	matcher: isAnyOf(start, pageLoad),
 	effect: (_action, { dispatch, getState }) => {
 		intervalId = setInterval(() => {
 			getState()[SLICE_MAIN].status !== "play"
