@@ -5,6 +5,7 @@ import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
 import { Toggle } from "@/components/Toggle";
 import { restart, selectClockTime, selectIsIdleStatus } from "@/store/mainSlice";
+import { formatClockTimeToHHMMSS } from "@/utils/formatClockTimeToHHMMSS";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
@@ -19,7 +20,7 @@ const Dashboard = (): React.ReactNode => {
 			<Range />
 			<Toggle label="sound" />
 			<Toggle label="light/dark" />
-			<Stat counter={clockTime} label="timer" />
+			<Stat counter={formatClockTimeToHHMMSS(clockTime)} label="timer" />
 			<Stat label="turns" />
 			<Stat label="mines" />
 			<Button
