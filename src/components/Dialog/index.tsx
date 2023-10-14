@@ -8,13 +8,13 @@ import {
 } from "@mui/material";
 import React from "react";
 
+import { restart } from "@/store/mainSlice";
 import {
-	restart,
 	selectClockTime,
 	selectFinishMessage,
 	selectIsFinishStatus,
 	selectOpenCellCount,
-} from "@/store/mainSlice";
+} from "@/store/selectors";
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
 import { getSuffix } from "@/utils/helpers/getSuffix";
 import { replaceStubsInString } from "@/utils/helpers/replaceStubsInString";

@@ -4,12 +4,12 @@ import { Button } from "@/components/Button";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
 import { Toggle } from "@/components/Toggle";
+import { restart } from "@/store/mainSlice";
 import {
-	restart,
 	selectClockTime,
 	selectIsIdleStatus,
 	selectOpenCellCount,
-} from "@/store/mainSlice";
+} from "@/store/selectors";
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 

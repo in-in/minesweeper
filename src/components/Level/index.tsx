@@ -1,11 +1,8 @@
 import React from "react";
 
 import { Button } from "@/components/Button";
-import {
-	selectCurrentLevelName,
-	selectIsIdleStatus,
-	switchLevel,
-} from "@/store/mainSlice";
+import { switchLevel } from "@/store/mainSlice";
+import { selectCurrentLevelName, selectIsIdleStatus } from "@/store/selectors";
 import { LEVELS } from "@/utils/constants";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 

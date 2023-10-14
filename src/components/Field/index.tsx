@@ -4,11 +4,8 @@ import { type CSSCustomProperties } from "@/customTypes/customTypes";
 
 import { Cell } from "@/components/Cell";
 import { Dialog } from "@/components/Dialog";
-import {
-	changeCellState,
-	selectCurrentLevelValue,
-	selectField,
-} from "@/store/mainSlice";
+import { changeCellState } from "@/store/mainSlice";
+import { selectCurrentLevelValue, selectField } from "@/store/selectors";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";

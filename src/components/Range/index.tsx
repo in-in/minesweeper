@@ -2,11 +2,8 @@ import React from "react";
 
 import { type MinesAmount } from "@/customTypes/customTypes";
 
-import {
-	selectIsIdleStatus,
-	selectminesAmount,
-	updateMinesAmount,
-} from "@/store/mainSlice";
+import { updateMinesAmount } from "@/store/mainSlice";
+import { selectIsIdleStatus, selectminesAmount } from "@/store/selectors";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
