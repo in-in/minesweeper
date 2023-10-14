@@ -6,7 +6,7 @@ import {
 	type MainState,
 } from "@/customTypes/customTypes";
 
-import { getSurroundingMineCount } from "@/utils/getSurroundingMineCount";
+import { getSurroundingMineCount } from "@/utils/helpers/getSurroundingMineCount";
 
 type buildFieldOptions = {
 	length: number;

@@ -5,7 +5,7 @@ import { type GlobalState } from "@/customTypes/customTypes";
 import { listenerMiddleware } from "@/store/listenerMiddleware";
 import mainReducer from "@/store/mainSlice";
 import { INITIAL_STATE, SLICE_MAIN } from "@/utils/constants";
-import { localStorageWrapper } from "@/utils/localStorageWrapper";
+import { localStorageWrapper } from "@/utils/helpers/localStorageWrapper";
 
 let preloadedState = INITIAL_STATE as GlobalState;
 

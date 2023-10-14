@@ -11,7 +11,6 @@ import {
 } from "@/customTypes/customTypes";
 
 import { type RootState } from "@/store/store";
-import { buildField } from "@/utils/buildField";
 import {
 	FINISH_LOSS_MESSAGE_TEXT,
 	FINISH_LOSS_MESSAGE_TITLE,
@@ -21,6 +20,7 @@ import {
 	LEVELS,
 	SLICE_MAIN,
 } from "@/utils/constants";
+import { buildField } from "@/utils/helpers/buildField";
 
 const mainSlice = createSlice({
 	name: SLICE_MAIN,

@@ -12,8 +12,8 @@ import {
 } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
-import { localStorageWrapper } from "@/utils/localStorageWrapper";
-import { placeMines } from "@/utils/placeMines";
+import { localStorageWrapper } from "@/utils/helpers/localStorageWrapper";
+import { placeMines } from "@/utils/helpers/placeMines";
 
 export const listenerMiddleware = createListenerMiddleware();
 

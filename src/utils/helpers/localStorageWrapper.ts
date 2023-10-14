@@ -1,5 +1,5 @@
 import { type RootState } from "@/store/store";
-import { projectName } from "@/utils/projectName";
+import { projectName } from "@/utils/helpers/projectName";
 
 type LocalStorageWrapper = {
 	setItem: (value: string, key?: string) => void;

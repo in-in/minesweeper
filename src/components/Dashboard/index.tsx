@@ -10,7 +10,7 @@ import {
 	selectIsIdleStatus,
 	selectOpenCellCount,
 } from "@/store/mainSlice";
-import { formatClockTimeToHHMMSS } from "@/utils/formatClockTimeToHHMMSS";
+import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";

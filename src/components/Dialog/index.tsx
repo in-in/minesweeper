@@ -15,10 +15,10 @@ import {
 	selectIsFinishStatus,
 	selectOpenCellCount,
 } from "@/store/mainSlice";
-import { formatClockTime } from "@/utils/formatClockTime";
-import { getSuffix } from "@/utils/getSuffix";
+import { formatClockTime } from "@/utils/helpers/formatClockTime";
+import { getSuffix } from "@/utils/helpers/getSuffix";
+import { replaceStubsInString } from "@/utils/helpers/replaceStubsInString";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
-import { replaceStubsInString } from "@/utils/replaceStubsInString";
 
 const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);

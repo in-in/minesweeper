@@ -1,4 +1,4 @@
-import { getSuffix } from "@/utils/getSuffix";
+import { getSuffix } from "@/utils/helpers/getSuffix";
 
 function formatClockTime(seconds: number): string {
 	if (seconds === 0) {
