@@ -15,7 +15,7 @@ const selectCurrentLevel = (state: RootState): Level =>
 const [initialLevelName] = Object.keys(LEVELS[0]);
 const initialLevelValue = LEVELS[0][initialLevelName as keyof (typeof LEVELS)[0]];
 
-export const selectminesAmount = (state: RootState): MinesAmount =>
+export const selectMinesAmount = (state: RootState): MinesAmount =>
 	state[SLICE_MAIN].minesAmount;
 
 export const selectField = (state: RootState): Cell[] => state[SLICE_MAIN].field;
