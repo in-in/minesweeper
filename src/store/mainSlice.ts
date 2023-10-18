@@ -87,6 +87,11 @@ const mainSlice = createSlice({
 				cell.marker === 9 ? { ...cell, state: "opened" } : cell,
 			);
 		},
+		мarkМineWithFlag(state, action: PayloadAction<Cell[]>) {
+			state.field = action.payload.map((cell) =>
+				cell.marker === 9 ? { ...cell, state: "flagged" } : cell,
+			);
+		},
 		clockTick: (state) => {
 			state.clockTime += 1;
 		},
@@ -108,5 +113,6 @@ export const {
 	toggleCellFlag,
 	updateField,
 	updateMinesAmount,
+	мarkМineWithFlag,
 } = mainSlice.actions;
 export default mainSlice.reducer;

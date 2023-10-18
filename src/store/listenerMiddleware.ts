@@ -9,6 +9,7 @@ import {
 	play,
 	start,
 	updateField,
+	мarkМineWithFlag,
 } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
@@ -63,6 +64,15 @@ startAppListening({
 	effect: (_action, { dispatch, getState }) => {
 		const state = getState();
 		dispatch(displayHiddenMines(state[SLICE_MAIN].field));
+	},
+});
+
+startAppListening({
+	predicate: (action, currentState) =>
+		!мarkМineWithFlag.match(action) && currentState[SLICE_MAIN].status === "win",
+	effect: (_action, { dispatch, getState }) => {
+		const state = getState();
+		dispatch(мarkМineWithFlag(state[SLICE_MAIN].field));
 	},
 });
 
