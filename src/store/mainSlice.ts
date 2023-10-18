@@ -31,6 +31,7 @@ const mainSlice = createSlice({
 		},
 		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
 			state.minesAmount = action.payload;
+			state.flagCount = action.payload;
 		},
 		restart(state) {
 			state.status = "idle";
@@ -44,6 +45,7 @@ const mainSlice = createSlice({
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
+			state.flagCount = state.minesAmount;
 		},
 		openCell(state, action: PayloadAction<CellId>) {
 			state.currentSelectCell = action.payload;
