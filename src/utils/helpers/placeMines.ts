@@ -7,11 +7,11 @@ function getRandom(max: number): number {
 }
 
 export function placeMines(state: MainState): Cell[] {
-	const { currentSelectCell, minesAmount, currentLevel } = state;
+	const { currentSelectCell, minesCount, currentLevel } = state;
 	const mines = new Set<CellId>();
 	const size = Object.values(currentLevel)[0] as number;
 
-	while (minesAmount !== mines.size) {
+	while (minesCount !== mines.size) {
 		const mineCell: CellId = `${getRandom(size)}-${getRandom(size)}`;
 		if (currentSelectCell !== mineCell) {
 			mines.add(mineCell);

@@ -1,15 +1,15 @@
 import React from "react";
 
-import { type MinesAmount } from "@/customTypes/customTypes";
+import { type MinesCount } from "@/customTypes/customTypes";
 
-import { updateMinesAmount } from "@/store/mainSlice";
-import { selectIsIdleStatus, selectMinesAmount } from "@/store/selectors";
+import { updateMinesCount } from "@/store/mainSlice";
+import { selectIsIdleStatus, selectMinesCount } from "@/store/selectors";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
 const Range = (): React.ReactNode => {
-	const minesAmount = useAppSelector(selectMinesAmount);
+	const minesCount = useAppSelector(selectMinesCount);
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const dispatch = useAppDispatch();
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
@@ -30,9 +30,9 @@ const Range = (): React.ReactNode => {
 				disabled={!isIdleStatus}
 				id="mines"
 				name="mines"
-				value={minesAmount}
+				value={minesCount}
 				onChange={(ev) =>
-					dispatch(updateMinesAmount(Number(ev.target.value) as MinesAmount))
+					dispatch(updateMinesCount(Number(ev.target.value) as MinesCount))
 				}
 			>
 				{createSelectOptions}

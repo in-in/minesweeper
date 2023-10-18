@@ -6,7 +6,7 @@ import {
 	type CellId,
 	type Level,
 	type MainState,
-	type MinesAmount,
+	type MinesCount,
 } from "@/customTypes/customTypes";
 
 import {
@@ -29,8 +29,8 @@ const mainSlice = createSlice({
 				length: Object.values(action.payload)[0] as number,
 			});
 		},
-		updateMinesAmount(state, action: PayloadAction<MinesAmount>) {
-			state.minesAmount = action.payload;
+		updateMinesCount(state, action: PayloadAction<MinesCount>) {
+			state.minesCount = action.payload;
 			state.flagCount = action.payload;
 		},
 		restart(state) {
@@ -38,14 +38,14 @@ const mainSlice = createSlice({
 			state.currentSelectCell = null;
 			state.openCellCount = 0;
 			state.clockTime = 0;
-			state.flagCount = state.minesAmount;
+			state.flagCount = state.minesCount;
 			state.field = buildField({
 				length: Object.values(state.currentLevel)[0] as number,
 			});
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
-			state.flagCount = state.minesAmount;
+			state.flagCount = state.minesCount;
 		},
 		openCell(state, action: PayloadAction<CellId>) {
 			state.currentSelectCell = action.payload;
@@ -78,7 +78,7 @@ const mainSlice = createSlice({
 				state.status = "lose";
 				state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
 				state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
-			} else if (state.openCellCount >= state.field.length - state.minesAmount) {
+			} else if (state.openCellCount >= state.field.length - state.minesCount) {
 				state.status = "win";
 				state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
 				state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
@@ -114,7 +114,7 @@ export const {
 	switchLevel,
 	toggleCellFlag,
 	updateField,
-	updateMinesAmount,
+	updateMinesCount,
 	мarkМineWithFlag,
 } = mainSlice.actions;
 export default mainSlice.reducer;

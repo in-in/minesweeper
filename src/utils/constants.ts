@@ -16,7 +16,7 @@ export const INITIAL_STATE = {
 		finishMessageTitle: " ",
 		flagCount: 10,
 		isLoad: false,
-		minesAmount: 10,
+		minesCount: 10,
 		openCellCount: 0,
 		status: "idle",
 	},
