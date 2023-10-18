@@ -7,6 +7,7 @@ import { Toggle } from "@/components/Toggle";
 import { restart } from "@/store/mainSlice";
 import {
 	selectClockTime,
+	selectflagCount,
 	selectIsIdleStatus,
 	selectOpenCellCount,
 } from "@/store/selectors";
@@ -19,6 +20,7 @@ const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
 	const turns = useAppSelector(selectOpenCellCount);
+	const flags = useAppSelector(selectflagCount);
 	const dispatch = useAppDispatch();
 
 	return (
@@ -28,7 +30,7 @@ const Dashboard = (): React.ReactNode => {
 			<Toggle label="light/dark" />
 			<Stat counter={formatClockTimeToHHMMSS(clockTime)} label="timer" />
 			<Stat counter={turns} label="turns" />
-			<Stat label="mines" />
+			<Stat counter={flags} label="flags" />
 			<Button
 				disabled={isIdleStatus}
 				inner={"Restart"}

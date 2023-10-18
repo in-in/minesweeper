@@ -8,15 +8,16 @@ export const FINISH_LOSS_MESSAGE_TITLE = "Game Over - You have lost this round";
 export const FINISH_LOSS_MESSAGE_TEXT = "Better luck next time! Try it again";
 export const INITIAL_STATE = {
 	[SLICE_MAIN]: {
-		currentLevel: LEVELS[0],
-		minesAmount: 10,
-		status: "idle",
-		currentCell: null,
-		openCellCount: 0,
-		field: buildField({ length: 10 }),
-		finishMessageTitle: " ",
-		finishMessageText: " ",
 		clockTime: 0,
+		currentLevel: LEVELS[0],
+		currentSelectCell: null,
+		field: buildField({ length: 10 }),
+		finishMessageText: " ",
+		finishMessageTitle: " ",
+		flagCount: 10,
 		isLoad: false,
+		minesAmount: 10,
+		openCellCount: 0,
+		status: "idle",
 	},
 };

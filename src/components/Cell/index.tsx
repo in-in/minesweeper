@@ -12,8 +12,12 @@ type CellProps = {
 
 const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => (
 	<button
-		className={clsx(st.cell, { [st.open ?? ""]: state === "opened" })}
 		data-cell={marker}
+		className={clsx(
+			st.cell,
+			{ [st.open ?? ""]: state === "opened" },
+			{ [st.flag ?? ""]: state === "flagged" },
+		)}
 		{...rest}
 	></button>
 );

@@ -29,16 +29,17 @@ export type Cell = {
 };
 
 export type MainState = {
-	currentLevel: Level;
-	minesAmount: MinesAmount;
-	status: Status;
-	currentCell: CellId | null;
-	openCellCount: number;
-	field: Cell[];
-	finishMessageTitle: string;
-	finishMessageText: string;
 	clockTime: number;
+	currentLevel: Level;
+	currentSelectCell: CellId | null;
+	field: Cell[];
+	finishMessageText: string;
+	finishMessageTitle: string;
+	flagCount: number;
 	isLoad: boolean;
+	minesAmount: MinesAmount;
+	openCellCount: number;
+	status: Status;
 };
 
 export type GlobalState = {

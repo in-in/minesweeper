@@ -1,10 +1,14 @@
 import React from "react";
 
-import { type CSSCustomProperties } from "@/customTypes/customTypes";
+import {
+	type CellId,
+	type CellState,
+	type CSSCustomProperties,
+} from "@/customTypes/customTypes";
 
 import { Cell } from "@/components/Cell";
 import { Dialog } from "@/components/Dialog";
-import { changeCellState } from "@/store/mainSlice";
+import { openCell, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelValue, selectField } from "@/store/selectors";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
@@ -17,6 +21,20 @@ const Field = (): React.ReactNode => {
 
 	const style: CSSCustomProperties = { "--size": currentLevelValue };
 
+	const handleClick = (state: CellState, id: CellId): void => {
+		if (state === "closed") {
+			dispatch(openCell(id));
+		}
+	};
+	const handleContextMenu = (
+		event: React.MouseEvent<HTMLElement>,
+		id: CellId,
+	): void => {
+		event.stopPropagation();
+		event.preventDefault();
+		dispatch(toggleCellFlag(id));
+	};
+
 	return (
 		<div className={st.field} style={style}>
 			<Dialog />
@@ -25,7 +43,12 @@ const Field = (): React.ReactNode => {
 					key={id}
 					marker={marker}
 					state={state}
-					onClick={() => dispatch(changeCellState(id))}
+					onClick={() => {
+						handleClick(state, id);
+					}}
+					onContextMenu={(event) => {
+						handleContextMenu(event, id);
+					}}
 				/>
 			))}
 		</div>

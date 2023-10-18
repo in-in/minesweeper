@@ -2,9 +2,9 @@ import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
 import {
-	changeCellState,
 	clockTick,
 	displayHiddenMines,
+	openCell,
 	pageLoad,
 	play,
 	start,
@@ -39,7 +39,7 @@ startAppListening({
 
 startAppListening({
 	predicate: (action, currentState) =>
-		changeCellState.match(action) && currentState[SLICE_MAIN].status === "idle",
+		openCell.match(action) && currentState[SLICE_MAIN].status === "idle",
 	effect: (_action, { dispatch, getState }) => {
 		dispatch(start());
 		const state = getState();
@@ -51,7 +51,7 @@ startAppListening({
 
 startAppListening({
 	predicate: (action, currentState) =>
-		changeCellState.match(action) && currentState[SLICE_MAIN].status === "play",
+		openCell.match(action) && currentState[SLICE_MAIN].status === "play",
 	effect: (_action, { dispatch }) => {
 		dispatch(play());
 	},

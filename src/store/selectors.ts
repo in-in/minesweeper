@@ -55,3 +55,8 @@ export const selectOpenCellCount = createSelector(
 	(state: RootState): number => state[SLICE_MAIN].openCellCount,
 	(count) => count.toString(),
 );
+
+export const selectflagCount = createSelector(
+	(state: RootState): number => state[SLICE_MAIN].flagCount,
+	(count) => count.toString(),
+);

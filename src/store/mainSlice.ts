@@ -34,9 +34,10 @@ const mainSlice = createSlice({
 		},
 		restart(state) {
 			state.status = "idle";
-			state.currentCell = null;
+			state.currentSelectCell = null;
 			state.openCellCount = 0;
 			state.clockTime = 0;
+			state.flagCount = state.minesAmount;
 			state.field = buildField({
 				length: Object.values(state.currentLevel)[0] as number,
 			});
@@ -44,22 +45,34 @@ const mainSlice = createSlice({
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
 		},
-		changeCellState(state, action: PayloadAction<CellId>) {
-			state.currentCell = action.payload;
-			state.field = state.field.map((cell) =>
-				cell.id === state.currentCell ? { ...cell, state: "opened" } : cell,
-			);
+		openCell(state, action: PayloadAction<CellId>) {
+			state.currentSelectCell = action.payload;
+			state.field = state.field.map((cell) => {
+				return cell.id === state.currentSelectCell && cell.state === "closed"
+					? { ...cell, state: "opened" }
+					: cell;
+			});
 			state.openCellCount = state.openCellCount += 1;
+		},
+		toggleCellFlag(state, action: PayloadAction<CellId>) {
+			state.field = state.field.map((cell) => {
+				if (cell.id !== action.payload || cell.state === "opened") {
+					return cell;
+				}
+				const newState = cell.state === "closed" ? "flagged" : "closed";
+				state.flagCount += newState === "flagged" ? -1 : 1;
+				return { ...cell, state: newState };
+			});
 		},
 		start(state) {
 			state.status = "play";
 		},
 		play(state) {
-			const currentCellMarker = state.field.find(
-				(element) => element.id === state.currentCell,
+			const currentSelectCellMarker = state.field.find(
+				(element) => element.id === state.currentSelectCell,
 			);
 
-			if (currentCellMarker?.marker === 9) {
+			if (currentSelectCellMarker?.marker === 9) {
 				state.status = "lose";
 				state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
 				state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
@@ -84,14 +97,15 @@ const mainSlice = createSlice({
 });
 
 export const {
-	changeCellState,
 	clockTick,
 	displayHiddenMines,
+	openCell,
+	pageLoad,
 	play,
 	restart,
 	start,
 	switchLevel,
-	pageLoad,
+	toggleCellFlag,
 	updateField,
 	updateMinesAmount,
 } = mainSlice.actions;
