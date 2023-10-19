@@ -1,3 +1,5 @@
+import { Flag } from "@mui/icons-material";
+import { green } from "@mui/material/colors";
 import { clsx } from "clsx";
 import React from "react";
 
@@ -19,7 +21,9 @@ const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => (
 			{ [st.flag ?? ""]: state === "flagged" },
 		)}
 		{...rest}
-	></button>
+	>
+		{state === "flagged" && <Flag sx={{ color: green.A400 }} />}
+	</button>
 );
 
 export { Cell };

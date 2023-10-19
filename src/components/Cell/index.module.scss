@@ -84,5 +84,7 @@
 }
 
 .flag {
-	background-color: $color-accent;
+	&::before {
+		display: none;
+	}
 }
