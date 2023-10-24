@@ -5,9 +5,10 @@
 	"compilerOptions": {
 		"target": "esnext",
 		"module": "nodenext",
-		"noEmitOnError": true,
+		"noEmitOnError": false,
 		"resolveJsonModule": true,
 		"moduleResolution": "nodenext",
+		"noPropertyAccessFromIndexSignature": false,
 		"jsx": "react",
 		"baseUrl": "./",
 		"plugins": [
@@ -27,9 +28,4 @@
 			"allowSyntheticDefaultImports": true,
 		}
 	},
-	"include": [
-		".config/webpack.config.ts",
-		".config/paths.ts",
-		"src/**/*"
-	]
 }

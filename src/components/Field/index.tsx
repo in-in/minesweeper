@@ -36,7 +36,7 @@ const Field = (): React.ReactNode => {
 	};
 
 	return (
-		<div className={st.field} style={style}>
+		<div className={st.field} data-testid="field" style={style}>
 			<Dialog />
 			{field.map(({ id, marker, state }) => (
 				<Cell
