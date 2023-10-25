@@ -10,9 +10,12 @@ import { Cell } from "@/components/Cell";
 import { Dialog } from "@/components/Dialog";
 import { openCell, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelValue, selectField } from "@/store/selectors";
+import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
+
+const testId = addTestId("field");
 
 const Field = (): React.ReactNode => {
 	const currentLevelValue = useAppSelector(selectCurrentLevelValue);
@@ -36,7 +39,7 @@ const Field = (): React.ReactNode => {
 	};
 
 	return (
-		<div className={st.field} data-testid="field" style={style}>
+		<div className={st.field} {...testId} style={style}>
 			<Dialog />
 			{field.map(({ id, marker, state }) => (
 				<Cell
