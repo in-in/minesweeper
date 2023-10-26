@@ -7,7 +7,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { join } from "node:path";
 import StylelintPlugin from "stylelint-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
-import { type Configuration } from "webpack";
+import webpack, { type Configuration } from "webpack";
 
 import { PATHS } from "./paths";
 
@@ -140,6 +140,9 @@ const config: Configuration = {
 		}),
 		new EslingPlugin({
 			extensions: ["ts"],
+		}),
+		new webpack.DefinePlugin({
+			"process.env.NODE_ENV": JSON.stringify("prod"),
 		}),
 	],
 	optimization: {
