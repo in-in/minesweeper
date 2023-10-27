@@ -1,31 +1,7 @@
 {
-	"extends": [
-		"@tsconfig/strictest/tsconfig"
-	],
+	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"target": "esnext",
-		"module": "nodenext",
 		"noEmitOnError": false,
-		"resolveJsonModule": true,
-		"moduleResolution": "nodenext",
 		"noPropertyAccessFromIndexSignature": false,
-		"jsx": "react",
-		"baseUrl": "./",
-		"plugins": [
-			{
-				"name": "typescript-plugin-css-modules",
-			}
-		],
-		"paths": {
-			"@/*": [
-				"src/*"
-			]
-		}
-	},
-	"ts-node": {
-		"compilerOptions": {
-			"module": "CommonJS",
-			"allowSyntheticDefaultImports": true,
-		}
 	},
 }
