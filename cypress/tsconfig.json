@@ -1,0 +1,32 @@
+{
+	"extends": [
+		"@tsconfig/strictest/tsconfig"
+	],
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "nodenext",
+		"noEmitOnError": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "nodenext",
+		"jsx": "react",
+		"baseUrl": "./",
+		"types": [
+			"cypress",
+			"node"
+		],
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		}
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS",
+			"allowSyntheticDefaultImports": true,
+		}
+	},
+	"include": [
+		"**/*.ts"
+	]
+}
