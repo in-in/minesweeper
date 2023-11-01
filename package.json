@@ -5,8 +5,8 @@
 		"build": "NODE_ENV=prod webpack --config .config/webpack.config.ts",
 		"cz": "cz",
 		"start": "NODE_ENV=dev webpack serve --config .config/webpack.config.ts",
-		"cypress:open": "cypress open",
-		"cypress:run": "cypress run"
+		"cypress:open": "cypress open -C cypress/cypress.config.mjs --e2e -b electron",
+		"cypress:run": "cypress run -C cypress/cypress.config.mjs --e2e -b electron"
 	},
 	"config": {
 		"commitizen": {
@@ -47,7 +47,7 @@
 		"clsx": "2.0.0",
 		"commitizen": "4.3.0",
 		"css-loader": "6.8.1",
-		"cypress": "13.3.3",
+		"cypress": "13.4.0",
 		"eslint": "8.52.0",
 		"eslint-config-prettier": "9.0.0",
 		"eslint-config-standard": "17.1.0",
