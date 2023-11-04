@@ -110,6 +110,8 @@ module.exports = {
 		},
 		{
 			files: ["*.{test,cy}.{ts,tsx}"],
+			plugins: ["cypress"],
+			extends: ["plugin:cypress/recommended"],
 			rules: {
 				"sonarjs/no-duplicate-string": "off",
 			},
