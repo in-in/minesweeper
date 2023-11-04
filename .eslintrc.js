@@ -108,5 +108,11 @@ module.exports = {
 				tsconfigRootDir: __dirname,
 			},
 		},
+		{
+			files: ["*.{test,cy}.{ts,tsx}"],
+			rules: {
+				"sonarjs/no-duplicate-string": "off",
+			},
+		},
 	],
 };
