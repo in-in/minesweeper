@@ -16,6 +16,8 @@ import React from "react";
 
 import { type CellMarker, type CellState } from "@/customTypes/customTypes";
 
+import { addTestId } from "@/utils/helpers/addTestId";
+
 import st from "./index.module.scss";
 
 type CellProps = {
@@ -77,7 +79,7 @@ const CellInner = ({ marker }: Pick<CellProps, "marker">): React.ReactNode => {
 const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => (
 	<button
 		className={clsx(st.cell, { [st.open ?? ""]: state === "opened" })}
-		data-cell-debug={marker}
+		{...addTestId(String(marker))}
 		{...rest}
 	>
 		{state === "opened" && <CellInner marker={marker} />}
