@@ -1,12 +1,16 @@
+import {
+	FormControl,
+	FormControlLabel,
+	FormLabel,
+	Radio,
+	RadioGroup,
+} from "@mui/material";
 import React from "react";
 
-import { Button } from "@/components/Button";
 import { switchLevel } from "@/store/mainSlice";
 import { selectCurrentLevelName, selectIsIdleStatus } from "@/store/selectors";
 import { LEVELS } from "@/utils/constants";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
-
-import st from "./index.module.scss";
 
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);
@@ -16,25 +20,25 @@ const Level = (): React.ReactNode => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className={st.level}>
-			<p className={st.title}>Level</p>
-			<ul className={st.group}>
+		<FormControl>
+			<FormLabel id="level">Level</FormLabel>
+			<RadioGroup aria-labelledby="level" name="level" value={currentLevelName}>
 				{buttons.map((el) => {
-					const [key] = Object.keys(el);
+					const [name] = Object.keys(el);
 					return (
-						<li key={key}>
-							<Button
-								disabled={!isIdleStatus}
-								inner={key}
-								modifier={[st.button ?? ""]}
-								variant={currentLevelName === key ? "active" : "primary"}
-								onClick={() => dispatch(switchLevel(el))}
-							/>
-						</li>
+						<FormControlLabel
+							control={<Radio />}
+							disabled={!isIdleStatus}
+							key={name}
+							label={name}
+							sx={{ textTransform: "capitalize" }}
+							value={name}
+							onChange={() => dispatch(switchLevel(el))}
+						/>
 					);
 				})}
-			</ul>
-		</div>
+			</RadioGroup>
+		</FormControl>
 	);
 };
 
