@@ -109,7 +109,7 @@ module.exports = {
 			},
 		},
 		{
-			files: ["*.{test,cy}.{ts,tsx}"],
+			files: ["*.{test,cy,spec}.{ts,tsx}"],
 			plugins: ["cypress"],
 			extends: ["plugin:cypress/recommended"],
 			rules: {
