@@ -1,25 +1,18 @@
+import { LEVELS } from "@/utils/constants";
+
 describe("level", () => {
-	it("field contains 100 cells, after selecting easy level", () => {
+	beforeEach(() => {
 		cy.visit("/");
-		cy.get('[type="radio"]').check("easy");
-		cy.get('[data-testid="field"]').within(() => {
-			cy.get("button").should("have.length", 100);
-		});
 	});
 
-	it("field contains 225 cells, after selecting medium level", () => {
-		cy.visit("/");
-		cy.get('[type="radio"]').check("medium");
-		cy.get('[data-testid="field"]').within(() => {
-			cy.get("button").should("have.length", 225);
-		});
-	});
-
-	it("field contains 625 cells, after selecting hard level", () => {
-		cy.visit("/");
-		cy.get('[type="radio"]').check("hard");
-		cy.get('[data-testid="field"]').within(() => {
-			cy.get("button").should("have.length", 625);
+	LEVELS.map((i) => {
+		const [[key, val]] = Object.entries(i);
+		const size = val * val;
+		return it(`field contains ${size} cells, after selecting ${key} level`, () => {
+			cy.get('[type="radio"]').check(key);
+			cy.get('[data-testid="field"]').within(() => {
+				cy.get("button").should("have.length", size);
+			});
 		});
 	});
 });
