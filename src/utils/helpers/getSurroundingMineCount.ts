@@ -27,7 +27,7 @@ export function getSurroundingMineCount({
 		.map(([r, c]) =>
 			r != null && c != null && (r >= limit || c >= limit || r < 0 || c < 0)
 				? null
-				: `${r}-${c}`,
+				: (`${r}-${c}` as CellId),
 		)
 		.flatMap((f) => (f != null ? [f] : []))
 		.reduce(

@@ -1,3 +1,5 @@
+import type React from "react";
+
 import { type LEVELS } from "@/utils/constants";
 
 export type CSSCustomProperties = React.CSSProperties &
