@@ -10,7 +10,7 @@ describe("level", () => {
 		const size = val * val;
 		return it(`field contains ${size} cells, after selecting ${key} level`, () => {
 			cy.get('[type="radio"]').check(key);
-			cy.get('[data-testid="field"]').within(() => {
+			cy.getByTestId("field").within(() => {
 				cy.get("button").should("have.length", size);
 			});
 		});
