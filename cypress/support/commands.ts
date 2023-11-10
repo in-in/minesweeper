@@ -4,10 +4,17 @@ declare global {
 	namespace Cypress {
 		interface Chainable {
 			getByTestId(id: string | number): Chainable<JQuery>;
+			findByTestId(id: string | number): Chainable<JQuery>;
 		}
 	}
 }
 
-Cypress.Commands.add("getByTestId", (id: string | number) => {
-	return cy.get(`[data-testid=${id}]`);
-});
+Cypress.Commands.add("getByTestId", (id: string | number) =>
+	cy.get(`[data-testid=${id}]`),
+);
+
+Cypress.Commands.add(
+	"findByTestId",
+	{ prevSubject: true },
+	(subject: Cypress.Chainable, id) => subject.find(`[data-testid=${id}]`),
+);

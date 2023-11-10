@@ -1,12 +1,15 @@
 import * as React from "react";
 
-import { FormControl, FormLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
 import { type MinesCount } from "@/customTypes/customTypes";
 
 import { updateMinesCount } from "@/store/mainSlice";
 import { selectIsIdleStatus, selectMinesCount } from "@/store/selectors";
+import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+
+const testId = addTestId("mines-select");
 
 const Range = (): React.ReactNode => {
 	const minesCount = useAppSelector(selectMinesCount);
@@ -16,15 +19,15 @@ const Range = (): React.ReactNode => {
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
 	const selectOptions = createRangeArray.map((el) => (
-		<MenuItem key={el} value={el}>
+		<option key={el} value={el} {...testId}>
 			{el}
-		</MenuItem>
+		</option>
 	));
 
 	return (
 		<FormControl fullWidth size="small">
 			<FormLabel htmlFor="mines">Mines Amount</FormLabel>
-			<Select
+			<NativeSelect
 				disabled={!isIdleStatus}
 				id="mines"
 				name="mines"
@@ -34,7 +37,7 @@ const Range = (): React.ReactNode => {
 				}
 			>
 				{selectOptions}
-			</Select>
+			</NativeSelect>
 		</FormControl>
 	);
 };
