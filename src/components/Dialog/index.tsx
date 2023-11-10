@@ -16,10 +16,13 @@ import {
 	selectIsFinishStatus,
 	selectOpenCellCount,
 } from "@/store/selectors";
+import { addTestId } from "@/utils/helpers/addTestId";
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
 import { getSuffix } from "@/utils/helpers/getSuffix";
 import { replaceStubsInString } from "@/utils/helpers/replaceStubsInString";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+
+const testId = addTestId("dialog");
 
 const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);
@@ -33,6 +36,7 @@ const Dialog = (): React.ReactNode => {
 			aria-describedby="alert-dialog-description"
 			aria-labelledby="alert-dialog-title"
 			open={isFinishStatus}
+			{...testId}
 			sx={{
 				"& .MuiDialog-paper": {
 					alignItems: "center",
