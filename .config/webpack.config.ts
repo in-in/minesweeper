@@ -1,5 +1,3 @@
-import "webpack-dev-server";
-
 import EslingPlugin from "eslint-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
@@ -10,6 +8,8 @@ import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 
 import { PATHS } from "./paths";
+
+import "webpack-dev-server";
 
 const isDev = process.env.NODE_ENV !== "prod";
 

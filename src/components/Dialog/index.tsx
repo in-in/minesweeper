@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
 	Button,
 	DialogActions,
@@ -6,7 +8,6 @@ import {
 	DialogTitle,
 	Dialog as MUIDialog,
 } from "@mui/material";
-import React from "react";
 
 import { restart } from "@/store/mainSlice";
 import {

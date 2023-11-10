@@ -19,17 +19,23 @@ const commonRules = {
 			"custom-groups": {
 				value: {
 					customTypes: ["customTypes", "@/customTypes/**"],
+					react: ["react", "react-*"],
 				},
 				type: {
 					customTypes: ["customTypes", "@/customTypes/**"],
+					react: ["react", "react-*"],
 				},
 			},
 			"groups": [
-				"side-effect",
-				["builtin-type", "type", "builtin", "external"],
+				"react",
+				["builtin-type", "type"],
+				["builtin", "external"],
 				"customTypes",
 				["internal-type", "internal"],
-				["parent-type", "sibling-type", "index-type", "parent", "sibling", "index"],
+				["parent-type", "sibling-type", "index-type"],
+				["parent", "sibling", "index"],
+				"side-effect",
+				"object",
 				"style",
 				"unknown",
 			],
