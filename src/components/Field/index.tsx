@@ -15,8 +15,6 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
-const testId = addTestId("field");
-
 const Field = (): React.ReactNode => {
 	const currentLevelValue = useAppSelector(selectCurrentLevelValue);
 	const field = useAppSelector(selectField);
@@ -39,7 +37,7 @@ const Field = (): React.ReactNode => {
 	};
 
 	return (
-		<div className={st.field} {...testId} style={style}>
+		<div className={st.field} {...addTestId("field")} style={style}>
 			<Dialog />
 			{field.map(({ id, marker, state }) => (
 				<Cell

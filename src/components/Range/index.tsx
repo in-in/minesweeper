@@ -9,8 +9,6 @@ import { selectIsIdleStatus, selectMinesCount } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
-const testId = addTestId("mines-select");
-
 const Range = (): React.ReactNode => {
 	const minesCount = useAppSelector(selectMinesCount);
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
@@ -19,7 +17,7 @@ const Range = (): React.ReactNode => {
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
 	const selectOptions = createRangeArray.map((el) => (
-		<option key={el} value={el} {...testId}>
+		<option key={el} value={el} {...addTestId("mines-select")}>
 			{el}
 		</option>
 	));

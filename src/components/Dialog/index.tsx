@@ -22,8 +22,6 @@ import { getSuffix } from "@/utils/helpers/getSuffix";
 import { replaceStubsInString } from "@/utils/helpers/replaceStubsInString";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
-const testId = addTestId("dialog");
-
 const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);
 	const { title, text } = useAppSelector(selectFinishMessage);
@@ -36,7 +34,7 @@ const Dialog = (): React.ReactNode => {
 			aria-describedby="alert-dialog-description"
 			aria-labelledby="alert-dialog-title"
 			open={isFinishStatus}
-			{...testId}
+			{...addTestId("dialog")}
 			sx={{
 				"& .MuiDialog-paper": {
 					alignItems: "center",
