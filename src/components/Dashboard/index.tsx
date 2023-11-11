@@ -11,10 +11,13 @@ import {
 	selectIsIdleStatus,
 	selectOpenCellCount,
 } from "@/store/selectors";
+import { addTestId } from "@/utils/helpers/addTestId";
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
+
+const testId = addTestId("stat-flags");
 
 const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
@@ -30,7 +33,7 @@ const Dashboard = (): React.ReactNode => {
 			<Toggle label="light/dark" />
 			<Stat counter={formatClockTimeToHHMMSS(clockTime)} label="timer" />
 			<Stat counter={turns} label="turns" />
-			<Stat counter={flags} label="flags" />
+			<Stat counter={flags} {...testId} label="flags" />
 			<Button
 				disabled={isIdleStatus}
 				inner={"Restart"}
