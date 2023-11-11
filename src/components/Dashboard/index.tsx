@@ -17,7 +17,8 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
-const testId = addTestId("stat-flags");
+const testIdFlags = addTestId("stat-flags");
+const testIdTimer = addTestId("stat-timer");
 
 const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
@@ -31,9 +32,13 @@ const Dashboard = (): React.ReactNode => {
 			<Range />
 			<Toggle label="sound" />
 			<Toggle label="light/dark" />
-			<Stat counter={formatClockTimeToHHMMSS(clockTime)} label="timer" />
+			<Stat
+				counter={formatClockTimeToHHMMSS(clockTime)}
+				label="timer"
+				{...testIdTimer}
+			/>
 			<Stat counter={turns} label="turns" />
-			<Stat counter={flags} {...testId} label="flags" />
+			<Stat counter={flags} label="flags" {...testIdFlags} />
 			<Button
 				disabled={isIdleStatus}
 				inner={"Restart"}
