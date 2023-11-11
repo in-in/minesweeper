@@ -5,6 +5,7 @@ declare global {
 		interface Chainable {
 			getByTestId(id: string | number): Chainable<JQuery>;
 			findByTestId(id: string | number): Chainable<JQuery>;
+			start(): void;
 		}
 	}
 }
@@ -17,4 +18,10 @@ Cypress.Commands.add(
 	"findByTestId",
 	{ prevSubject: true },
 	(subject: Cypress.Chainable, id) => subject.find(`[data-testid=${id}]`),
+);
+
+Cypress.Commands.add("start", () =>
+	cy.getByTestId("field").within(() => {
+		cy.get("button").eq(0).click();
+	}),
 );

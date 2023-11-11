@@ -10,18 +10,14 @@ describe("check finish status", () => {
 
 	it("win", () => {
 		cy.getByTestId("mines-select").parent().select("99");
-		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).click();
-		});
+		cy.start();
 		cy.getByTestId("dialog").should("contain", FINISH_WIN_MESSAGE_TITLE);
 	});
 
 	it("lose", () => {
 		cy.getByTestId("mines-select").parent().select("98");
-		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).click();
-			cy.getByTestId(9).first().click();
-		});
+		cy.start();
+		cy.getByTestId(9).first().click();
 		cy.getByTestId("dialog").should("contain", FINISH_LOSS_MESSAGE_TITLE);
 	});
 });

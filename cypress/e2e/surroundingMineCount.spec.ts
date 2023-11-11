@@ -4,9 +4,7 @@ describe("surrounding mine count", () => {
 	it("surrounding mine count", () => {
 		cy.visit("/");
 		cy.getByTestId("mines-select").parent().select("30");
-		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).click();
-		});
+		cy.start();
 
 		NUMBERS.forEach((num) => {
 			cy.getByTestId("field").then(($field) => {
