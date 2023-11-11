@@ -14,4 +14,12 @@ describe("timer", () => {
 		cy.tick(2000);
 		cy.getByTestId("stat-timer").should("contain", formatClockTimeToHHMMSS(3));
 	});
+
+	it("turn counter increments when opening a new cell", () => {
+		cy.getByTestId("stat-turns").should("contain", 0);
+		cy.start();
+		cy.getByTestId("stat-turns").should("contain", 1);
+		cy.getByTestId("0").eq(2).click();
+		cy.getByTestId("stat-turns").should("contain", 2);
+	});
 });
