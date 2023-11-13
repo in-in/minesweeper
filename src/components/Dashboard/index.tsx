@@ -41,6 +41,7 @@ const Dashboard = (): React.ReactNode => {
 				inner={"Restart"}
 				modifier={[st.button ?? ""]}
 				variant="primary"
+				{...addTestId("restart")}
 				onClick={() => dispatch(restart())}
 			/>
 		</div>
