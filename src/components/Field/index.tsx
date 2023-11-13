@@ -7,7 +7,6 @@ import {
 } from "@/customTypes/customTypes";
 
 import { Cell } from "@/components/Cell";
-import { Dialog } from "@/components/Dialog";
 import { openCell, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelValue, selectField } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
@@ -38,7 +37,6 @@ const Field = (): React.ReactNode => {
 
 	return (
 		<div className={st.field} {...addTestId("field")} style={style}>
-			<Dialog />
 			{field.map(({ id, marker, state }) => (
 				<Cell
 					key={id}
