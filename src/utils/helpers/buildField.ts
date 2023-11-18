@@ -14,7 +14,7 @@ type buildFieldOptions = {
 	selectCell?: MainState["currentSelectCell"];
 };
 
-export function buildField({
+function buildField({
 	length,
 	mines = [],
 	selectCell = null,
@@ -30,3 +30,5 @@ export function buildField({
 		}),
 	).flat();
 }
+
+export { buildField };

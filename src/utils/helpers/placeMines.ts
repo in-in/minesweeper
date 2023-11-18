@@ -6,7 +6,7 @@ function getRandom(max: number): number {
 	return Math.floor(Math.random() * (max - 1 + 1));
 }
 
-export function placeMines(state: MainState): Cell[] {
+function placeMines(state: MainState): Cell[] {
 	const { currentSelectCell, minesCount, currentLevel } = state;
 	const mines = new Set<CellId>();
 	const size = Object.values(currentLevel)[0] as number;
@@ -24,3 +24,5 @@ export function placeMines(state: MainState): Cell[] {
 		selectCell: currentSelectCell,
 	});
 }
+
+export { placeMines };
