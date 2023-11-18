@@ -5,7 +5,8 @@
 		"build": "NODE_ENV=prod webpack --config .config/webpack.config.ts",
 		"cz": "cz",
 		"start": "NODE_ENV=dev webpack serve --config .config/webpack.config.ts",
-		"cypress:open": "cypress open -C cypress/cypress.config.ts --e2e -b electron"
+		"cypress:open": "cypress open -C cypress/cypress.config.ts --e2e -b electron",
+		"cypress:run": "cypress run -C cypress/cypress.config.ts --e2e -b electron"
 	},
 	"config": {
 		"commitizen": {
