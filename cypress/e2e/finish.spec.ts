@@ -51,4 +51,15 @@ describe("check finish status", () => {
 		cy.getByTestId(9).first().click();
 		cy.getByTestId("dialog").should("contain", FINISH_LOSS_MESSAGE_TITLE);
 	});
+
+	it.only("lose with incorrect flag", () => {
+		cy.start();
+		cy.get("[data-testid='0']+[data-testid='1']:not(:nth-child(10n+1))")
+			.last()
+			.as("cell");
+		cy.get("@cell").click();
+		cy.get("@cell").prev().rightclick();
+		cy.get("@cell").trigger("mousedown", { button: 1 });
+		cy.getByTestId("dialog").should("contain", FINISH_LOSS_MESSAGE_TITLE);
+	});
 });
