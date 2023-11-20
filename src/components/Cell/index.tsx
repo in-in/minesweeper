@@ -17,7 +17,9 @@ import { clsx } from "clsx";
 
 import { type CellMarker, type CellState } from "@/customTypes/customTypes";
 
+import { selectStatus } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
+import { useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
@@ -77,19 +79,24 @@ const CellInner = ({ marker }: Pick<CellProps, "marker">): React.ReactNode => {
 	}
 };
 
-const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => (
-	<button
-		className={clsx(
-			st.cell,
-			{ [st.open ?? ""]: state === "opened" },
-			{ [st.highlight ?? ""]: state === "highlighted" },
-		)}
-		{...addTestId(String(marker))}
-		{...rest}
-	>
-		{state === "opened" && <CellInner marker={marker} />}
-		{state === "flagged" && <Flag sx={{ color: green.A400 }} />}
-	</button>
-);
+const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => {
+	const status = useAppSelector(selectStatus);
+	return (
+		<button
+			className={clsx(
+				st.cell,
+				{ [st.open ?? ""]: state === "opened" },
+				{ [st.highlight ?? ""]: state === "highlighted" },
+			)}
+			{...addTestId(String(marker))}
+			{...rest}
+		>
+			{state === "opened" && <CellInner marker={marker} />}
+			{state === "flagged" && (
+				<Flag sx={{ color: status === "lose" ? red.A400 : green.A400 }} />
+			)}
+		</button>
+	);
+};
 
 export { Cell };

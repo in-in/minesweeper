@@ -30,7 +30,7 @@ export const selectCurrentLevelName = createSelector(
 	(level) => Object.keys(level)[0] ?? initialLevelName,
 );
 
-const selectStatus = (state: RootState): Status => state[SLICE_MAIN].status;
+export const selectStatus = (state: RootState): Status => state[SLICE_MAIN].status;
 
 export const selectIsIdleStatus = createSelector(
 	selectStatus,
