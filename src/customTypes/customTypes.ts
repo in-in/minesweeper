@@ -22,7 +22,7 @@ export type Status = "idle" | "play" | "win" | "lose";
 
 export type CellId = `${number}-${number}`;
 export type CellMarker = IntRange<0, 10>;
-export type CellState = "closed" | "opened" | "flagged";
+export type CellState = "closed" | "opened" | "flagged" | "highlighted";
 
 export type Cell = {
 	id: CellId;

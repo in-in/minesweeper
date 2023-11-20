@@ -19,6 +19,8 @@ import {
 	SLICE_MAIN,
 } from "@/utils/constants";
 import { buildField } from "@/utils/helpers/buildField";
+import { getSurroundingCells } from "@/utils/helpers/getSurroundingCells";
+import { highlightSurroundingCells } from "@/utils/helpers/highlightSurroundingCells";
 
 const mainSlice = createSlice({
 	name: SLICE_MAIN,
@@ -56,6 +58,47 @@ const mainSlice = createSlice({
 					: cell;
 			});
 			state.openCellCount = state.openCellCount += 1;
+		},
+		revealSurroundingCells(
+			state,
+			action: PayloadAction<{
+				id: CellId;
+				highlight: boolean;
+			}>,
+		) {
+			const targetCell = state.field.find((cell) => cell.id === action.payload.id);
+
+			const surroundingCells = state.field.filter((cell) => {
+				const surroundingCellsId = getSurroundingCells({
+					id: action.payload.id,
+					limit: Object.values(state.currentLevel)[0] as number,
+				});
+				return surroundingCellsId.includes(cell.id);
+			});
+
+			const surroundingFlags = surroundingCells.reduce(
+				(sum, curr) => (curr.state === "flagged" ? (sum += 1) : sum),
+				0,
+			);
+
+			surroundingCells.forEach((cell) => {
+				if (
+					targetCell?.state === "opened" &&
+					targetCell.marker !== 0 &&
+					surroundingFlags === targetCell.marker &&
+					cell.marker === 9 &&
+					cell.state !== "flagged"
+				) {
+					state.currentSelectCell = cell.id;
+					mainSlice.caseReducers.play(state);
+				} else {
+					state.field = highlightSurroundingCells({
+						field: state.field,
+						highlight: action.payload.highlight,
+						surroundingCells,
+					});
+				}
+			});
 		},
 		toggleCellFlag(state, action: PayloadAction<CellId>) {
 			state.field = state.field.map((cell) => {
@@ -111,6 +154,7 @@ export const {
 	pageLoad,
 	play,
 	restart,
+	revealSurroundingCells,
 	start,
 	switchLevel,
 	toggleCellFlag,

@@ -79,7 +79,11 @@ const CellInner = ({ marker }: Pick<CellProps, "marker">): React.ReactNode => {
 
 const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => (
 	<button
-		className={clsx(st.cell, { [st.open ?? ""]: state === "opened" })}
+		className={clsx(
+			st.cell,
+			{ [st.open ?? ""]: state === "opened" },
+			{ [st.highlight ?? ""]: state === "highlighted" },
+		)}
 		{...addTestId(String(marker))}
 		{...rest}
 	>

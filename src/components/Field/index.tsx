@@ -7,7 +7,7 @@ import {
 } from "@/customTypes/customTypes";
 
 import { Cell } from "@/components/Cell";
-import { openCell, toggleCellFlag } from "@/store/mainSlice";
+import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelValue, selectField } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
@@ -26,6 +26,7 @@ const Field = (): React.ReactNode => {
 			dispatch(openCell(id));
 		}
 	};
+
 	const handleContextMenu = (
 		event: React.MouseEvent<HTMLElement>,
 		id: CellId,
@@ -33,6 +34,18 @@ const Field = (): React.ReactNode => {
 		event.stopPropagation();
 		event.preventDefault();
 		dispatch(toggleCellFlag(id));
+	};
+
+	const handleMiddleClick = (
+		event: React.MouseEvent<HTMLElement>,
+		id: CellId,
+		highlight: boolean,
+	): void => {
+		if (event.button === 1) {
+			event.stopPropagation();
+			event.preventDefault();
+			dispatch(revealSurroundingCells({ id, highlight }));
+		}
 	};
 
 	return (
@@ -47,6 +60,12 @@ const Field = (): React.ReactNode => {
 					}}
 					onContextMenu={(event) => {
 						handleContextMenu(event, id);
+					}}
+					onMouseDown={(event) => {
+						handleMiddleClick(event, id, true);
+					}}
+					onMouseUp={(event) => {
+						handleMiddleClick(event, id, false);
 					}}
 				/>
 			))}
