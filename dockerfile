@@ -1,4 +1,4 @@
-FROM node:18.17.0-bookworm-slim
+FROM node:20.9.0-bookworm-slim
 RUN apt-get update
 RUN apt-get install -y git
 # cypress dependency
