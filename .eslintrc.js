@@ -11,6 +11,10 @@ const commonRules = {
 	"no-return-await": "error",
 	"prettier/prettier": ["error"],
 	"require-atomic-updates": "error",
+	"sonarjs/no-duplicate-string": [
+		"error",
+		{ ignoreStrings: "background: #111; font-size: 17px;" },
+	],
 	"perfectionist/sort-imports": [
 		"error",
 		{
