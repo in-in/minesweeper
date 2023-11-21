@@ -68,12 +68,10 @@ const mainSlice = createSlice({
 		) {
 			const targetCell = state.field.find((cell) => cell.id === action.payload.id);
 
-			const surroundingCells = state.field.filter((cell) => {
-				const surroundingCellsId = getSurroundingCells({
-					id: action.payload.id,
-					limit: Object.values(state.currentLevel)[0] as number,
-				});
-				return surroundingCellsId.includes(cell.id);
+			const surroundingCells = getSurroundingCells({
+				id: action.payload.id,
+				limit: Object.values(state.currentLevel)[0] as number,
+				field: state.field,
 			});
 
 			const surroundingFlags = surroundingCells.reduce(

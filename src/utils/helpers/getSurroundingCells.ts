@@ -1,11 +1,25 @@
-import { type CellId } from "@/customTypes/customTypes";
+import { type Cell, type CellId } from "@/customTypes/customTypes";
 
 type surroundingCellsOptions = {
 	id: CellId;
 	limit: number;
+	field?: Cell[];
 };
 
-function getSurroundingCells({ id, limit }: surroundingCellsOptions): CellId[] {
+function getSurroundingCells({
+	id,
+	limit,
+}: Omit<surroundingCellsOptions, "field">): CellId[];
+function getSurroundingCells({
+	id,
+	limit,
+	field,
+}: Required<surroundingCellsOptions>): Cell[];
+function getSurroundingCells({
+	id,
+	limit,
+	field,
+}: surroundingCellsOptions): CellId[] | Cell[] {
 	const [i = 0, j = 0] = id.split("-").map(Number);
 	const indexes = [
 		[i - 1, j],
@@ -18,13 +32,17 @@ function getSurroundingCells({ id, limit }: surroundingCellsOptions): CellId[] {
 		[i - 1, j + 1],
 	];
 
-	return indexes
+	const surroundingCellsId = indexes
 		.map(([r, c]) =>
 			r != null && c != null && (r >= limit || c >= limit || r < 0 || c < 0)
 				? null
 				: (`${r}-${c}` as CellId),
 		)
 		.flatMap((f) => (f != null ? [f] : []));
+
+	return field != null
+		? field.filter((cell) => surroundingCellsId.includes(cell.id))
+		: surroundingCellsId;
 }
 
 export { getSurroundingCells };
