@@ -52,7 +52,7 @@ describe("check finish status", () => {
 		cy.getByTestId("dialog").should("contain", FINISH_LOSS_MESSAGE_TITLE);
 	});
 
-	it.only("lose with incorrect flag", () => {
+	it("lose with incorrect flag", () => {
 		cy.start();
 		cy.get("[data-testid='0']+[data-testid='1']:not(:nth-child(10n+1))")
 			.last()
