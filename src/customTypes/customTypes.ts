@@ -33,7 +33,7 @@ export type Cell = {
 export type MainState = {
 	clockTime: number;
 	currentLevel: Level;
-	currentSelectCell: CellId | null;
+	currentSelectCell: Cell | null;
 	field: Cell[];
 	finishMessageText: string;
 	finishMessageTitle: string;

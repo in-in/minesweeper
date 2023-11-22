@@ -13,7 +13,7 @@ function placeMines(state: MainState): Cell[] {
 
 	while (minesCount !== mines.size) {
 		const mineCell: CellId = `${getRandom(size)}-${getRandom(size)}`;
-		if (currentSelectCell !== mineCell) {
+		if (currentSelectCell?.id !== mineCell) {
 			mines.add(mineCell);
 		}
 	}

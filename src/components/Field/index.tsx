@@ -1,12 +1,13 @@
 import React from "react";
 
 import {
+	type Cell,
 	type CellId,
 	type CellState,
 	type CSSCustomProperties,
 } from "@/customTypes/customTypes";
 
-import { Cell } from "@/components/Cell";
+import { Cell as FieldCell } from "@/components/Cell";
 import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelValue, selectField } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
@@ -21,9 +22,9 @@ const Field = (): React.ReactNode => {
 
 	const style: CSSCustomProperties = { "--size": currentLevelValue };
 
-	const handleClick = (state: CellState, id: CellId): void => {
+	const handleClick = (state: CellState, cell: Cell): void => {
 		if (state === "closed") {
-			dispatch(openCell(id));
+			dispatch(openCell(cell));
 		}
 	};
 
@@ -50,25 +51,28 @@ const Field = (): React.ReactNode => {
 
 	return (
 		<div className={st.field} {...addTestId("field")} style={style}>
-			{field.map(({ id, marker, state }) => (
-				<Cell
-					key={id}
-					marker={marker}
-					state={state}
-					onClick={() => {
-						handleClick(state, id);
-					}}
-					onContextMenu={(event) => {
-						handleContextMenu(event, id);
-					}}
-					onMouseDown={(event) => {
-						handleMiddleClick(event, id, true);
-					}}
-					onMouseUp={(event) => {
-						handleMiddleClick(event, id, false);
-					}}
-				/>
-			))}
+			{field.map((cell) => {
+				const { id, marker, state } = cell;
+				return (
+					<FieldCell
+						key={id}
+						marker={marker}
+						state={state}
+						onClick={() => {
+							handleClick(state, cell);
+						}}
+						onContextMenu={(event) => {
+							handleContextMenu(event, id);
+						}}
+						onMouseDown={(event) => {
+							handleMiddleClick(event, id, true);
+						}}
+						onMouseUp={(event) => {
+							handleMiddleClick(event, id, false);
+						}}
+					/>
+				);
+			})}
 		</div>
 	);
 };

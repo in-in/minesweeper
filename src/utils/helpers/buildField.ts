@@ -25,7 +25,7 @@ function buildField({
 			const marker: CellMarker = mines.includes(id)
 				? 9
 				: getSurroundingMineCount({ id, limit: length, mines });
-			const state: CellState = selectCell === id ? "opened" : "closed";
+			const state: CellState = selectCell?.id === id ? "opened" : "closed";
 			return { id, marker, state };
 		}),
 	).flat();
