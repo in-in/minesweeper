@@ -10,7 +10,7 @@ export const INITIAL_STATE = {
 	[SLICE_MAIN]: {
 		clockTime: 0,
 		currentLevel: LEVELS[0],
-		currentSelectCell: null,
+		currentSelectCellId: null,
 		field: buildField({ length: 10 }),
 		finishMessageText: " ",
 		finishMessageTitle: " ",

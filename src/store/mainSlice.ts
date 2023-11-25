@@ -38,7 +38,7 @@ const mainSlice = createSlice({
 		},
 		restart(state) {
 			state.status = "idle";
-			state.currentSelectCell = null;
+			state.currentSelectCellId = null;
 			state.openCellCount = 0;
 			state.clockTime = 0;
 			state.flagCount = state.minesCount;
@@ -51,9 +51,9 @@ const mainSlice = createSlice({
 			state.flagCount = state.minesCount;
 		},
 		openCell(state, action: PayloadAction<Cell>) {
-			state.currentSelectCell = action.payload;
+			state.currentSelectCellId = action.payload.id;
 			state.field = state.field.map((cell) => {
-				return cell.id === state.currentSelectCell?.id && cell.state === "closed"
+				return cell.id === state.currentSelectCellId && cell.state === "closed"
 					? { ...cell, state: "opened" }
 					: cell;
 			});
@@ -87,7 +87,7 @@ const mainSlice = createSlice({
 					cell.marker === 9 &&
 					cell.state !== "flagged"
 				) {
-					state.currentSelectCell = cell;
+					state.currentSelectCellId = cell.id;
 					mainSlice.caseReducers.play(state);
 				} else {
 					state.field = highlightSurroundingCells({
@@ -113,7 +113,7 @@ const mainSlice = createSlice({
 		},
 		play(state) {
 			const currentSelectCellMarker = state.field.find(
-				(element) => element.id === state.currentSelectCell?.id,
+				(element) => element.id === state.currentSelectCellId,
 			);
 
 			if (currentSelectCellMarker?.marker === 9) {

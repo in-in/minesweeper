@@ -11,13 +11,13 @@ import { getSurroundingMineCount } from "@/utils/helpers/getSurroundingMineCount
 type buildFieldOptions = {
 	length: number;
 	mines?: CellId[];
-	selectCell?: MainState["currentSelectCell"];
+	selectCellId?: MainState["currentSelectCellId"];
 };
 
 function buildField({
 	length,
 	mines = [],
-	selectCell = null,
+	selectCellId = null,
 }: buildFieldOptions): Cell[] {
 	return Array.from({ length }, (_, row) =>
 		Array.from({ length }, (_, col): Cell => {
@@ -25,7 +25,7 @@ function buildField({
 			const marker: CellMarker = mines.includes(id)
 				? 9
 				: getSurroundingMineCount({ id, limit: length, mines });
-			const state: CellState = selectCell?.id === id ? "opened" : "closed";
+			const state: CellState = selectCellId === id ? "opened" : "closed";
 			return { id, marker, state };
 		}),
 	).flat();
