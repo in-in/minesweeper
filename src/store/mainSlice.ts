@@ -59,6 +59,15 @@ const mainSlice = createSlice({
 			});
 			state.openCellCount = state.openCellCount += 1;
 		},
+		openSurroundingCells(state, action: PayloadAction<Cell[]>) {
+			state.field = state.field.map((cell) => {
+				return action.payload.find((el) => el.id === cell.id) != null
+					? { ...cell, state: "opened" }
+					: cell;
+			});
+
+			state.openCellCount = state.field.filter((el) => el.state === "opened").length;
+		},
 		revealSurroundingCells(
 			state,
 			action: PayloadAction<{
@@ -149,6 +158,7 @@ export const {
 	clockTick,
 	displayHiddenMines,
 	openCell,
+	openSurroundingCells,
 	pageLoad,
 	play,
 	restart,

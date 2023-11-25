@@ -2,10 +2,13 @@ import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
 import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
+import { type Cell, type CellId } from "@/customTypes/customTypes";
+
 import {
 	clockTick,
 	displayHiddenMines,
 	openCell,
+	openSurroundingCells,
 	pageLoad,
 	play,
 	start,
@@ -14,6 +17,7 @@ import {
 } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
+import { getSurroundingCells } from "@/utils/helpers/getSurroundingCells";
 import { localStorageWrapper } from "@/utils/helpers/localStorageWrapper";
 import { placeMines } from "@/utils/helpers/placeMines";
 
@@ -85,5 +89,41 @@ startAppListening({
 				? clearInterval(intervalId)
 				: dispatch(clockTick());
 		}, 1000);
+	},
+});
+
+startAppListening({
+	predicate: (action) => openCell.match(action),
+	effect: (_action, { getState, dispatch }) => {
+		const { field, currentSelectCellId, currentLevel } = getState()[SLICE_MAIN];
+		const currentSelectCell = field.find((el) => el.id === currentSelectCellId);
+		const surroundingCells = (initialCellId: CellId): Cell[] =>
+			getSurroundingCells({
+				id: initialCellId,
+				limit: Object.values(currentLevel)[0] as number,
+				field,
+			});
+
+		const emptyCells = new Set<Cell>();
+
+		if (currentSelectCell != null && currentSelectCell.marker === 0) {
+			emptyCells.add(currentSelectCell);
+			findSurroundingCells(currentSelectCell);
+		}
+
+		function findSurroundingCells(currentCell: Cell): void {
+			for (const cell of surroundingCells(currentCell.id)) {
+				if (cell.state === "closed" && !emptyCells.has(cell) && cell.marker === 0) {
+					emptyCells.add(cell);
+					findSurroundingCells(cell);
+				}
+			}
+		}
+
+		const notEmptyCells = [...emptyCells]
+			.map((el) => surroundingCells(el.id).filter((i) => i.marker !== 0))
+			.flat();
+
+		dispatch(openSurroundingCells([...emptyCells, ...new Set(notEmptyCells)]));
 	},
 });
