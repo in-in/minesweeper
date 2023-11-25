@@ -18,6 +18,7 @@ export const INITIAL_STATE = {
 		isLoad: false,
 		minesCount: 10,
 		openCellCount: 0,
+		turnCounter: 0,
 		status: "idle",
 	},
 };

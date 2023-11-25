@@ -14,7 +14,7 @@ import {
 	selectClockTime,
 	selectFinishMessage,
 	selectIsFinishStatus,
-	selectOpenCellCount,
+	selectTurnCounter,
 } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
@@ -26,7 +26,7 @@ const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);
 	const { title, text } = useAppSelector(selectFinishMessage);
 	const clockTime = useAppSelector(selectClockTime);
-	const turns = useAppSelector(selectOpenCellCount);
+	const turns = useAppSelector(selectTurnCounter);
 	const dispatch = useAppDispatch();
 
 	return (

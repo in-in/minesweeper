@@ -40,6 +40,7 @@ const mainSlice = createSlice({
 			state.status = "idle";
 			state.currentSelectCellId = null;
 			state.openCellCount = 0;
+			state.turnCounter = 0;
 			state.clockTime = 0;
 			state.flagCount = state.minesCount;
 			state.field = buildField({
@@ -57,6 +58,7 @@ const mainSlice = createSlice({
 					? { ...cell, state: "opened" }
 					: cell;
 			});
+			state.turnCounter = state.turnCounter += 1;
 			state.openCellCount = state.openCellCount += 1;
 		},
 		openSurroundingCells(state, action: PayloadAction<Cell[]>) {

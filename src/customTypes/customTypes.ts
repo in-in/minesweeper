@@ -39,9 +39,10 @@ export type MainState = {
 	finishMessageTitle: string;
 	flagCount: number;
 	isLoad: boolean;
+	status: Status;
 	minesCount: MinesCount;
 	openCellCount: number;
-	status: Status;
+	turnCounter: number;
 };
 
 export type GlobalState = {

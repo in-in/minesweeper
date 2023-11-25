@@ -9,7 +9,7 @@ import {
 	selectClockTime,
 	selectflagCount,
 	selectIsIdleStatus,
-	selectOpenCellCount,
+	selectTurnCounter,
 } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
@@ -20,7 +20,7 @@ import st from "./index.module.scss";
 const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
-	const turns = useAppSelector(selectOpenCellCount);
+	const turns = useAppSelector(selectTurnCounter);
 	const flags = useAppSelector(selectflagCount);
 	const dispatch = useAppDispatch();
 

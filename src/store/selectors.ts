@@ -51,8 +51,8 @@ export const selectFinishMessage = createSelector(
 export const selectClockTime = (state: RootState): number =>
 	state[SLICE_MAIN].clockTime;
 
-export const selectOpenCellCount = createSelector(
-	(state: RootState): number => state[SLICE_MAIN].openCellCount,
+export const selectTurnCounter = createSelector(
+	(state: RootState): number => state[SLICE_MAIN].turnCounter,
 	(count) => count.toString(),
 );
 
