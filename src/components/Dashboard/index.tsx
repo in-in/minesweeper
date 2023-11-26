@@ -7,7 +7,7 @@ import { Toggle } from "@/components/Toggle";
 import { restart } from "@/store/mainSlice";
 import {
 	selectClockTime,
-	selectflagCount,
+	selectflagCounter,
 	selectIsIdleStatus,
 	selectTurnCounter,
 } from "@/store/selectors";
@@ -21,7 +21,7 @@ const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
 	const turns = useAppSelector(selectTurnCounter);
-	const flags = useAppSelector(selectflagCount);
+	const flags = useAppSelector(selectflagCounter);
 	const dispatch = useAppDispatch();
 
 	return (

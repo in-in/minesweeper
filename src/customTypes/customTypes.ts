@@ -16,7 +16,7 @@ type IntRange<F extends number, T extends number> = Exclude<
 	Enumerate<F>
 >;
 
-export type MinesCount = IntRange<10, 100>;
+export type MinesCounter = IntRange<10, 100>;
 
 export type Status = "idle" | "play" | "win" | "lose";
 
@@ -37,11 +37,11 @@ export type MainState = {
 	field: Cell[];
 	finishMessageText: string;
 	finishMessageTitle: string;
-	flagCount: number;
+	flagCounter: number;
 	isLoad: boolean;
+	minesCounter: MinesCounter;
+	openCellCounter: number;
 	status: Status;
-	minesCount: MinesCount;
-	openCellCount: number;
 	turnCounter: number;
 };
 

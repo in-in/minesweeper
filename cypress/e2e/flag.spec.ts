@@ -1,6 +1,6 @@
 import { INITIAL_STATE, SLICE_MAIN } from "@/utils/constants";
 
-const flags = INITIAL_STATE[SLICE_MAIN].minesCount;
+const flags = INITIAL_STATE[SLICE_MAIN].minesCounter;
 
 describe("flag", () => {
 	beforeEach(() => {

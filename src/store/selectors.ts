@@ -3,7 +3,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import {
 	type Cell,
 	type Level,
-	type MinesCount,
+	type MinesCounter,
 	type Status,
 } from "@/customTypes/customTypes";
 
@@ -15,8 +15,8 @@ const selectCurrentLevel = (state: RootState): Level =>
 const [initialLevelName] = Object.keys(LEVELS[0]);
 const initialLevelValue = LEVELS[0][initialLevelName as keyof (typeof LEVELS)[0]];
 
-export const selectMinesCount = (state: RootState): MinesCount =>
-	state[SLICE_MAIN].minesCount;
+export const selectMinesCounter = (state: RootState): MinesCounter =>
+	state[SLICE_MAIN].minesCounter;
 
 export const selectField = (state: RootState): Cell[] => state[SLICE_MAIN].field;
 
@@ -56,7 +56,7 @@ export const selectTurnCounter = createSelector(
 	(count) => count.toString(),
 );
 
-export const selectflagCount = createSelector(
-	(state: RootState): number => state[SLICE_MAIN].flagCount,
+export const selectflagCounter = createSelector(
+	(state: RootState): number => state[SLICE_MAIN].flagCounter,
 	(count) => count.toString(),
 );

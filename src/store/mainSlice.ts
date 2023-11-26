@@ -7,7 +7,7 @@ import {
 	type CellId,
 	type Level,
 	type MainState,
-	type MinesCount,
+	type MinesCounter,
 } from "@/customTypes/customTypes";
 
 import {
@@ -32,24 +32,24 @@ const mainSlice = createSlice({
 				length: Object.values(action.payload)[0] as number,
 			});
 		},
-		updateMinesCount(state, action: PayloadAction<MinesCount>) {
-			state.minesCount = action.payload;
-			state.flagCount = action.payload;
+		updateMinesCounter(state, action: PayloadAction<MinesCounter>) {
+			state.minesCounter = action.payload;
+			state.flagCounter = action.payload;
 		},
 		restart(state) {
 			state.status = "idle";
 			state.currentSelectCellId = null;
-			state.openCellCount = 0;
+			state.openCellCounter = 0;
 			state.turnCounter = 0;
 			state.clockTime = 0;
-			state.flagCount = state.minesCount;
+			state.flagCounter = state.minesCounter;
 			state.field = buildField({
 				length: Object.values(state.currentLevel)[0] as number,
 			});
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
 			state.field = action.payload;
-			state.flagCount = state.minesCount;
+			state.flagCounter = state.minesCounter;
 		},
 		openCell(state, action: PayloadAction<Cell>) {
 			state.currentSelectCellId = action.payload.id;
@@ -59,7 +59,7 @@ const mainSlice = createSlice({
 					: cell;
 			});
 			state.turnCounter = state.turnCounter += 1;
-			state.openCellCount = state.openCellCount += 1;
+			state.openCellCounter = state.openCellCounter += 1;
 		},
 		openSurroundingCells(state, action: PayloadAction<Cell[]>) {
 			state.field = state.field.map((cell) => {
@@ -68,7 +68,9 @@ const mainSlice = createSlice({
 					: cell;
 			});
 
-			state.openCellCount = state.field.filter((el) => el.state === "opened").length;
+			state.openCellCounter = state.field.filter(
+				(el) => el.state === "opened",
+			).length;
 		},
 		revealSurroundingCells(
 			state,
@@ -115,7 +117,7 @@ const mainSlice = createSlice({
 					return cell;
 				}
 				const newState = cell.state === "closed" ? "flagged" : "closed";
-				state.flagCount += newState === "flagged" ? -1 : 1;
+				state.flagCounter += newState === "flagged" ? -1 : 1;
 				return { ...cell, state: newState };
 			});
 		},
@@ -131,7 +133,7 @@ const mainSlice = createSlice({
 				state.status = "lose";
 				state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
 				state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
-			} else if (state.openCellCount >= state.field.length - state.minesCount) {
+			} else if (state.openCellCounter >= state.field.length - state.minesCounter) {
 				state.status = "win";
 				state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
 				state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
@@ -169,7 +171,7 @@ export const {
 	switchLevel,
 	toggleCellFlag,
 	updateField,
-	updateMinesCount,
+	updateMinesCounter,
 	мarkМineWithFlag,
 } = mainSlice.actions;
 export default mainSlice.reducer;

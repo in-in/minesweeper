@@ -2,15 +2,15 @@ import * as React from "react";
 
 import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
-import { type MinesCount } from "@/customTypes/customTypes";
+import { type MinesCounter } from "@/customTypes/customTypes";
 
-import { updateMinesCount } from "@/store/mainSlice";
-import { selectIsIdleStatus, selectMinesCount } from "@/store/selectors";
+import { updateMinesCounter } from "@/store/mainSlice";
+import { selectIsIdleStatus, selectMinesCounter } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 const Range = (): React.ReactNode => {
-	const minesCount = useAppSelector(selectMinesCount);
+	const minesCounter = useAppSelector(selectMinesCounter);
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const dispatch = useAppDispatch();
 
@@ -29,9 +29,9 @@ const Range = (): React.ReactNode => {
 				disabled={!isIdleStatus}
 				id="mines"
 				name="mines"
-				value={minesCount}
+				value={minesCounter}
 				onChange={(ev) =>
-					dispatch(updateMinesCount(Number(ev.target.value) as MinesCount))
+					dispatch(updateMinesCounter(Number(ev.target.value) as MinesCounter))
 				}
 			>
 				{selectOptions}
