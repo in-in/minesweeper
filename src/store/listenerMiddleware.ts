@@ -57,7 +57,8 @@ startAppListening({
 
 startAppListening({
 	predicate: (action, currentState) =>
-		openCell.match(action) && currentState[SLICE_MAIN].status === "play",
+		(openCell.match(action) || openSurroundingCells.match(action)) &&
+		currentState[SLICE_MAIN].status === "play",
 	effect: (_action, { dispatch }) => {
 		dispatch(play());
 	},
