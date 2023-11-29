@@ -1,15 +1,3 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions, @typescript-eslint/no-namespace, @typescript-eslint/method-signature-style */
-
-declare global {
-	namespace Cypress {
-		interface Chainable {
-			getByTestId(id: string | number): Chainable<JQuery>;
-			findByTestId(id: string | number): Chainable<JQuery>;
-			start(): void;
-		}
-	}
-}
-
 Cypress.Commands.add("getByTestId", (id: string | number) =>
 	cy.get(`[data-testid=${id}]`),
 );
@@ -25,3 +13,5 @@ Cypress.Commands.add("start", () =>
 		cy.get("button").eq(0).click();
 	}),
 );
+
+Cypress.Commands.add("getStore", () => cy.window().its("store"));

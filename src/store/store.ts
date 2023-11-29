@@ -7,7 +7,9 @@ import mainReducer from "@/store/mainSlice";
 import { INITIAL_STATE, SLICE_MAIN } from "@/utils/constants";
 import { localStorageWrapper } from "@/utils/helpers/localStorageWrapper";
 
-let preloadedState = INITIAL_STATE as GlobalState;
+let preloadedState =
+	// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition
+	(window.Cypress != null && window.initialState) || (INITIAL_STATE as GlobalState);
 
 const persistState = localStorageWrapper()?.getItem();
 

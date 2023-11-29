@@ -35,3 +35,7 @@ if (container != null) {
 		</StrictMode>,
 	);
 }
+
+if (window.Cypress != null) {
+	window.store = store;
+}

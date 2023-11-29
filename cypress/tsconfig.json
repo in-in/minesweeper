@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"esModuleInterop": true,
+		"resolveJsonModule": true,
 		"strict": true,
 		"target": "esnext",
 		"module": "nodenext",
@@ -19,6 +20,7 @@
 		},
 	},
 	"include": [
-		"**/*.ts"
+		"**/*.ts",
+		"../src/cypress.d.ts"
 	]
 }

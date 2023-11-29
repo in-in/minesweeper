@@ -17,6 +17,7 @@
 		],
 		"paths": {
 			"@/*": [
+				"./src/*"
 			],
 			"@root/*": [
 				"./*"
@@ -32,6 +33,7 @@
 	"include": [
 		".config/webpack.config.ts",
 		".config/paths.ts",
-		"src/**/*"
+		"src/**/*",
+		"src/cypress.d.ts"
 	]
 }
