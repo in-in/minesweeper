@@ -1,6 +1,7 @@
 import type React from "react";
 
-import { type LEVELS } from "@/utils/constants";
+import { type fieldAdapter } from "@/store/fieldAdapter";
+import { type LEVELS, type SLICE_MAIN } from "@/utils/constants";
 
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;
@@ -19,6 +20,7 @@ type IntRange<F extends number, T extends number> = Exclude<
 export type MinesCounter = IntRange<10, 100>;
 
 export type Status = "idle" | "play" | "win" | "lose";
+export type StatusFinish = Extract<Status, "win" | "lose">;
 
 export type CellId = `${number}-${number}`;
 export type CellMarker = IntRange<0, 10>;
@@ -34,7 +36,7 @@ export type MainState = {
 	clockTime: number;
 	currentLevel: Level;
 	currentSelectCellId: CellId | null;
-	field: Cell[];
+	field: ReturnType<typeof fieldAdapter.getInitialState>;
 	finishMessageText: string;
 	finishMessageTitle: string;
 	flagCounter: number;
@@ -46,5 +48,5 @@ export type MainState = {
 };
 
 export type GlobalState = {
-	main: MainState;
+	[SLICE_MAIN]: MainState;
 };

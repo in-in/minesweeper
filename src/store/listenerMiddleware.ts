@@ -4,6 +4,7 @@ import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit
 
 import { type Cell, type CellId } from "@/customTypes/customTypes";
 
+import { fieldAdapterSelectors } from "@/store/fieldAdapter";
 import {
 	clockTick,
 	displayHiddenMines,
@@ -13,7 +14,6 @@ import {
 	play,
 	start,
 	updateField,
-	мarkМineWithFlag,
 } from "@/store/mainSlice";
 import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
@@ -66,19 +66,14 @@ startAppListening({
 
 startAppListening({
 	predicate: (action, currentState) =>
-		!displayHiddenMines.match(action) && currentState[SLICE_MAIN].status === "lose",
+		!displayHiddenMines.match(action) &&
+		(currentState[SLICE_MAIN].status === "win" ||
+			currentState[SLICE_MAIN].status === "lose"),
 	effect: (_action, { dispatch, getState }) => {
-		const state = getState();
-		dispatch(displayHiddenMines(state[SLICE_MAIN].field));
-	},
-});
-
-startAppListening({
-	predicate: (action, currentState) =>
-		!мarkМineWithFlag.match(action) && currentState[SLICE_MAIN].status === "win",
-	effect: (_action, { dispatch, getState }) => {
-		const state = getState();
-		dispatch(мarkМineWithFlag(state[SLICE_MAIN].field));
+		const status = getState()[SLICE_MAIN].status;
+		if (status === "win" || status === "lose") {
+			dispatch(displayHiddenMines(status));
+		}
 	},
 });
 
@@ -97,19 +92,25 @@ startAppListening({
 	predicate: (action) => openCell.match(action),
 	effect: (_action, { getState, dispatch }) => {
 		const { field, currentSelectCellId, currentLevel } = getState()[SLICE_MAIN];
-		const currentSelectCell = field.find((el) => el.id === currentSelectCellId);
+		const emptyCells = new Set<Cell>();
+
 		const surroundingCells = (initialCellId: CellId): Cell[] =>
 			getSurroundingCells({
 				id: initialCellId,
 				limit: Object.values(currentLevel)[0] as number,
-				field,
+				field: fieldAdapterSelectors.selectAll(field),
 			});
 
-		const emptyCells = new Set<Cell>();
+		if (currentSelectCellId != null) {
+			const currentSelectCell = fieldAdapterSelectors.selectById(
+				field,
+				currentSelectCellId,
+			);
 
-		if (currentSelectCell != null && currentSelectCell.marker === 0) {
-			emptyCells.add(currentSelectCell);
-			findSurroundingCells(currentSelectCell);
+			if (currentSelectCell != null && currentSelectCell.marker === 0) {
+				emptyCells.add(currentSelectCell);
+				findSurroundingCells(currentSelectCell);
+			}
 		}
 
 		function findSurroundingCells(currentCell: Cell): void {

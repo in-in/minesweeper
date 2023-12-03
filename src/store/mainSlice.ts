@@ -5,11 +5,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
 	type Cell,
 	type CellId,
+	type CellState,
 	type Level,
-	type MainState,
 	type MinesCounter,
+	type StatusFinish,
 } from "@/customTypes/customTypes";
 
+import { fieldAdapter, fieldAdapterSelectors } from "@/store/fieldAdapter";
 import {
 	FINISH_LOSS_MESSAGE_TEXT,
 	FINISH_LOSS_MESSAGE_TITLE,
@@ -24,13 +26,16 @@ import { highlightSurroundingCells } from "@/utils/helpers/highlightSurroundingC
 
 const mainSlice = createSlice({
 	name: SLICE_MAIN,
-	initialState: INITIAL_STATE[SLICE_MAIN] as MainState,
+	initialState: INITIAL_STATE[SLICE_MAIN],
 	reducers: {
 		switchLevel(state, action: PayloadAction<Level>) {
 			state.currentLevel = action.payload;
-			state.field = buildField({
-				length: Object.values(action.payload)[0] as number,
-			});
+			fieldAdapter.setAll(
+				state.field,
+				buildField({
+					length: Object.values(action.payload)[0] as number,
+				}),
+			);
 		},
 		updateMinesCounter(state, action: PayloadAction<MinesCounter>) {
 			state.minesCounter = action.payload;
@@ -43,34 +48,37 @@ const mainSlice = createSlice({
 			state.turnCounter = 0;
 			state.clockTime = 0;
 			state.flagCounter = state.minesCounter;
-			state.field = buildField({
-				length: Object.values(state.currentLevel)[0] as number,
-			});
+			fieldAdapter.setAll(
+				state.field,
+				buildField({
+					length: Object.values(state.currentLevel)[0] as number,
+				}),
+			);
 		},
 		updateField(state, action: PayloadAction<Cell[]>) {
-			state.field = action.payload;
+			fieldAdapter.setAll(state.field, action.payload);
 			state.flagCounter = state.minesCounter;
 		},
 		openCell(state, action: PayloadAction<Cell>) {
 			state.currentSelectCellId = action.payload.id;
-			state.field = state.field.map((cell) => {
-				return cell.id === state.currentSelectCellId && cell.state === "closed"
-					? { ...cell, state: "opened" }
-					: cell;
+			fieldAdapter.updateOne(state.field, {
+				id: action.payload.id,
+				changes: { state: "opened" },
 			});
 			state.turnCounter = state.turnCounter += 1;
 			state.openCellCounter = state.openCellCounter += 1;
 		},
 		openSurroundingCells(state, action: PayloadAction<Cell[]>) {
-			state.field = state.field.map((cell) => {
-				return action.payload.find((el) => el.id === cell.id) != null
-					? { ...cell, state: "opened" }
-					: cell;
-			});
+			const updateObjects = action.payload.map((el) => ({
+				id: el.id,
+				changes: { state: "opened" as CellState },
+			}));
 
-			state.openCellCounter = state.field.filter(
-				(el) => el.state === "opened",
-			).length;
+			fieldAdapter.updateMany(state.field, updateObjects);
+
+			state.openCellCounter = fieldAdapterSelectors
+				.selectAll(state.field)
+				.filter((el) => el.state === "opened").length;
 		},
 		revealSurroundingCells(
 			state,
@@ -79,12 +87,12 @@ const mainSlice = createSlice({
 				highlight: boolean;
 			}>,
 		) {
-			const targetCell = state.field.find((cell) => cell.id === action.payload.id);
+			const targetCell = state.field.entities[action.payload.id];
 
 			const surroundingCells = getSurroundingCells({
 				id: action.payload.id,
 				limit: Object.values(state.currentLevel)[0] as number,
-				field: state.field,
+				field: fieldAdapterSelectors.selectAll(state.field),
 			});
 
 			const surroundingFlags = surroundingCells.reduce(
@@ -103,51 +111,61 @@ const mainSlice = createSlice({
 					state.currentSelectCellId = cell.id;
 					mainSlice.caseReducers.play(state);
 				} else {
-					state.field = highlightSurroundingCells({
-						field: state.field,
-						highlight: action.payload.highlight,
-						surroundingCells,
-					});
+					fieldAdapter.setMany(
+						state.field,
+						highlightSurroundingCells({
+							highlight: action.payload.highlight,
+							surroundingCells,
+						}),
+					);
 				}
 			});
 		},
+
 		toggleCellFlag(state, action: PayloadAction<CellId>) {
-			state.field = state.field.map((cell) => {
-				if (cell.id !== action.payload || cell.state === "opened") {
-					return cell;
-				}
-				const newState = cell.state === "closed" ? "flagged" : "closed";
+			const targetCellState = state.field.entities[action.payload]?.state;
+			if (targetCellState === "closed" || targetCellState === "flagged") {
+				const newState = targetCellState === "closed" ? "flagged" : "closed";
+				fieldAdapter.updateOne(state.field, {
+					id: action.payload,
+					changes: { state: newState },
+				});
 				state.flagCounter += newState === "flagged" ? -1 : 1;
-				return { ...cell, state: newState };
-			});
+			}
 		},
 		start(state) {
 			state.status = "play";
 		},
 		play(state) {
-			const currentSelectCellMarker = state.field.find(
-				(element) => element.id === state.currentSelectCellId,
-			);
+			if (state.currentSelectCellId != null) {
+				const currentSelectCellMarker =
+					state.field.entities[state.currentSelectCellId];
 
-			if (currentSelectCellMarker?.marker === 9) {
-				state.status = "lose";
-				state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
-				state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
-			} else if (state.openCellCounter >= state.field.length - state.minesCounter) {
-				state.status = "win";
-				state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
-				state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
+				if (currentSelectCellMarker?.marker === 9) {
+					state.status = "lose";
+					state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
+					state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
+				} else if (
+					state.openCellCounter >=
+					state.field.ids.length - state.minesCounter
+				) {
+					state.status = "win";
+					state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
+					state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
+				}
 			}
 		},
-		displayHiddenMines(state, action: PayloadAction<Cell[]>) {
-			state.field = action.payload.map((cell) =>
-				cell.marker === 9 ? { ...cell, state: "opened" } : cell,
-			);
-		},
-		мarkМineWithFlag(state, action: PayloadAction<Cell[]>) {
-			state.field = action.payload.map((cell) =>
-				cell.marker === 9 ? { ...cell, state: "flagged" } : cell,
-			);
+		displayHiddenMines(state, action: PayloadAction<StatusFinish>) {
+			const stateStatus: CellState = action.payload === "win" ? "flagged" : "opened";
+			const updateObjects = fieldAdapterSelectors
+				.selectAll(state.field)
+				.filter((cell) => cell.marker === 9)
+				.map((el) => ({
+					id: el.id,
+					changes: { state: stateStatus },
+				}));
+
+			fieldAdapter.updateMany(state.field, updateObjects);
 		},
 		clockTick: (state) => {
 			state.clockTime += 1;
@@ -172,6 +190,6 @@ export const {
 	toggleCellFlag,
 	updateField,
 	updateMinesCounter,
-	мarkМineWithFlag,
 } = mainSlice.actions;
+
 export default mainSlice.reducer;

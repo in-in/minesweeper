@@ -13,7 +13,6 @@ function isLocalStorageAvailable(): boolean {
 		localStorage.removeItem(testKey);
 		return true;
 	} catch (e) {
-		console.log(e);
 		return false;
 	}
 }

@@ -7,6 +7,7 @@ import {
 	type Status,
 } from "@/customTypes/customTypes";
 
+import { fieldAdapterSelectors } from "@/store/fieldAdapter";
 import { type RootState } from "@/store/store";
 import { LEVELS, SLICE_MAIN } from "@/utils/constants";
 
@@ -18,7 +19,8 @@ const initialLevelValue = LEVELS[0][initialLevelName as keyof (typeof LEVELS)[0]
 export const selectMinesCounter = (state: RootState): MinesCounter =>
 	state[SLICE_MAIN].minesCounter;
 
-export const selectField = (state: RootState): Cell[] => state[SLICE_MAIN].field;
+export const selectField = (state: RootState): Cell[] =>
+	fieldAdapterSelectors.selectAll(state[SLICE_MAIN].field);
 
 export const selectCurrentLevelValue = createSelector(
 	selectCurrentLevel,
