@@ -32,11 +32,13 @@ export type Cell = {
 	state: CellState;
 };
 
+export type Field = ReturnType<typeof fieldAdapter.getInitialState>;
+
 export type MainState = {
 	clockTime: number;
 	currentLevel: Level;
 	currentSelectCellId: CellId | null;
-	field: ReturnType<typeof fieldAdapter.getInitialState>;
+	field: Field;
 	finishMessageText: string;
 	finishMessageTitle: string;
 	flagCounter: number;
