@@ -1,5 +1,3 @@
-import React from "react";
-
 import st from "./index.module.scss";
 
 type ToggleProps = {

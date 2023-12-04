@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Dashboard } from "@/components/Dashboard";
 import { Dialog } from "@/components/Dialog";
 import { Field } from "@/components/Field";

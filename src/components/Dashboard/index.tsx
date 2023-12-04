@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button } from "@/components/Button";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";

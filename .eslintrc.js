@@ -89,7 +89,7 @@ module.exports = {
 	},
 	extends: [
 		"standard",
-		"plugin:react/recommended",
+		"plugin:react/jsx-runtime",
 		"plugin:sonarjs/recommended",
 		"plugin:jsx-a11y/strict",
 		"plugin:react-hooks/recommended",

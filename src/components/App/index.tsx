@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { Wrapper } from "@/components/Wrapper";
 import { pageLoad } from "@/store/mainSlice";

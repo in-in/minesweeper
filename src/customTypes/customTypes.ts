@@ -1,5 +1,3 @@
-import type React from "react";
-
 import { type fieldAdapter } from "@/store/fieldAdapter";
 import { type LEVELS, type SLICE_MAIN } from "@/utils/constants";
 

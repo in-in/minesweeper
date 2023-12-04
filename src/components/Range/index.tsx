@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
 import { type MinesCounter } from "@/customTypes/customTypes";

@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import { Provider } from "react-redux";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";

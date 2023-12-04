@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Flag, LocalFireDepartment } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import {

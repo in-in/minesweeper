@@ -8,7 +8,7 @@
 		"noEmitOnError": true,
 		"resolveJsonModule": true,
 		"moduleResolution": "nodenext",
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"baseUrl": "./",
 		"plugins": [
 			{
