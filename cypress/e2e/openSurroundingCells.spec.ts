@@ -34,17 +34,16 @@ describe("openSurroundingCells", () => {
 	it("win message text", () => {
 		cy.fixture("field").then((field: Cell[]) => {
 			cy.getStore().invoke("dispatch", {
-				type: `${SLICE_MAIN}/openSurroundingCells`,
-				payload: field,
+				type: `${SLICE_MAIN}/openCell`,
+				payload: field[0],
 			});
 		});
-
 		cy.getByTestId("dialog").should(
 			"contain",
 			replaceStubsInString({
 				text: FINISH_WIN_MESSAGE_TEXT,
 				slot1: formatClockTime(0),
-				slot2: `${0} move${getSuffix(Number(0))}`,
+				slot2: `${1} move${getSuffix(Number(1))}`,
 			}),
 		);
 	});

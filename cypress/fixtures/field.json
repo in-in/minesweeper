@@ -86,17 +86,17 @@
 	},
 	{
 		"id": "1-7",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "1-8",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "1-9",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
@@ -136,17 +136,17 @@
 	},
 	{
 		"id": "2-7",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "2-8",
-		"marker": 9,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "2-9",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
@@ -186,17 +186,17 @@
 	},
 	{
 		"id": "3-7",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "3-8",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "3-9",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
@@ -221,7 +221,7 @@
 	},
 	{
 		"id": "4-4",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
@@ -236,7 +236,7 @@
 	},
 	{
 		"id": "4-7",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
@@ -271,22 +271,22 @@
 	},
 	{
 		"id": "5-4",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
 		"id": "5-5",
-		"marker": 9,
-		"state": "closed"
-	},
-	{
-		"id": "5-6",
 		"marker": 1,
 		"state": "closed"
 	},
 	{
+		"id": "5-6",
+		"marker": 9,
+		"state": "closed"
+	},
+	{
 		"id": "5-7",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
@@ -306,22 +306,22 @@
 	},
 	{
 		"id": "6-1",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
 		"id": "6-2",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
 		"id": "6-3",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
 		"id": "6-4",
-		"marker": 1,
+		"marker": 0,
 		"state": "closed"
 	},
 	{
@@ -336,7 +336,7 @@
 	},
 	{
 		"id": "6-7",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
@@ -356,17 +356,17 @@
 	},
 	{
 		"id": "7-1",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
 		"id": "7-2",
-		"marker": 0,
+		"marker": 9,
 		"state": "closed"
 	},
 	{
 		"id": "7-3",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
@@ -406,17 +406,17 @@
 	},
 	{
 		"id": "8-1",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
 		"id": "8-2",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{
 		"id": "8-3",
-		"marker": 0,
+		"marker": 1,
 		"state": "closed"
 	},
 	{

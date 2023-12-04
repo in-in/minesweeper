@@ -23,4 +23,15 @@ describe("field", () => {
 				.should(($btn) => expect($btn[0].className).to.match(/open_/));
 		});
 	});
+
+	it.only("open cell cannot be closed back", () => {
+		cy.getByTestId("0").first().as("cell");
+		cy.get("@cell").then(($cell) => {
+			cy.wrap($cell).click();
+			cy.wrap($cell).should(($btn) => expect($btn[0].className).to.match(/open_/));
+			cy.wrap($cell).rightclick();
+			cy.wrap($cell).should("be.empty");
+			cy.wrap($cell).should(($btn) => expect($btn[0].className).to.match(/open_/));
+		});
+	});
 });
