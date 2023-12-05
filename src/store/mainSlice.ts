@@ -6,7 +6,7 @@ import {
 	type Cell,
 	type CellId,
 	type CellState,
-	type Level,
+	type Levels,
 	type MinesCounter,
 	type StatusFinish,
 } from "@/customTypes/customTypes";
@@ -28,12 +28,12 @@ const mainSlice = createSlice({
 	name: SLICE_MAIN,
 	initialState: INITIAL_STATE[SLICE_MAIN],
 	reducers: {
-		switchLevel(state, action: PayloadAction<Level>) {
+		switchLevel(state, action: PayloadAction<Levels>) {
 			state.currentLevel = action.payload;
 			fieldAdapter.setAll(
 				state.field,
 				buildField({
-					length: Object.values(action.payload)[0] as number,
+					size: action.payload.size,
 				}),
 			);
 		},
@@ -51,7 +51,7 @@ const mainSlice = createSlice({
 			fieldAdapter.setAll(
 				state.field,
 				buildField({
-					length: Object.values(state.currentLevel)[0] as number,
+					size: state.currentLevel.size,
 				}),
 			);
 		},
@@ -91,7 +91,7 @@ const mainSlice = createSlice({
 
 			const surroundingCells = getSurroundingCells({
 				id: action.payload.id,
-				limit: Object.values(state.currentLevel)[0] as number,
+				limit: state.currentLevel.size,
 				field: fieldAdapterSelectors.selectAll(state.field),
 			});
 

@@ -1,7 +1,5 @@
-import { LEVELS } from "@/utils/constants";
+import { INITIAL_LEVEL } from "@/utils/constants";
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
-
-const [initialLevel] = Object.values(LEVELS[0]);
 
 describe("restart", () => {
 	beforeEach(() => {
@@ -18,7 +16,7 @@ describe("restart", () => {
 		cy.start();
 		cy.getByTestId("restart").click();
 		cy.getByTestId("0")
-			.should("have.length", initialLevel * initialLevel)
+			.should("have.length", INITIAL_LEVEL.size * INITIAL_LEVEL.size)
 			.should("be.empty");
 		cy.getByTestId("stat-timer").should("contain", formatClockTimeToHHMMSS(0));
 		cy.getByTestId("stat-turns").should("contain", 0);

@@ -13,7 +13,6 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);
-	const buttons = LEVELS;
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 
 	const dispatch = useAppDispatch();
@@ -22,17 +21,16 @@ const Level = (): React.ReactNode => {
 		<FormControl>
 			<FormLabel id="level">Level</FormLabel>
 			<RadioGroup aria-labelledby="level" name="level" value={currentLevelName}>
-				{buttons.map((el) => {
-					const [name] = Object.keys(el);
+				{LEVELS.map((level) => {
 					return (
 						<FormControlLabel
 							control={<Radio />}
 							disabled={!isIdleStatus}
-							key={name}
-							label={name}
+							key={level.name}
+							label={level.name}
 							sx={{ textTransform: "capitalize" }}
-							value={name}
-							onChange={() => dispatch(switchLevel(el))}
+							value={level.name}
+							onChange={() => dispatch(switchLevel(level))}
 						/>
 					);
 				})}

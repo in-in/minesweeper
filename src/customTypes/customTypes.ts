@@ -4,7 +4,8 @@ import { type LEVELS, type SLICE_MAIN } from "@/utils/constants";
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;
 
-export type Level = (typeof LEVELS)[number];
+export type Level = { name: string; size: number };
+export type Levels = (typeof LEVELS)[number];
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc["length"] extends N
 	? Acc[number]
@@ -34,7 +35,7 @@ export type Field = ReturnType<typeof fieldAdapter.getInitialState>;
 
 export type MainState = {
 	clockTime: number;
-	currentLevel: Level;
+	currentLevel: Levels;
 	currentSelectCellId: CellId | null;
 	field: Field;
 	finishMessageText: string;

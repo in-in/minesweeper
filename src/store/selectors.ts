@@ -2,19 +2,17 @@ import { createSelector } from "@reduxjs/toolkit";
 
 import {
 	type Cell,
-	type Level,
+	type Levels,
 	type MinesCounter,
 	type Status,
 } from "@/customTypes/customTypes";
 
 import { fieldAdapterSelectors } from "@/store/fieldAdapter";
 import { type RootState } from "@/store/store";
-import { LEVELS, SLICE_MAIN } from "@/utils/constants";
+import { SLICE_MAIN } from "@/utils/constants";
 
-const selectCurrentLevel = (state: RootState): Level =>
+const selectCurrentLevel = (state: RootState): Levels =>
 	state[SLICE_MAIN].currentLevel;
-const [initialLevelName] = Object.keys(LEVELS[0]);
-const initialLevelValue = LEVELS[0][initialLevelName as keyof (typeof LEVELS)[0]];
 
 export const selectMinesCounter = (state: RootState): MinesCounter =>
 	state[SLICE_MAIN].minesCounter;
@@ -22,14 +20,14 @@ export const selectMinesCounter = (state: RootState): MinesCounter =>
 export const selectField = (state: RootState): Cell[] =>
 	fieldAdapterSelectors.selectAll(state[SLICE_MAIN].field);
 
-export const selectCurrentLevelValue = createSelector(
-	selectCurrentLevel,
-	(level) => Object.values(level)[0] ?? initialLevelValue,
-);
-
 export const selectCurrentLevelName = createSelector(
 	selectCurrentLevel,
-	(level) => Object.keys(level)[0] ?? initialLevelName,
+	(level) => level.name,
+);
+
+export const selectCurrentLevelSize = createSelector(
+	selectCurrentLevel,
+	(level) => level.size,
 );
 
 export const selectStatus = (state: RootState): Status => state[SLICE_MAIN].status;

@@ -5,6 +5,7 @@
 		"strict": true,
 		"target": "esnext",
 		"module": "nodenext",
+		"jsx": "react-jsx",
 		"types": [
 			"cypress",
 			"node"

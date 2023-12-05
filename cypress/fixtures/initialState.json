@@ -2,7 +2,8 @@
 	"main": {
 		"clockTime": 0,
 		"currentLevel": {
-			"easy": 10
+			"name": "easy",
+			"size": 10
 		},
 		"currentSelectCellId": null,
 		"field": {

@@ -97,7 +97,7 @@ startAppListening({
 		const surroundingCells = (initialCellId: CellId): Cell[] =>
 			getSurroundingCells({
 				id: initialCellId,
-				limit: Object.values(currentLevel)[0] as number,
+				limit: currentLevel.size,
 				field: fieldAdapterSelectors.selectAll(field),
 			});
 

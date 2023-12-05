@@ -5,13 +5,13 @@ describe("level", () => {
 		cy.visit("/");
 	});
 
-	LEVELS.map((i) => {
-		const [[key, val]] = Object.entries(i);
-		const size = val * val;
-		return it(`field contains ${size} cells, after selecting ${key} level`, () => {
-			cy.get('[type="radio"]').check(key);
+	LEVELS.map((level) => {
+		const { name, size } = level;
+		const cellsSize = size * size;
+		return it(`field contains ${cellsSize} cells, after selecting ${name} level`, () => {
+			cy.get('[type="radio"]').check(name);
 			cy.getByTestId("field").within(() => {
-				cy.get("button").should("have.length", size);
+				cy.get("button").should("have.length", cellsSize);
 			});
 		});
 	});

@@ -1,7 +1,6 @@
-import { LEVELS } from "@/utils/constants";
+import { INITIAL_LEVEL } from "@/utils/constants";
 
-const [value] = Object.values(LEVELS[0]);
-const initialLevel = value * value;
+const initialLevel = INITIAL_LEVEL.size * INITIAL_LEVEL.size;
 
 describe("field", () => {
 	beforeEach(() => {
