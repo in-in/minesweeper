@@ -1,6 +1,6 @@
 import { type Cell, type CellId } from "@/customTypes/customTypes";
 
-type surroundingCellsOptions = {
+type GetSurroundingCells = {
 	id: CellId;
 	limit: number;
 	field?: Cell[];
@@ -9,17 +9,17 @@ type surroundingCellsOptions = {
 function getSurroundingCells({
 	id,
 	limit,
-}: Omit<surroundingCellsOptions, "field">): CellId[];
+}: Omit<GetSurroundingCells, "field">): CellId[];
 function getSurroundingCells({
 	id,
 	limit,
 	field,
-}: Required<surroundingCellsOptions>): Cell[];
+}: Required<GetSurroundingCells>): Cell[];
 function getSurroundingCells({
 	id,
 	limit,
 	field,
-}: surroundingCellsOptions): CellId[] | Cell[] {
+}: GetSurroundingCells): CellId[] | Cell[] {
 	const [i = 0, j = 0] = id.split("-").map(Number);
 	const indexes = [
 		[i - 1, j],
