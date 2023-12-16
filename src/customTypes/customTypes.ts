@@ -4,7 +4,10 @@ import { type LEVELS, type SLICE_MAIN } from "@/utils/constants";
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;
 
-export type Level = { name: string; size: number };
+export interface Level {
+	name: string;
+	size: number;
+}
 export type Levels = (typeof LEVELS)[number];
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc["length"] extends N
@@ -25,15 +28,15 @@ export type CellId = `${number}-${number}`;
 export type CellMarker = IntRange<0, 10>;
 export type CellState = "closed" | "opened" | "flagged" | "highlighted";
 
-export type Cell = {
+export interface Cell {
 	id: CellId;
 	marker: CellMarker;
 	state: CellState;
-};
+}
 
 export type Field = ReturnType<typeof fieldAdapter.getInitialState>;
 
-export type MainState = {
+export interface MainState {
 	clockTime: number;
 	currentLevel: Levels;
 	currentSelectCellId: CellId | null;
@@ -46,8 +49,8 @@ export type MainState = {
 	openCellCounter: number;
 	status: Status;
 	turnCounter: number;
-};
+}
 
-export type GlobalState = {
+export interface GlobalState {
 	[SLICE_MAIN]: MainState;
-};
+}

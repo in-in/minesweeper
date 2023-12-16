@@ -1,8 +1,8 @@
 import st from "./index.module.scss";
 
-type ToggleProps = {
+interface ToggleProps {
 	label: string;
-};
+}
 
 const Toggle = ({ label }: ToggleProps): React.ReactNode => {
 	const id = label.replace(/[^a-z0-9]/gi, "-");

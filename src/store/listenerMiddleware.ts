@@ -1,8 +1,10 @@
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
-import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
+import type { AppDispatch, RootState } from "@/store/store";
 
 import { type Cell, type CellId } from "@/customTypes/customTypes";
+
+import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
 import { fieldAdapterSelectors } from "@/store/fieldAdapter";
 import {
@@ -15,7 +17,6 @@ import {
 	start,
 	updateField,
 } from "@/store/mainSlice";
-import type { AppDispatch, RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 import { getSurroundingCells } from "@/utils/helpers/getSurroundingCells";
 import { localStorageWrapper } from "@/utils/helpers/localStorageWrapper";

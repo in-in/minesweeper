@@ -1,7 +1,5 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { createSlice } from "@reduxjs/toolkit";
-
 import {
 	type Cell,
 	type CellId,
@@ -10,6 +8,8 @@ import {
 	type MinesCounter,
 	type StatusFinish,
 } from "@/customTypes/customTypes";
+
+import { createSlice } from "@reduxjs/toolkit";
 
 import { fieldAdapter, fieldAdapterSelectors } from "@/store/fieldAdapter";
 import {

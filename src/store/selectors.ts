@@ -1,11 +1,11 @@
-import { createSelector } from "@reduxjs/toolkit";
-
 import {
 	type Cell,
 	type Levels,
 	type MinesCounter,
 	type Status,
 } from "@/customTypes/customTypes";
+
+import { createSelector } from "@reduxjs/toolkit";
 
 import { fieldAdapterSelectors } from "@/store/fieldAdapter";
 import { type RootState } from "@/store/store";

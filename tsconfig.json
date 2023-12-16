@@ -4,11 +4,13 @@
 	],
 	"compilerOptions": {
 		"target": "esnext",
-		"module": "nodenext",
+		"module": "esnext",
 		"noEmitOnError": true,
 		"resolveJsonModule": true,
-		"moduleResolution": "nodenext",
 		"jsx": "react-jsx",
+		"moduleResolution": "bundler",
+		"noPropertyAccessFromIndexSignature": false,
+		"exactOptionalPropertyTypes": false,
 		"baseUrl": "./",
 		"plugins": [
 			{
@@ -21,19 +23,25 @@
 			],
 			"@root/*": [
 				"./*"
+			],
+			"@images/*": [
+				"./src/assets/images/*"
+			],
+			"@icons/*": [
+				"./src/assets/icons/*"
 			]
 		}
 	},
+	"include": [
+		"src/**/*",
+		"config/**/*",
+		"webpack.config.ts"
+	],
+	"exclude": ["node_modules"],
 	"ts-node": {
 		"compilerOptions": {
-			"module": "CommonJS",
+			"module": "commonjs",
 			"allowSyntheticDefaultImports": true,
 		}
 	},
-	"include": [
-		".config/webpack.config.ts",
-		".config/paths.ts",
-		"src/**/*",
-		"src/cypress.d.ts"
-	]
 }

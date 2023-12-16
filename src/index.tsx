@@ -1,15 +1,15 @@
-import { StrictMode } from "react";
-import { Provider } from "react-redux";
-
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 
 import { App } from "@/components/App";
 import { store } from "@/store/store";
 
 import "@/styles/styles.scss";
 
-const container = document.getElementById("root");
+const root = document.getElementById("root");
+
 const darkTheme = createTheme({
 	components: {
 		MuiButtonBase: {
@@ -23,9 +23,9 @@ const darkTheme = createTheme({
 	},
 });
 
-if (container != null) {
-	const root = createRoot(container);
-	root.render(
+if (root != null) {
+	const container = createRoot(root);
+	container.render(
 		<StrictMode>
 			<Provider store={store}>
 				<ThemeProvider theme={darkTheme}>

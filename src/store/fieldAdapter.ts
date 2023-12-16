@@ -1,6 +1,6 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
-
 import { type Cell } from "@/customTypes/customTypes";
+
+import { createEntityAdapter } from "@reduxjs/toolkit";
 
 export const fieldAdapter = createEntityAdapter<Cell>();
 

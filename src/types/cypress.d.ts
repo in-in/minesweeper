@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
-import { type Cypress } from "cypress";
-
 import { type GlobalState } from "@/customTypes/customTypes";
+
+import { type Cypress } from "cypress";
 
 import { type AppStore } from "@/store/store";
 

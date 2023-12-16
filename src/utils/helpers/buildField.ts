@@ -9,11 +9,11 @@ import {
 import { type LEVELS } from "@/utils/constants";
 import { getSurroundingMineCount } from "@/utils/helpers/getSurroundingMineCount";
 
-type BuildField = {
+interface BuildField {
 	size: (typeof LEVELS)[number]["size"];
 	mines?: CellId[];
 	selectCellId?: MainState["currentSelectCellId"];
-};
+}
 
 function buildField({ size, mines = [], selectCellId = null }: BuildField): Cell[] {
 	return Array.from({ length: size }, (_, row) =>

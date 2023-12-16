@@ -2,11 +2,11 @@ import { type CellId, type CellMarker } from "@/customTypes/customTypes";
 
 import { getSurroundingCells } from "./getSurroundingCells";
 
-type GetSurroundingMineCount = {
+interface GetSurroundingMineCount {
 	id: CellId;
 	limit: number;
 	mines: CellId[];
-};
+}
 
 function getSurroundingMineCount({
 	id,

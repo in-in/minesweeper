@@ -1,9 +1,9 @@
 import { type Cell } from "@/customTypes/customTypes";
 
-type HighlightSurroundingCells = {
+interface HighlightSurroundingCells {
 	highlight: boolean;
 	surroundingCells: Cell[];
-};
+}
 
 function highlightSurroundingCells({
 	highlight,

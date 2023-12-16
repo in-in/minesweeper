@@ -1,6 +1,7 @@
+import { resolve } from "node:path";
+
 import webpackPreprocessor from "@cypress/webpack-preprocessor";
 import { defineConfig } from "cypress";
-import { resolve } from "node:path";
 
 export default defineConfig({
 	viewportWidth: 1280,

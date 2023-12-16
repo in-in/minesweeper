@@ -1,6 +1,5 @@
 const commonRules = {
 	"@typescript-eslint/consistent-type-assertions": "off",
-	"@typescript-eslint/consistent-type-definitions": ["error", "type"],
 	"jsx-a11y/no-autofocus": "off",
 	"logical-assignment-operators": ["error", "always"],
 	"max-params": ["error", 3],
@@ -8,7 +7,6 @@ const commonRules = {
 	"no-dupe-args": "error",
 	"no-invalid-this": "error",
 	"no-promise-executor-return": "error",
-	"no-return-await": "error",
 	"prettier/prettier": ["error"],
 	"require-atomic-updates": "error",
 	"sonarjs/no-duplicate-string": [
@@ -20,30 +18,26 @@ const commonRules = {
 		{
 			"type": "alphabetical",
 			"ignore-case": true,
+			"internal-pattern": ["@/**", "@root/**", "@images/**", "@icons/**"],
 			"custom-groups": {
 				value: {
-					customTypes: ["customTypes", "@/customTypes/**"],
-					react: ["react", "react-*"],
-				},
-				type: {
-					customTypes: ["customTypes", "@/customTypes/**"],
-					react: ["react", "react-*"],
+					customTypes: ["@/customTypes/**"],
 				},
 			},
 			"groups": [
-				"react",
 				["builtin-type", "type"],
-				["builtin", "external"],
-				"customTypes",
-				["internal-type", "internal"],
+				"internal-type",
 				["parent-type", "sibling-type", "index-type"],
+				["customTypes"],
+				"builtin",
+				"external",
+				"internal",
 				["parent", "sibling", "index"],
 				"side-effect",
 				"object",
 				"style",
 				"unknown",
 			],
-			"internal-pattern": ["@/**"],
 		},
 	],
 	"perfectionist/sort-named-imports": [

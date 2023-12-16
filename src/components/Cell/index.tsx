@@ -1,3 +1,5 @@
+import { type CellMarker, type CellState } from "@/customTypes/customTypes";
+
 import { Flag, LocalFireDepartment } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import {
@@ -12,8 +14,6 @@ import {
 	yellow,
 } from "@mui/material/colors";
 import { clsx } from "clsx";
-
-import { type CellMarker, type CellState } from "@/customTypes/customTypes";
 
 import { selectStatus } from "@/store/selectors";
 import { addTestId } from "@/utils/helpers/addTestId";

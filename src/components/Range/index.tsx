@@ -1,6 +1,6 @@
-import { FormControl, FormLabel, NativeSelect } from "@mui/material";
-
 import { type MinesCounter } from "@/customTypes/customTypes";
+
+import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
 import { updateMinesCounter } from "@/store/mainSlice";
 import { selectIsIdleStatus, selectMinesCounter } from "@/store/selectors";

@@ -1,5 +1,5 @@
-import { name } from "@root/package.json";
+import packageJson from "@root/package.json";
 
-const projectName = btoa(name);
+const projectName = btoa(packageJson.name);
 
 export { projectName };

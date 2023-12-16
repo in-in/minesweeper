@@ -1,10 +1,10 @@
 import { type Cell, type CellId } from "@/customTypes/customTypes";
 
-type GetSurroundingCells = {
+interface GetSurroundingCells {
 	id: CellId;
 	limit: number;
 	field?: Cell[];
-};
+}
 
 function getSurroundingCells({
 	id,

@@ -1,9 +1,9 @@
 import st from "./index.module.scss";
 
-type StatProps = {
+interface StatProps {
 	label: string;
 	counter?: string;
-};
+}
 
 const Stat = ({ label, counter = "0", ...rest }: StatProps): React.ReactNode => {
 	const id = label.replace(/[^a-z0-9]/gi, "-");
