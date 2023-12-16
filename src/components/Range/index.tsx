@@ -4,7 +4,6 @@ import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
 import { updateMinesCounter } from "@/store/mainSlice";
 import { selectIsIdleStatus, selectMinesCounter } from "@/store/selectors";
-import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 const Range = (): React.ReactNode => {
@@ -15,7 +14,7 @@ const Range = (): React.ReactNode => {
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
 
 	const selectOptions = createRangeArray.map((el) => (
-		<option key={el} value={el} {...addTestId("mines-select")}>
+		<option data-testid="mines-select" key={el} value={el}>
 			{el}
 		</option>
 	));

@@ -9,7 +9,6 @@ import {
 	selectIsIdleStatus,
 	selectTurnCounter,
 } from "@/store/selectors";
-import { addTestId } from "@/utils/helpers/addTestId";
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
@@ -29,17 +28,17 @@ const Dashboard = (): React.ReactNode => {
 			<Toggle label="light/dark" />
 			<Stat
 				counter={formatClockTimeToHHMMSS(clockTime)}
+				data-testid="stat-timer"
 				label="timer"
-				{...addTestId("stat-timer")}
 			/>
-			<Stat counter={turns} label="turns" {...addTestId("stat-turns")} />
-			<Stat counter={flags} label="flags" {...addTestId("stat-flags")} />
+			<Stat counter={turns} data-testid="stat-turns" label="turns" />
+			<Stat counter={flags} data-testid="stat-flags" label="flags" />
 			<Button
+				data-testid="restart"
 				disabled={isIdleStatus}
 				inner={"Restart"}
 				modifier={[st.button ?? ""]}
 				variant="primary"
-				{...addTestId("restart")}
 				onClick={() => dispatch(restart())}
 			/>
 		</div>

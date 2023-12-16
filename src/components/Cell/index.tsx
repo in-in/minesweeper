@@ -16,7 +16,6 @@ import {
 import { clsx } from "clsx";
 
 import { selectStatus } from "@/store/selectors";
-import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
@@ -81,12 +80,12 @@ const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => {
 	const status = useAppSelector(selectStatus);
 	return (
 		<button
+			data-testid={marker}
 			className={clsx(
 				st.cell,
 				{ [st.open ?? ""]: state === "opened" },
 				{ [st.highlight ?? ""]: state === "highlighted" },
 			)}
-			{...addTestId(String(marker))}
 			{...rest}
 		>
 			{state === "opened" && <CellInner marker={marker} />}

@@ -14,7 +14,6 @@ import {
 	selectIsFinishStatus,
 	selectTurnCounter,
 } from "@/store/selectors";
-import { addTestId } from "@/utils/helpers/addTestId";
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
 import { getSuffix } from "@/utils/helpers/getSuffix";
 import { replaceStubsInString } from "@/utils/helpers/replaceStubsInString";
@@ -31,8 +30,8 @@ const Dialog = (): React.ReactNode => {
 		<MUIDialog
 			aria-describedby="alert-dialog-description"
 			aria-labelledby="alert-dialog-title"
+			data-testid="dialog"
 			open={isFinishStatus}
-			{...addTestId("dialog")}
 			sx={{
 				"& .MuiDialog-paper": {
 					alignItems: "center",

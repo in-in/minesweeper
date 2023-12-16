@@ -8,7 +8,6 @@ import {
 import { Cell as FieldCell } from "@/components/Cell";
 import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelSize, selectField } from "@/store/selectors";
-import { addTestId } from "@/utils/helpers/addTestId";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
@@ -48,7 +47,7 @@ const Field = (): React.ReactNode => {
 	};
 
 	return (
-		<div className={st.field} {...addTestId("field")} style={style}>
+		<div className={st.field} data-testid="field" style={style}>
 			{field.map((cell) => {
 				const { id, marker, state } = cell;
 				return (
