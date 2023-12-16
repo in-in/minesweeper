@@ -3,6 +3,10 @@ version: '3.7'
 services:
   web:
     container_name: minesweeper
+    env_file:
+      - .env
+    environment:
+      - CHOKIDAR_USEPOLLING='true'
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,9 +15,7 @@ services:
       - './:/home/node/app'
       - '/home/node/app/node_modules'
     ports:
-      - 7777:7777
-    environment:
-      CHOKIDAR_USEPOLLING: 'true'
+      - ${PORT:-3030}:${PORT:-3030}
     stdin_open: true
     tty: true
     dns:

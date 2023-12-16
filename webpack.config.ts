@@ -6,6 +6,8 @@ import path from "node:path";
 
 import { buildConfig } from "./config/build/buildConfig";
 
+import "dotenv/config";
+
 export default (env: BuildOptions): Configuration => {
 	const paths: BuildPaths = {
 		entry: path.resolve(__dirname, "src", "index.tsx"),
@@ -16,7 +18,7 @@ export default (env: BuildOptions): Configuration => {
 	};
 	const config: Configuration = buildConfig({
 		paths,
-		port: env.port ?? 7777,
+		port: process.env.PORT ?? 3030,
 		mode: env.mode ?? "development",
 		analyzer: env.analyzer,
 		platform: env.platform ?? "desktop",
