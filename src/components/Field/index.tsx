@@ -39,7 +39,7 @@ const Field = (): React.ReactNode => {
 		id: CellId,
 		highlight: boolean,
 	): void => {
-		if (event.button === 1) {
+		if (event.button === 1 || event.type === "mouseleave") {
 			event.stopPropagation();
 			event.preventDefault();
 			dispatch(revealSurroundingCells({ id, highlight }));
@@ -63,6 +63,9 @@ const Field = (): React.ReactNode => {
 						}}
 						onMouseDown={(event) => {
 							handleMiddleClick(event, id, true);
+						}}
+						onMouseLeave={(event) => {
+							handleMiddleClick(event, id, false);
 						}}
 						onMouseUp={(event) => {
 							handleMiddleClick(event, id, false);
