@@ -1,4 +1,5 @@
-import { Button } from "@/components/Button";
+import { Button } from "@mui/material";
+
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
 import { Toggle } from "@/components/Toggle";
@@ -36,11 +37,12 @@ const Dashboard = (): React.ReactNode => {
 			<Button
 				data-testid="restart"
 				disabled={isIdleStatus}
-				inner={"Restart"}
-				modifier={[st.button ?? ""]}
-				variant="primary"
+				size="large"
+				variant="contained"
 				onClick={() => dispatch(restart())}
-			/>
+			>
+				Restart
+			</Button>
 		</div>
 	);
 };
