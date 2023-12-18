@@ -1,8 +1,7 @@
-import { Button } from "@mui/material";
+import { Button, Checkbox, FormControlLabel } from "@mui/material";
 
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
-import { Toggle } from "@/components/Toggle";
 import { restart } from "@/store/mainSlice";
 import {
 	selectClockTime,
@@ -25,8 +24,18 @@ const Dashboard = (): React.ReactNode => {
 	return (
 		<div className={st.dashboard}>
 			<Range />
-			<Toggle label="sound" />
-			<Toggle label="light/dark" />
+			<FormControlLabel
+				control={<Checkbox />}
+				label="Sound"
+				labelPlacement="top"
+				value="sound"
+			/>
+			<FormControlLabel
+				control={<Checkbox />}
+				label="Theme"
+				labelPlacement="top"
+				value="theme"
+			/>
 			<Stat
 				counter={formatClockTimeToHHMMSS(clockTime)}
 				data-testid="stat-timer"
