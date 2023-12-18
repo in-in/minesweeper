@@ -1,3 +1,5 @@
+import { Stack, Typography } from "@mui/material";
+
 import st from "./index.module.scss";
 
 interface StatProps {
@@ -6,12 +8,23 @@ interface StatProps {
 }
 
 const Stat = ({ label, counter = "0", ...rest }: StatProps): React.ReactNode => {
-	const id = label.replace(/[^a-z0-9]/gi, "-");
+	const id = label.replace(/[^a-z0-9]/gi, "-").toLowerCase();
 	return (
-		<div className={st.stat} id={`stat-${id}`} {...rest}>
-			<span className={st.label}>{label}</span>
-			<span className={st.counter}>{counter}</span>
-		</div>
+		<Stack
+			alignItems="center"
+			className={st.stat}
+			id={`stat-${id}`}
+			justifyContent="center"
+			spacing={0}
+			{...rest}
+		>
+			<Typography component="span" variant="subtitle1">
+				{label}
+			</Typography>
+			<Typography color="secondary" component="span" variant="h6">
+				{counter}
+			</Typography>
+		</Stack>
 	);
 };
 

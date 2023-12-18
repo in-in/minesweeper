@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControlLabel } from "@mui/material";
+import { Button, FormControlLabel, Switch } from "@mui/material";
 
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
@@ -25,13 +25,13 @@ const Dashboard = (): React.ReactNode => {
 		<div className={st.dashboard}>
 			<Range />
 			<FormControlLabel
-				control={<Checkbox />}
+				control={<Switch />}
 				label="Sound"
 				labelPlacement="top"
 				value="sound"
 			/>
 			<FormControlLabel
-				control={<Checkbox />}
+				control={<Switch />}
 				label="Theme"
 				labelPlacement="top"
 				value="theme"
@@ -39,10 +39,10 @@ const Dashboard = (): React.ReactNode => {
 			<Stat
 				counter={formatClockTimeToHHMMSS(clockTime)}
 				data-testid="stat-timer"
-				label="timer"
+				label="Timer"
 			/>
-			<Stat counter={turns} data-testid="stat-turns" label="turns" />
-			<Stat counter={flags} data-testid="stat-flags" label="flags" />
+			<Stat counter={turns} data-testid="stat-turns" label="Turns" />
+			<Stat counter={flags} data-testid="stat-flags" label="Flags" />
 			<Button
 				data-testid="restart"
 				disabled={isIdleStatus}

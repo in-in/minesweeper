@@ -1,20 +1,6 @@
 @use 'src/styles/config' as *;
 
 .stat {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: to-em(8);
-	user-select: none;
-}
-
-.label,
-.counter {
 	font-variant-numeric: tabular-nums;
-	line-height: 1.1;
-}
-
-.label {
-	font-size: to-em($size-font-small);
+	user-select: none;
 }
