@@ -3,6 +3,7 @@
 .dashboard {
 	display: flex;
 	grid-area: dashboard;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
 	gap: to-em(16);

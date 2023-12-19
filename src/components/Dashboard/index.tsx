@@ -1,5 +1,7 @@
 import { Button, FormControlLabel, Switch } from "@mui/material";
+import { styled } from "@mui/system";
 
+import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
 import { restart } from "@/store/mainSlice";
@@ -14,6 +16,10 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
+const StyledFormControlLabel = styled(FormControlLabel)({
+	marginInline: 0,
+});
+
 const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
@@ -23,14 +29,15 @@ const Dashboard = (): React.ReactNode => {
 
 	return (
 		<div className={st.dashboard}>
+			<Level />
 			<Range />
-			<FormControlLabel
+			<StyledFormControlLabel
 				control={<Switch />}
 				label="Sound"
 				labelPlacement="top"
 				value="sound"
 			/>
-			<FormControlLabel
+			<StyledFormControlLabel
 				control={<Switch />}
 				label="Theme"
 				labelPlacement="top"

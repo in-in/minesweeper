@@ -4,7 +4,9 @@ import {
 	FormLabel,
 	Radio,
 	RadioGroup,
+	useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import { switchLevel } from "@/store/mainSlice";
 import { selectCurrentLevelName, selectIsIdleStatus } from "@/store/selectors";
@@ -14,13 +16,19 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
-
 	const dispatch = useAppDispatch();
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
 		<FormControl>
 			<FormLabel id="level">Level</FormLabel>
-			<RadioGroup aria-labelledby="level" name="level" value={currentLevelName}>
+			<RadioGroup
+				aria-labelledby="level"
+				name="level"
+				row={matches}
+				value={currentLevelName}
+			>
 				{LEVELS.map((level) => {
 					return (
 						<FormControlLabel
