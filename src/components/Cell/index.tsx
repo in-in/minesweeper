@@ -1,4 +1,4 @@
-import { type CellMarker, type CellState } from "@/customTypes/customTypes";
+import type { CellId, CellState, Cell as ICell } from "@/customTypes/customTypes";
 
 import { Flag, LocalFireDepartment } from "@mui/icons-material";
 import { Box } from "@mui/material";
@@ -7,25 +7,26 @@ import {
 	blue,
 	cyan,
 	green,
+	grey,
 	lime,
 	orange,
 	red,
 	teal,
 	yellow,
 } from "@mui/material/colors";
-import { clsx } from "clsx";
 
+import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectStatus } from "@/store/selectors";
-import { useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
-type CellProps = {
-	marker: CellMarker;
-	state: CellState;
-} & React.ComponentProps<"button">;
+interface CellProps {
+	cell: ICell;
+}
 
 const mapColor = {
+	0: grey,
 	1: blue,
 	2: cyan,
 	3: teal,
@@ -37,62 +38,77 @@ const mapColor = {
 	9: red,
 };
 
-const cellStyle = {
-	width: 1,
-	height: 1,
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-	fontWeight: "bold",
-} as const;
-
-const CellInner = ({ marker }: Pick<CellProps, "marker">): React.ReactNode => {
-	if (marker === 9) {
-		return (
-			<Box
-				sx={{
-					...cellStyle,
-					color: mapColor[marker][900],
-					bgcolor: mapColor[marker].A100,
-				}}
-			>
-				<LocalFireDepartment />
-			</Box>
-		);
-	} else if (marker === 0) {
+const CellInner = ({ marker }: Pick<ICell, "marker">): React.ReactNode => {
+	if (marker === 0) {
 		return null;
-	} else {
-		return (
-			<Box
-				sx={{
-					...cellStyle,
-					color: mapColor[marker][900],
-					bgcolor: mapColor[marker].A100,
-				}}
-			>
-				{marker}
-			</Box>
-		);
 	}
+
+	return marker === 9 ? <LocalFireDepartment /> : marker;
 };
 
-const Cell = ({ marker, state, ...rest }: CellProps): React.ReactNode => {
+const Cell = ({ cell }: CellProps): React.ReactNode => {
+	const { id, marker, state } = cell;
 	const status = useAppSelector(selectStatus);
+	const dispatch = useAppDispatch();
+
+	const handleClick = (state: CellState, cell: ICell): void => {
+		if (state === "closed") {
+			dispatch(openCell(cell));
+		}
+	};
+
+	const handleContextMenu = (
+		event: React.MouseEvent<HTMLElement>,
+		id: CellId,
+	): void => {
+		event.stopPropagation();
+		event.preventDefault();
+		dispatch(toggleCellFlag(id));
+	};
+
+	const handleMiddleClick = (
+		event: React.MouseEvent<HTMLElement>,
+		id: CellId,
+		highlight: boolean,
+	): void => {
+		if (event.button === 1 || event.type === "mouseleave") {
+			event.stopPropagation();
+			event.preventDefault();
+			dispatch(revealSurroundingCells({ id, highlight }));
+		}
+	};
+
 	return (
-		<button
+		<Box
+			className={st.cell}
 			data-testid={marker}
-			className={clsx(
-				st.cell,
-				{ [st.open ?? ""]: state === "opened" },
-				{ [st.highlight ?? ""]: state === "highlighted" },
-			)}
-			{...rest}
+			onClick={() => {
+				handleClick(state, cell);
+			}}
+			onContextMenu={(event) => {
+				handleContextMenu(event, id);
+			}}
+			onMouseDown={(event) => {
+				handleMiddleClick(event, id, true);
+			}}
+			onMouseLeave={(event) => {
+				handleMiddleClick(event, id, false);
+			}}
+			onMouseUp={(event) => {
+				handleMiddleClick(event, id, false);
+			}}
+			sx={{
+				color: state === "opened" ? mapColor[marker][900] : grey[900],
+				bgcolor: state === "opened" ? mapColor[marker].A100 : grey[700],
+				opacity: state === "highlighted" ? 0.6 : 1,
+				border: `1px solid ${grey[800]}`,
+			}}
 		>
 			{state === "opened" && <CellInner marker={marker} />}
 			{state === "flagged" && (
 				<Flag sx={{ color: status === "lose" ? red.A400 : green.A400 }} />
 			)}
-		</button>
+		</Box>
 	);
 };
 

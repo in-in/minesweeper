@@ -1,78 +1,21 @@
-import {
-	type Cell,
-	type CellId,
-	type CellState,
-	type CSSCustomProperties,
-} from "@/customTypes/customTypes";
+import { type CSSCustomProperties } from "@/customTypes/customTypes";
 
 import { Cell as FieldCell } from "@/components/Cell";
-import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectCurrentLevelSize, selectField } from "@/store/selectors";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
 const Field = (): React.ReactNode => {
 	const currentLevelSize = useAppSelector(selectCurrentLevelSize);
 	const field = useAppSelector(selectField);
-	const dispatch = useAppDispatch();
-
 	const style: CSSCustomProperties = { "--size": currentLevelSize };
-
-	const handleClick = (state: CellState, cell: Cell): void => {
-		if (state === "closed") {
-			dispatch(openCell(cell));
-		}
-	};
-
-	const handleContextMenu = (
-		event: React.MouseEvent<HTMLElement>,
-		id: CellId,
-	): void => {
-		event.stopPropagation();
-		event.preventDefault();
-		dispatch(toggleCellFlag(id));
-	};
-
-	const handleMiddleClick = (
-		event: React.MouseEvent<HTMLElement>,
-		id: CellId,
-		highlight: boolean,
-	): void => {
-		if (event.button === 1 || event.type === "mouseleave") {
-			event.stopPropagation();
-			event.preventDefault();
-			dispatch(revealSurroundingCells({ id, highlight }));
-		}
-	};
 
 	return (
 		<div className={st.field} data-testid="field" style={style}>
-			{field.map((cell) => {
-				const { id, marker, state } = cell;
-				return (
-					<FieldCell
-						key={id}
-						marker={marker}
-						state={state}
-						onClick={() => {
-							handleClick(state, cell);
-						}}
-						onContextMenu={(event) => {
-							handleContextMenu(event, id);
-						}}
-						onMouseDown={(event) => {
-							handleMiddleClick(event, id, true);
-						}}
-						onMouseLeave={(event) => {
-							handleMiddleClick(event, id, false);
-						}}
-						onMouseUp={(event) => {
-							handleMiddleClick(event, id, false);
-						}}
-					/>
-				);
-			})}
+			{field.map((cell) => (
+				<FieldCell cell={cell} key={cell.id} />
+			))}
 		</div>
 	);
 };

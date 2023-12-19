@@ -5,21 +5,10 @@
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	border: to-em(1) solid $color-dark;
-	background-color: #495057;
-	color: $color-dark;
 	font-size: inherit;
 	line-height: 1;
 	cursor: pointer;
 	aspect-ratio: 1;
 
 	@include transition('background-color');
-}
-
-.open {
-	background-color: $color-light;
-}
-
-.highlight {
-	opacity: 0.6;
 }
