@@ -1,3 +1,4 @@
+import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -30,6 +31,7 @@ if (root != null) {
 			<Provider store={store}>
 				<ThemeProvider theme={darkTheme}>
 					<App />
+					<CssBaseline enableColorScheme />
 				</ThemeProvider>
 			</Provider>
 		</StrictMode>,

@@ -5,10 +5,4 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	background-color: $color-dark;
-	color: $color-light;
-	font-family: $typography-family-main;
-	font-size: locks($size-font-base, $size-font-max);
-	font-weight: 400;
 }
