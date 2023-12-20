@@ -2,7 +2,6 @@
 
 .dashboard {
 	display: flex;
-	grid-area: dashboard;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
@@ -12,14 +11,5 @@
 		flex-direction: column-reverse;
 		justify-content: start;
 		align-items: center;
-	}
-}
-
-.button {
-	align-self: stretch;
-	margin-left: auto;
-
-	@include breakpoint(m) {
-		margin-left: 0;
 	}
 }

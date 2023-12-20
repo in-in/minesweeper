@@ -7,9 +7,9 @@ import st from "./index.module.scss";
 
 const Wrapper = (): React.ReactNode => (
 	<div className={st.wrapper}>
-		<Dashboard />
-		<Field />
-		<Scoretable />
+		<Dashboard className={st.dashboard} />
+		<Field className={st.field} />
+		<Scoretable className={st.scoretable} />
 		<Dialog />
 	</div>
 );

@@ -1,5 +1,6 @@
 import { Button, FormControlLabel, Switch } from "@mui/material";
 import { styled } from "@mui/system";
+import { clsx } from "clsx";
 
 import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
@@ -20,7 +21,7 @@ const StyledFormControlLabel = styled(FormControlLabel)({
 	marginInline: 0,
 });
 
-const Dashboard = (): React.ReactNode => {
+const Dashboard = ({ className }: { className?: string }): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
 	const turns = useAppSelector(selectTurnCounter);
@@ -28,7 +29,7 @@ const Dashboard = (): React.ReactNode => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className={st.dashboard}>
+		<div className={clsx(st.dashboard, className)}>
 			<Level />
 			<Range />
 			<StyledFormControlLabel
