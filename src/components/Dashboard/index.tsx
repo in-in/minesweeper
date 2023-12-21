@@ -38,6 +38,7 @@ const Dashboard = ({ className }: { className?: string }): React.ReactNode => {
 				value="sound"
 			/>
 			<Box
+				data-testid="theme-button"
 				sx={{
 					display: "flex",
 					flexDirection: "column",
