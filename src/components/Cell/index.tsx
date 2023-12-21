@@ -81,6 +81,7 @@ const Cell = ({ cell }: CellProps): React.ReactNode => {
 	return (
 		<Box
 			className={st.cell}
+			data-testhighlight={state === "highlighted" ? true : null}
 			data-testid={marker}
 			data-testopen={state === "opened" ? true : null}
 			onClick={() => {

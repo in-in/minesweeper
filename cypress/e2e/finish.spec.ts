@@ -33,7 +33,7 @@ describe("check finish status", () => {
 		cy.start();
 		cy.tick(2000);
 		cy.getByTestId("field").within(() => {
-			cy.get("button").not("[data-testid=9]").last().click();
+			cy.get("[data-testid]").not("[data-testid=9]").last().click();
 		});
 		cy.getByTestId("dialog").should(
 			"contain",

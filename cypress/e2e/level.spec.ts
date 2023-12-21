@@ -11,7 +11,7 @@ describe("level", () => {
 		return it(`field contains ${cellsSize} cells, after selecting ${name} level`, () => {
 			cy.get('[type="radio"]').check(name);
 			cy.getByTestId("field").within(() => {
-				cy.get("button").should("have.length", cellsSize);
+				cy.get("[data-testid]").should("have.length", cellsSize);
 			});
 		});
 	});

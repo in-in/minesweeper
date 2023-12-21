@@ -68,21 +68,15 @@ describe("openSurroundingCells", () => {
 
 	it("highlight surrounding cells", () => {
 		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).trigger("mousedown", { button: 1 });
-			cy.get("button:nth-child(2), button:nth-child(11), button:nth-child(12)").as(
-				"btns",
-			);
-			cy.get("@btns").each(($el) => {
-				cy.wrap($el)
-					.invoke("attr", "class")
-					.should("to.match", /highlight_/);
+			cy.get("[data-testid]").eq(0).trigger("mousedown", { button: 1 });
+			cy.get(
+				"[data-testid]:nth-child(2), [data-testid]:nth-child(11), [data-testid]:nth-child(12)",
+			).each(($el) => {
+				cy.wrap($el).should("have.data", "testhighlight");
 			});
-			cy.get("button").eq(0).trigger("mouseup", { button: 1 });
-			cy.get("@btns").each(($el) => {
-				cy.wrap($el)
-					.invoke("attr", "class")
-					.should("not.to.match", /highlight_/);
-			});
+			cy.get("[data-testhighlight]").should("have.length", 3);
+			cy.get("[data-testid]").eq(0).trigger("mouseup", { button: 1 });
+			cy.get("[data-testhighlight]").should("not.exist");
 		});
 	});
 });

@@ -9,8 +9,8 @@ describe("flag", () => {
 
 	it("add flag after right click", () => {
 		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).rightclick();
-			cy.get("button")
+			cy.get("[data-testid]").eq(0).rightclick();
+			cy.get("[data-testid]")
 				.eq(0)
 				.within(() => {
 					cy.getByTestId("FlagIcon").should("be.visible");
@@ -26,11 +26,11 @@ describe("flag", () => {
 	it("counter changes when flags are set", () => {
 		cy.getByTestId("stat-flags").should("contain", flags);
 		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).rightclick();
+			cy.get("[data-testid]").eq(0).rightclick();
 		});
 		cy.getByTestId("stat-flags").should("contain", flags - 1);
 		cy.getByTestId("field").within(() => {
-			cy.get("button").eq(0).rightclick();
+			cy.get("[data-testid]").eq(0).rightclick();
 		});
 		cy.getByTestId("stat-flags").should("contain", flags);
 	});
