@@ -1,6 +1,7 @@
 import {
 	type Cell,
 	type Levels,
+	type MainState,
 	type MinesCounter,
 	type Status,
 } from "@/customTypes/customTypes";
@@ -60,3 +61,6 @@ export const selectflagCounter = createSelector(
 	(state: RootState): number => state[SLICE_MAIN].flagCounter,
 	(count) => count.toString(),
 );
+
+export const selectTheme = (state: RootState): MainState["theme"] =>
+	state[SLICE_MAIN].theme;

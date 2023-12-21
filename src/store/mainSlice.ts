@@ -37,6 +37,9 @@ const mainSlice = createSlice({
 				}),
 			);
 		},
+		switchTheme(state) {
+			state.theme = state.theme === "dark" ? "light" : "dark";
+		},
 		updateMinesCounter(state, action: PayloadAction<MinesCounter>) {
 			state.minesCounter = action.payload;
 			state.flagCounter = action.payload;
@@ -187,6 +190,7 @@ export const {
 	revealSurroundingCells,
 	start,
 	switchLevel,
+	switchTheme,
 	toggleCellFlag,
 	updateField,
 	updateMinesCounter,

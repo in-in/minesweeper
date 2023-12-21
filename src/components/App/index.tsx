@@ -1,8 +1,11 @@
+import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 
 import { Wrapper } from "@/components/Wrapper";
 import { pageLoad } from "@/store/mainSlice";
-import { useAppDispatch } from "@/utils/hooks";
+import { selectTheme } from "@/store/selectors";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 import st from "./index.module.scss";
 
@@ -17,10 +20,28 @@ const App = (): React.ReactNode => {
 			window.removeEventListener("load", handleLoad);
 		};
 	});
+
+	const theme = useAppSelector(selectTheme);
+
+	const customTheme = createTheme({
+		components: {
+			MuiButtonBase: {
+				defaultProps: {
+					disableRipple: true,
+				},
+			},
+		},
+		palette: {
+			mode: theme,
+		},
+	});
 	return (
-		<div className={st.layout}>
-			<Wrapper />
-		</div>
+		<ThemeProvider theme={customTheme}>
+			<CssBaseline enableColorScheme />
+			<div className={st.layout}>
+				<Wrapper />
+			</div>
+		</ThemeProvider>
 	);
 };
 

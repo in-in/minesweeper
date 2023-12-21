@@ -30,6 +30,7 @@ export const INITIAL_STATE: GlobalState = {
 		minesCounter: 10,
 		openCellCounter: 0,
 		status: "idle",
+		theme: "dark",
 		turnCounter: 0,
 	},
 };

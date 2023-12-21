@@ -48,6 +48,7 @@ export interface MainState {
 	minesCounter: MinesCounter;
 	openCellCounter: number;
 	status: Status;
+	theme: "light" | "dark";
 	turnCounter: number;
 }
 
