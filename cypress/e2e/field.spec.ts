@@ -11,26 +11,24 @@ describe("field", () => {
 
 	it(`field should contain ${initialLevel} buttons`, () => {
 		cy.get("@field").within(() => {
-			cy.get("button").should("have.length", initialLevel);
+			cy.get("[data-testid]").should("have.length", initialLevel);
 		});
 	});
 
 	it("active class must be set to open cell", () => {
 		cy.get("@field").within(() => {
-			cy.get("button")
-				.eq(0)
-				.should(($btn) => expect($btn[0].className).to.match(/open_/));
+			cy.get("[data-testid]").eq(0).should("have.data", "testopen");
 		});
 	});
 
-	it.only("open cell cannot be closed back", () => {
+	it("open cell cannot be closed back", () => {
 		cy.getByTestId("0").first().as("cell");
 		cy.get("@cell").then(($cell) => {
 			cy.wrap($cell).click();
-			cy.wrap($cell).should(($btn) => expect($btn[0].className).to.match(/open_/));
+			cy.wrap($cell).should("have.data", "testopen");
 			cy.wrap($cell).rightclick();
 			cy.wrap($cell).should("be.empty");
-			cy.wrap($cell).should(($btn) => expect($btn[0].className).to.match(/open_/));
+			cy.wrap($cell).should("have.data", "testopen");
 		});
 	});
 });

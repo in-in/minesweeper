@@ -10,7 +10,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add("start", () =>
 	cy.getByTestId("field").within(() => {
-		cy.get("button").eq(0).click();
+		cy.get("[data-testid]").eq(0).click();
 	}),
 );
 
