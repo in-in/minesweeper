@@ -1,6 +1,4 @@
 @use 'sass:string';
-@use 'sass:map';
-@use 'sass:meta';
 @use 'functions' as *;
 @use 'vars' as *;
 
@@ -29,18 +27,4 @@
 
 @mixin button-hover() {
 	filter: sepia(60%);
-}
-
-@mixin breakpoint($size, $operator: '>=') {
-	@if map.get($breakpoint, $size) {
-		@media (width $operator map.get($breakpoint, $size) + px) {
-			@content;
-		}
-	} @else if meta.type-of($size) == 'number' {
-		@media (width $operator $size + px) {
-			@content;
-		}
-	} @else {
-		@error 'Unknown size: #{$size}';
-	}
 }

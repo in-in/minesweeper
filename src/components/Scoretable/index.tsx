@@ -1,14 +1,12 @@
-import { clsx } from "clsx";
-
 import st from "./index.module.scss";
 
-const Scoretable = ({ className }: { className?: string }): React.ReactNode => {
+const Scoretable = (): React.ReactNode => {
 	return (
-		<div className={clsx(st.scoretable, className)}>
+		<div className={st.scoretable}>
 			<div className={st.row}>
-				<div className={clsx(st.cell, st.title)}>Score</div>
-				<div className={clsx(st.cell, st.title)}>Time</div>
-				<div className={clsx(st.cell, st.title)}>Date</div>
+				<div className={st.cell}>Score</div>
+				<div className={st.cell}>Time</div>
+				<div className={st.cell}>Date</div>
 			</div>
 			<div className={st.row}>
 				<div className={st.cell}>123</div>

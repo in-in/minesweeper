@@ -1,6 +1,5 @@
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import { Box, Button, FormControlLabel, IconButton, Switch } from "@mui/material";
-import { clsx } from "clsx";
 
 import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
@@ -16,9 +15,7 @@ import {
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
-import st from "./index.module.scss";
-
-const Dashboard = ({ className }: { className?: string }): React.ReactNode => {
+const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
 	const turns = useAppSelector(selectTurnCounter);
@@ -27,7 +24,16 @@ const Dashboard = ({ className }: { className?: string }): React.ReactNode => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className={clsx(st.dashboard, className)}>
+		<Box
+			sx={{
+				display: "flex",
+				flexWrap: "wrap",
+				justifyContent: { xs: "center", sm: "start" },
+				alignItems: { xs: "flex-start", sm: "center" },
+				flexDirection: { sm: "column-reverse" },
+				gap: 2,
+			}}
+		>
 			<Level />
 			<Range />
 			<FormControlLabel
@@ -68,7 +74,7 @@ const Dashboard = ({ className }: { className?: string }): React.ReactNode => {
 			>
 				Restart
 			</Button>
-		</div>
+		</Box>
 	);
 };
 
