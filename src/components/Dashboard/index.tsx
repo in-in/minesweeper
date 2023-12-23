@@ -4,7 +4,7 @@ import { Box, Button, FormControlLabel, IconButton, Switch } from "@mui/material
 import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
-import { restart, switchTheme } from "@/store/mainSlice";
+import { restart, showScoretable, switchTheme } from "@/store/mainSlice";
 import {
 	selectClockTime,
 	selectflagCounter,
@@ -34,6 +34,14 @@ const Dashboard = (): React.ReactNode => {
 				gap: 2,
 			}}
 		>
+			<Button
+				data-testid="scoretable"
+				size="medium"
+				variant="contained"
+				onClick={() => dispatch(showScoretable())}
+			>
+				Scoretable
+			</Button>
 			<Level />
 			<Range />
 			<FormControlLabel

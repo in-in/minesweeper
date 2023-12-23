@@ -45,6 +45,7 @@ export interface MainState {
 	finishMessageTitle: string;
 	flagCounter: number;
 	isLoad: boolean;
+	isScoretableDisplay: boolean;
 	minesCounter: MinesCounter;
 	openCellCounter: number;
 	status: Status;

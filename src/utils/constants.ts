@@ -27,6 +27,7 @@ export const INITIAL_STATE: GlobalState = {
 		finishMessageTitle: " ",
 		flagCounter: 10,
 		isLoad: false,
+		isScoretableDisplay: false,
 		minesCounter: 10,
 		openCellCounter: 0,
 		status: "idle",

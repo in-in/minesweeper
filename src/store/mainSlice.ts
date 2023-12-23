@@ -176,6 +176,9 @@ const mainSlice = createSlice({
 		pageLoad(state) {
 			state.isLoad = !state.isLoad;
 		},
+		showScoretable(state) {
+			state.isScoretableDisplay = !state.isScoretableDisplay;
+		},
 	},
 });
 
@@ -188,6 +191,7 @@ export const {
 	play,
 	restart,
 	revealSurroundingCells,
+	showScoretable,
 	start,
 	switchLevel,
 	switchTheme,
