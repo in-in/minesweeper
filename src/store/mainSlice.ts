@@ -11,7 +11,7 @@ import {
 
 import { createSlice } from "@reduxjs/toolkit";
 
-import { fieldAdapter, fieldAdapterSelectors } from "@/store/fieldAdapter";
+import { fieldAdapter, fieldAdapterSelectors } from "@/store/adapters";
 import {
 	FINISH_LOSS_MESSAGE_TEXT,
 	FINISH_LOSS_MESSAGE_TITLE,

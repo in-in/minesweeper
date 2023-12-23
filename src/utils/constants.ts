@@ -1,6 +1,6 @@
 import { type GlobalState, type Level } from "@/customTypes/customTypes";
 
-import { fieldAdapter } from "@/store/fieldAdapter";
+import { fieldAdapter } from "@/store/adapters";
 import { buildField } from "@/utils/helpers/buildField";
 
 export const LEVELS = [
@@ -30,6 +30,7 @@ export const INITIAL_STATE: GlobalState = {
 		isScoretableDisplay: false,
 		minesCounter: 10,
 		openCellCounter: 0,
+		scoretable: null,
 		status: "idle",
 		theme: "dark",
 		turnCounter: 0,

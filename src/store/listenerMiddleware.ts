@@ -6,7 +6,7 @@ import { type Cell, type CellId } from "@/customTypes/customTypes";
 
 import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
-import { fieldAdapterSelectors } from "@/store/fieldAdapter";
+import { fieldAdapterSelectors } from "@/store/adapters";
 import {
 	clockTick,
 	displayHiddenMines,

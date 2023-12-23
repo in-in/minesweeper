@@ -8,7 +8,7 @@ import {
 
 import { createSelector } from "@reduxjs/toolkit";
 
-import { fieldAdapterSelectors } from "@/store/fieldAdapter";
+import { fieldAdapterSelectors } from "@/store/adapters";
 import { type RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 
