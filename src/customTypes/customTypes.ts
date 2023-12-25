@@ -1,5 +1,5 @@
-import { type fieldAdapter } from "@/store/fieldAdapter";
-import { type LEVELS, type SLICE_MAIN } from "@/utils/constants";
+import type { fieldAdapter, scoretableAdapter } from "@/store/adapters";
+import type { LEVELS, SLICE_MAIN } from "@/utils/constants";
 
 export type CSSCustomProperties = React.CSSProperties &
 	Record<`--${string}`, number | string>;
@@ -34,7 +34,16 @@ export interface Cell {
 	state: CellState;
 }
 
-export type Field = ReturnType<typeof fieldAdapter.getInitialState>;
+export interface ScoreRecord {
+	clockTime: number;
+	date: number;
+	id: string;
+	level: (typeof LEVELS)[number]["name"];
+	turnCounter: number;
+}
+
+type Field = ReturnType<typeof fieldAdapter.getInitialState>;
+type Scoretable = ReturnType<typeof scoretableAdapter.getInitialState>;
 
 export interface MainState {
 	clockTime: number;
@@ -48,6 +57,7 @@ export interface MainState {
 	isScoretableDisplay: boolean;
 	minesCounter: MinesCounter;
 	openCellCounter: number;
+	scoretable: Scoretable;
 	status: Status;
 	theme: "light" | "dark";
 	turnCounter: number;

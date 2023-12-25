@@ -3,12 +3,13 @@ import {
 	type Levels,
 	type MainState,
 	type MinesCounter,
+	type ScoreRecord,
 	type Status,
 } from "@/customTypes/customTypes";
 
 import { createSelector } from "@reduxjs/toolkit";
 
-import { fieldAdapterSelectors } from "@/store/adapters";
+import { fieldAdapterSelectors, scoretableAdapterSelectors } from "@/store/adapters";
 import { type RootState } from "@/store/store";
 import { SLICE_MAIN } from "@/utils/constants";
 
@@ -20,6 +21,9 @@ export const selectMinesCounter = (state: RootState): MinesCounter =>
 
 export const selectField = (state: RootState): Cell[] =>
 	fieldAdapterSelectors.selectAll(state[SLICE_MAIN].field);
+
+export const selectScoretable = (state: RootState): ScoreRecord[] =>
+	scoretableAdapterSelectors.selectAll(state[SLICE_MAIN].scoretable);
 
 export const selectCurrentLevelName = createSelector(
 	selectCurrentLevel,

@@ -9,7 +9,7 @@
 
 .row {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	gap: to-em(8);
 	width: 100%;
 	padding-block: to-em(8);

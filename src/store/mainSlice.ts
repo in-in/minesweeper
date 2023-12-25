@@ -1,17 +1,22 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import {
-	type Cell,
-	type CellId,
-	type CellState,
-	type Levels,
-	type MinesCounter,
-	type StatusFinish,
+import type {
+	Cell,
+	CellId,
+	CellState,
+	Levels,
+	MinesCounter,
+	ScoreRecord,
+	StatusFinish,
 } from "@/customTypes/customTypes";
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-import { fieldAdapter, fieldAdapterSelectors } from "@/store/adapters";
+import {
+	fieldAdapter,
+	fieldAdapterSelectors,
+	scoretableAdapter,
+} from "@/store/adapters";
 import {
 	FINISH_LOSS_MESSAGE_TEXT,
 	FINISH_LOSS_MESSAGE_TITLE,
@@ -139,24 +144,41 @@ const mainSlice = createSlice({
 		start(state) {
 			state.status = "play";
 		},
-		play(state) {
-			if (state.currentSelectCellId != null) {
-				const currentSelectCellMarker =
-					state.field.entities[state.currentSelectCellId];
+		play: {
+			reducer(state, action?: PayloadAction<Pick<ScoreRecord, "id" | "date">>) {
+				if (state.currentSelectCellId != null) {
+					const currentSelectCellMarker =
+						state.field.entities[state.currentSelectCellId];
 
-				if (currentSelectCellMarker?.marker === 9) {
-					state.status = "lose";
-					state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
-					state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
-				} else if (
-					state.openCellCounter >=
-					state.field.ids.length - state.minesCounter
-				) {
-					state.status = "win";
-					state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
-					state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
+					if (currentSelectCellMarker?.marker === 9) {
+						state.status = "lose";
+						state.finishMessageTitle = FINISH_LOSS_MESSAGE_TITLE;
+						state.finishMessageText = FINISH_LOSS_MESSAGE_TEXT;
+					} else if (
+						state.openCellCounter >=
+						state.field.ids.length - state.minesCounter
+					) {
+						state.status = "win";
+						state.finishMessageTitle = FINISH_WIN_MESSAGE_TITLE;
+						state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
+
+						if (action != null) {
+							scoretableAdapter.setOne(state.scoretable, {
+								clockTime: state.clockTime,
+								date: action.payload.date,
+								id: action.payload.id,
+								level: state.currentLevel.name,
+								turnCounter: state.turnCounter,
+							});
+						}
+					}
 				}
-			}
+			},
+			prepare() {
+				const id = nanoid();
+				const date = new Date().getTime();
+				return { payload: { id, date } };
+			},
 		},
 		displayHiddenMines(state, action: PayloadAction<StatusFinish>) {
 			const stateStatus: CellState = action.payload === "win" ? "flagged" : "opened";
