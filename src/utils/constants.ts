@@ -1,6 +1,19 @@
 import { type GlobalState, type Level } from "@/customTypes/customTypes";
 
-import { fieldAdapter } from "@/store/adapters";
+import {
+	amber,
+	blue,
+	cyan,
+	green,
+	grey,
+	lime,
+	orange,
+	red,
+	teal,
+	yellow,
+} from "@mui/material/colors";
+
+import { fieldAdapter, scoretableAdapter } from "@/store/adapters";
 import { buildField } from "@/utils/helpers/buildField";
 
 export const LEVELS = [
@@ -30,9 +43,21 @@ export const INITIAL_STATE: GlobalState = {
 		isScoretableDisplay: false,
 		minesCounter: 10,
 		openCellCounter: 0,
-		scoretable: null,
+		scoretable: scoretableAdapter.getInitialState(),
 		status: "idle",
 		theme: "dark",
 		turnCounter: 0,
 	},
+};
+export const cellMarkerColor = {
+	0: grey,
+	1: blue,
+	2: cyan,
+	3: teal,
+	4: green,
+	5: lime,
+	6: yellow,
+	7: amber,
+	8: orange,
+	9: red,
 };
