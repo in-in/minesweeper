@@ -1,6 +1,6 @@
 import { Box, type SxProps } from "@mui/material";
 
-import { Cell as FieldCell } from "@/components/Cell";
+import { Cell } from "@/components/Cell";
 import { selectCurrentLevelSize, selectField } from "@/store/selectors";
 import { useAppSelector } from "@/utils/hooks";
 
@@ -22,7 +22,7 @@ const Field = (): React.ReactNode => {
 	return (
 		<Box data-testid="field" sx={styles}>
 			{field.map((cell) => (
-				<FieldCell cell={cell} key={cell.id} />
+				<Cell cell={cell} key={cell.id} />
 			))}
 		</Box>
 	);
