@@ -9,7 +9,7 @@ import { LazyScoretable as Scoretable } from "@/components/Scoretable/";
 const styles = {
 	display: "grid",
 	gap: 2,
-	padding: 2,
+	padding: { xs: 1, sm: 2 },
 	gridTemplateAreas: {
 		xs: "'dashboard' 'field'",
 		sm: `'field field field dashboard'`,

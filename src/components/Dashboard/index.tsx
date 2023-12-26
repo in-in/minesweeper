@@ -1,5 +1,12 @@
 import { Brightness4, Brightness7 } from "@mui/icons-material";
-import { Box, Button, FormControlLabel, IconButton, Switch } from "@mui/material";
+import {
+	Box,
+	Button,
+	FormControlLabel,
+	IconButton,
+	Switch,
+	type SxProps,
+} from "@mui/material";
 
 import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
@@ -9,6 +16,7 @@ import {
 	selectClockTime,
 	selectflagCounter,
 	selectIsIdleStatus,
+	selectScoretable,
 	selectTheme,
 	selectTurnCounter,
 } from "@/store/selectors";
@@ -21,27 +29,37 @@ const Dashboard = (): React.ReactNode => {
 	const turns = useAppSelector(selectTurnCounter);
 	const flags = useAppSelector(selectflagCounter);
 	const theme = useAppSelector(selectTheme);
+	const scoretable = useAppSelector(selectScoretable);
 	const dispatch = useAppDispatch();
+
+	const stylesButton: SxProps = {
+		width: { xs: "50%", sm: "auto" },
+		order: { xs: 3, sm: 0 },
+	};
 
 	return (
 		<Box
 			sx={{
 				display: "flex",
 				flexWrap: "wrap",
-				justifyContent: { xs: "center", sm: "start" },
+				justifyContent: { xs: "space-evenly", sm: "start" },
 				alignItems: { xs: "flex-start", sm: "center" },
-				flexDirection: { sm: "column-reverse" },
-				gap: 2,
+				flexDirection: { xs: "row", sm: "column-reverse" },
+				rowGap: 2,
+				columnGap: { xs: 1, sm: 2 },
 			}}
 		>
-			<Button
-				data-testid="scoretable"
-				size="medium"
-				variant="contained"
-				onClick={() => dispatch(showScoretable())}
-			>
-				Scoretable
-			</Button>
+			{scoretable.length > 0 && (
+				<Button
+					data-testid="scoretable"
+					size="medium"
+					sx={stylesButton}
+					variant="contained"
+					onClick={() => dispatch(showScoretable())}
+				>
+					Scoretable
+				</Button>
+			)}
 			<Level />
 			<Range />
 			<FormControlLabel
@@ -76,7 +94,8 @@ const Dashboard = (): React.ReactNode => {
 			<Button
 				data-testid="restart"
 				disabled={isIdleStatus}
-				size="large"
+				size="medium"
+				sx={stylesButton}
 				variant="contained"
 				onClick={() => dispatch(restart())}
 			>
