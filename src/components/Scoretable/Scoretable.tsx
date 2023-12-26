@@ -1,8 +1,13 @@
+import { Box } from "@mui/material";
+import {
+	DataGrid,
+	type GridColDef,
+	type GridValueFormatterParams,
+} from "@mui/x-data-grid";
+
 import { selectScoretable } from "@/store/selectors";
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
 import { useAppSelector } from "@/utils/hooks";
-
-import st from "./index.module.scss";
 
 const formatedDate = new Intl.DateTimeFormat("en-US", {
 	hour12: false,
@@ -10,26 +15,57 @@ const formatedDate = new Intl.DateTimeFormat("en-US", {
 	timeStyle: "medium",
 });
 
+const columns: GridColDef[] = [
+	{
+		field: "level",
+		headerName: "Level",
+		flex: 25,
+		align: "center",
+		headerAlign: "center",
+	},
+	{
+		field: "clockTime",
+		headerName: "Time",
+		flex: 25,
+		align: "center",
+		headerAlign: "center",
+		type: "number",
+		valueFormatter: (params: GridValueFormatterParams<number>) =>
+			formatClockTime(params.value),
+	},
+	{
+		field: "turnCounter",
+		headerName: "Turns",
+		flex: 25,
+		align: "center",
+		headerAlign: "center",
+	},
+	{
+		field: "date",
+		headerName: "Date",
+		flex: 25,
+		align: "center",
+		headerAlign: "center",
+		valueFormatter: (params: GridValueFormatterParams<number>) =>
+			formatedDate.format(params.value),
+	},
+];
+
 const Scoretable = (): React.ReactNode => {
 	const scoretable = useAppSelector(selectScoretable);
 
 	return (
-		<div className={st.scoretable}>
-			<div className={st.row}>
-				<div className={st.cell}>Level</div>
-				<div className={st.cell}>clockTime</div>
-				<div className={st.cell}>turnCounter</div>
-				<div className={st.cell}>Date</div>
-			</div>
-			{scoretable.map((record) => (
-				<div className={st.row} key={record.id}>
-					<div className={st.cell}>{record.level}</div>
-					<div className={st.cell}>{formatClockTime(record.clockTime)}</div>
-					<div className={st.cell}>{record.turnCounter}</div>
-					<div className={st.cell}>{formatedDate.format(record.date)}</div>
-				</div>
-			))}
-		</div>
+		<Box sx={{ width: "100%" }}>
+			<DataGrid
+				autoHeight
+				disableColumnMenu
+				disableRowSelectionOnClick
+				columns={columns}
+				density="compact"
+				paginationModel={{ page: 0, pageSize: 5 }}
+				rows={scoretable}
+			/>
+		</Box>
 	);
 };
 
