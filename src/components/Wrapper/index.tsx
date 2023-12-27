@@ -1,10 +1,20 @@
-import { Box, Container } from "@mui/material";
+import {
+	Box,
+	Button,
+	Container,
+	DialogActions,
+	DialogContent,
+	Dialog as MUIDialog,
+} from "@mui/material";
 import { Suspense } from "react";
 
 import { Dashboard } from "@/components/Dashboard";
 import { Dialog } from "@/components/Dialog";
 import { Field } from "@/components/Field";
 import { LazyScoretable as Scoretable } from "@/components/Scoretable/";
+import { showScoretable } from "@/store/mainSlice";
+import { SLICE_MAIN } from "@/utils/constants";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 
 const styles = {
 	display: "grid",
@@ -18,6 +28,11 @@ const styles = {
 };
 
 const Wrapper = (): React.ReactNode => {
+	const dispatch = useAppDispatch();
+	const isScoretableDisplay = useAppSelector(
+		(state) => state[SLICE_MAIN].isScoretableDisplay,
+	);
+
 	return (
 		<Container disableGutters maxWidth="lg" sx={styles}>
 			<Box sx={{ gridArea: "dashboard" }}>
@@ -26,9 +41,23 @@ const Wrapper = (): React.ReactNode => {
 			<Box sx={{ gridArea: "field" }}>
 				<Field />
 			</Box>
-			<Suspense fallback={"Loading..."}>
-				<Scoretable />
-			</Suspense>
+
+			<MUIDialog
+				fullWidth
+				aria-labelledby="scoretable-dialog-title"
+				maxWidth="md"
+				open={isScoretableDisplay}
+				onClose={() => dispatch(showScoretable())}
+			>
+				<DialogContent>
+					<Suspense fallback={"Loading..."}>
+						<Scoretable />
+					</Suspense>
+				</DialogContent>
+				<DialogActions sx={{ p: "0 20px 8px" }}>
+					<Button onClick={() => dispatch(showScoretable())}>Close</Button>
+				</DialogActions>
+			</MUIDialog>
 
 			<Dialog />
 		</Container>
