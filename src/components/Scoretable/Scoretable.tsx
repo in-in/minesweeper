@@ -63,6 +63,7 @@ const Scoretable = (): React.ReactNode => {
 			disableColumnMenu
 			disableRowSelectionOnClick
 			columns={columns}
+			data-testid="scoretableGrid"
 			density="compact"
 			pageSizeOptions={[5]}
 			rows={scoretable}

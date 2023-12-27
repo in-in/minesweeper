@@ -44,7 +44,8 @@ const Wrapper = (): React.ReactNode => {
 
 			<MUIDialog
 				fullWidth
-				aria-labelledby="scoretable-dialog-title"
+				aria-labelledby="scoretable-dialog"
+				data-testid="scoretableDialog"
 				maxWidth="md"
 				open={isScoretableDisplay}
 				onClose={() => dispatch(showScoretable())}

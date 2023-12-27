@@ -51,7 +51,7 @@ const Dashboard = (): React.ReactNode => {
 		>
 			{scoretable.length > 0 && (
 				<Button
-					data-testid="scoretable"
+					data-testid="scoretableButton"
 					size="medium"
 					sx={stylesButton}
 					variant="contained"

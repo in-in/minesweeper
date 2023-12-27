@@ -616,9 +616,15 @@
 		"finishMessageTitle": " ",
 		"flagCounter": 10,
 		"isLoad": true,
-		"minesCounter": 3,
+		"isScoretableDisplay": false,
+		"minesCounter": 10,
 		"openCellCounter": 0,
+		"scoretable": {
+			"ids": [],
+			"entities": {}
+		},
 		"status": "idle",
+		"theme": "dark",
 		"turnCounter": 0
 	}
 }
