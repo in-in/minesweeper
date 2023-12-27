@@ -20,7 +20,7 @@ const Range = (): React.ReactNode => {
 	));
 
 	return (
-		<FormControl fullWidth size="small">
+		<FormControl size="small" sx={{ width: { xs: "100%", sm: "auto" } }}>
 			<FormLabel htmlFor="mines">Mines Amount</FormLabel>
 			<NativeSelect
 				disabled={!isIdleStatus}
