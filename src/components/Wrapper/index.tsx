@@ -1,6 +1,7 @@
 import {
 	Box,
 	Button,
+	CircularProgress,
 	Container,
 	DialogActions,
 	DialogContent,
@@ -50,8 +51,10 @@ const Wrapper = (): React.ReactNode => {
 				open={isScoretableDisplay}
 				onClose={() => dispatch(showScoretable())}
 			>
-				<DialogContent>
-					<Suspense fallback={"Loading..."}>
+				<DialogContent
+					sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+				>
+					<Suspense fallback={<CircularProgress data-testid="scoretableProgress" />}>
 						<Scoretable />
 					</Suspense>
 				</DialogContent>
