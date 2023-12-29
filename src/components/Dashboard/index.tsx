@@ -8,14 +8,21 @@ import {
 	type SxProps,
 } from "@mui/material";
 
+import click from "@/assets/sounds/click.mp3";
 import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
-import { restart, showScoretable, switchTheme } from "@/store/mainSlice";
+import {
+	restart,
+	showScoretable,
+	switchTheme,
+	toggleSound,
+} from "@/store/mainSlice";
 import {
 	selectClockTime,
-	selectflagCounter,
+	selectFlagCounter,
 	selectIsIdleStatus,
+	selectIsSoundEnabled,
 	selectScoretable,
 	selectTheme,
 	selectTurnCounter,
@@ -27,14 +34,30 @@ const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
 	const clockTime = useAppSelector(selectClockTime);
 	const turns = useAppSelector(selectTurnCounter);
-	const flags = useAppSelector(selectflagCounter);
+	const flags = useAppSelector(selectFlagCounter);
 	const theme = useAppSelector(selectTheme);
 	const scoretable = useAppSelector(selectScoretable);
+	const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
 	const dispatch = useAppDispatch();
 
 	const stylesButton: SxProps = {
 		width: { xs: "50%", sm: "auto" },
 		order: { xs: 3, sm: 0 },
+	};
+
+	const play = (): void => {
+		if (isSoundEnabled) {
+			void new Audio(click).play();
+		}
+	};
+
+	const handleChange = (): void => {
+		dispatch(toggleSound());
+	};
+
+	const handleClick = (): void => {
+		play();
+		dispatch(showScoretable());
 	};
 
 	return (
@@ -55,7 +78,7 @@ const Dashboard = (): React.ReactNode => {
 					size="medium"
 					sx={stylesButton}
 					variant="contained"
-					onClick={() => dispatch(showScoretable())}
+					onClick={handleClick}
 				>
 					Scoretable
 				</Button>
@@ -63,7 +86,7 @@ const Dashboard = (): React.ReactNode => {
 			<Level />
 			<Range />
 			<FormControlLabel
-				control={<Switch />}
+				control={<Switch checked={isSoundEnabled} onChange={handleChange} />}
 				label="Sound"
 				labelPlacement="top"
 				sx={{ marginInline: 0 }}

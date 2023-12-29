@@ -102,8 +102,23 @@ function buildModule({ mode }: BuildOptions): Configuration["module"] {
 		},
 	};
 
+	const soundLoader = {
+		test: /\.mp3$/i,
+		type: assetModuleType,
+		generator: {
+			filename: "assets/sounds/" + assetFilename,
+		},
+	};
+
 	return {
-		rules: [fontLoader, svgIconLoader, imageLoader, styleLoader, tsLoader],
+		rules: [
+			soundLoader,
+			fontLoader,
+			svgIconLoader,
+			imageLoader,
+			styleLoader,
+			tsLoader,
+		],
 	};
 }
 

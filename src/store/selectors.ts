@@ -61,10 +61,14 @@ export const selectTurnCounter = createSelector(
 	(count) => count.toString(),
 );
 
-export const selectflagCounter = createSelector(
+export const selectFlagCounter = createSelector(
 	(state: RootState): number => state[SLICE_MAIN].flagCounter,
 	(count) => count.toString(),
 );
 
 export const selectTheme = (state: RootState): MainState["theme"] =>
 	state[SLICE_MAIN].theme;
+
+export const selectIsSoundEnabled = (
+	state: RootState,
+): MainState["isSoundEnabled"] => state[SLICE_MAIN].isSoundEnabled;

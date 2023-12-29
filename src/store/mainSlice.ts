@@ -45,6 +45,9 @@ const mainSlice = createSlice({
 		switchTheme(state) {
 			state.theme = state.theme === "dark" ? "light" : "dark";
 		},
+		toggleSound(state) {
+			state.isSoundEnabled = !state.isSoundEnabled;
+		},
 		updateMinesCounter(state, action: PayloadAction<MinesCounter>) {
 			state.minesCounter = action.payload;
 			state.flagCounter = action.payload;
@@ -218,6 +221,7 @@ export const {
 	switchLevel,
 	switchTheme,
 	toggleCellFlag,
+	toggleSound,
 	updateField,
 	updateMinesCounter,
 } = mainSlice.actions;

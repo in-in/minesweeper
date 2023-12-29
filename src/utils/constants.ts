@@ -41,6 +41,7 @@ export const INITIAL_STATE: GlobalState = {
 		flagCounter: 10,
 		isLoad: false,
 		isScoretableDisplay: false,
+		isSoundEnabled: false,
 		minesCounter: 10,
 		openCellCounter: 0,
 		scoretable: scoretableAdapter.getInitialState(),

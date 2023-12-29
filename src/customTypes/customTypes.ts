@@ -55,6 +55,7 @@ export interface MainState {
 	flagCounter: number;
 	isLoad: boolean;
 	isScoretableDisplay: boolean;
+	isSoundEnabled: boolean;
 	minesCounter: MinesCounter;
 	openCellCounter: number;
 	scoretable: Scoretable;
