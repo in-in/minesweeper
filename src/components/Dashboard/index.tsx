@@ -28,7 +28,8 @@ import {
 	selectTurnCounter,
 } from "@/store/selectors";
 import { formatClockTimeToHHMMSS } from "@/utils/helpers/formatClockTimeToHHMMSS";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
+import { useSound } from "@/utils/hooks/useSound";
 
 const Dashboard = (): React.ReactNode => {
 	const isIdleStatus = useAppSelector(selectIsIdleStatus);
@@ -40,15 +41,11 @@ const Dashboard = (): React.ReactNode => {
 	const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
 	const dispatch = useAppDispatch();
 
+	const play = useSound(click);
+
 	const stylesButton: SxProps = {
 		width: { xs: "50%", sm: "auto" },
 		order: { xs: 3, sm: 0 },
-	};
-
-	const play = (): void => {
-		if (isSoundEnabled) {
-			void new Audio(click).play();
-		}
 	};
 
 	const handleChange = (): void => {
@@ -56,8 +53,8 @@ const Dashboard = (): React.ReactNode => {
 	};
 
 	const handleClick = (): void => {
-		play();
 		dispatch(showScoretable());
+		play();
 	};
 
 	return (

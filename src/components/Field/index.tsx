@@ -2,7 +2,7 @@ import { Box, type SxProps } from "@mui/material";
 
 import { Cell } from "@/components/Cell";
 import { selectCurrentLevelSize, selectField } from "@/store/selectors";
-import { useAppSelector } from "@/utils/hooks";
+import { useAppSelector } from "@/utils/hooks/store";
 
 const Field = (): React.ReactNode => {
 	const currentLevelSize = useAppSelector(selectCurrentLevelSize);

@@ -17,7 +17,7 @@ import {
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
 import { getSuffix } from "@/utils/helpers/getSuffix";
 import { replaceStubsInString } from "@/utils/helpers/replaceStubsInString";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
 
 const Dialog = (): React.ReactNode => {
 	const isFinishStatus = useAppSelector(selectIsFinishStatus);

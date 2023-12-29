@@ -15,7 +15,7 @@ import { Field } from "@/components/Field";
 import { LazyScoretable as Scoretable } from "@/components/Scoretable/";
 import { showScoretable } from "@/store/mainSlice";
 import { SLICE_MAIN } from "@/utils/constants";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
 
 const styles = {
 	display: "grid",

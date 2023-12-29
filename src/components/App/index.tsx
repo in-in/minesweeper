@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Wrapper } from "@/components/Wrapper";
 import { pageLoad } from "@/store/mainSlice";
 import { selectTheme } from "@/store/selectors";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
 
 import st from "./index.module.scss";
 

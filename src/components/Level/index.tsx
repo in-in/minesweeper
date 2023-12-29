@@ -11,7 +11,7 @@ import { useTheme } from "@mui/material/styles";
 import { switchLevel } from "@/store/mainSlice";
 import { selectCurrentLevelName, selectIsIdleStatus } from "@/store/selectors";
 import { LEVELS } from "@/utils/constants";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
 
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);

@@ -6,7 +6,7 @@ import { Box, type SxProps } from "@mui/material";
 import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectStatus } from "@/store/selectors";
 import { cellMarkerColor } from "@/utils/constants";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
 
 import st from "./index.module.scss";
 

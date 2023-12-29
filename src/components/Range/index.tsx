@@ -4,7 +4,7 @@ import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
 import { updateMinesCounter } from "@/store/mainSlice";
 import { selectIsIdleStatus, selectMinesCounter } from "@/store/selectors";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
 
 const Range = (): React.ReactNode => {
 	const minesCounter = useAppSelector(selectMinesCounter);

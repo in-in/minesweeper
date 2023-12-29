@@ -6,7 +6,7 @@ import {
 
 import { selectScoretable } from "@/store/selectors";
 import { formatClockTime } from "@/utils/helpers/formatClockTime";
-import { useAppSelector } from "@/utils/hooks";
+import { useAppSelector } from "@/utils/hooks/store";
 
 const formatedDate = new Intl.DateTimeFormat("en-US", {
 	hour12: false,
