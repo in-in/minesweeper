@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Suspense } from "react";
 
+import click from "@/assets/sounds/click.mp3";
 import { Dashboard } from "@/components/Dashboard";
 import { Dialog } from "@/components/Dialog";
 import { Field } from "@/components/Field";
@@ -16,6 +17,7 @@ import { LazyScoretable as Scoretable } from "@/components/Scoretable/";
 import { showScoretable } from "@/store/mainSlice";
 import { SLICE_MAIN } from "@/utils/constants";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
+import { useSound } from "@/utils/hooks/useSound";
 
 const styles = {
 	display: "grid",
@@ -30,9 +32,15 @@ const styles = {
 
 const Wrapper = (): React.ReactNode => {
 	const dispatch = useAppDispatch();
+	const playClick = useSound(click);
 	const isScoretableDisplay = useAppSelector(
 		(state) => state[SLICE_MAIN].isScoretableDisplay,
 	);
+
+	const handleClick = (): void => {
+		dispatch(showScoretable());
+		playClick();
+	};
 
 	return (
 		<Container disableGutters maxWidth="lg" sx={styles}>
@@ -59,7 +67,7 @@ const Wrapper = (): React.ReactNode => {
 					</Suspense>
 				</DialogContent>
 				<DialogActions sx={{ p: "0 20px 8px" }}>
-					<Button onClick={() => dispatch(showScoretable())}>Close</Button>
+					<Button onClick={handleClick}>Close</Button>
 				</DialogActions>
 			</MUIDialog>
 

@@ -1,12 +1,18 @@
-import type { CellId, CellState, Cell as ICell } from "@/customTypes/customTypes";
+import type { CellId, Cell as ICell } from "@/customTypes/customTypes";
 
 import { Flag, LocalFireDepartment } from "@mui/icons-material";
 import { Box, type SxProps } from "@mui/material";
 
+import explosion from "@/assets/sounds/explosion.mp3";
+import highlightSound from "@/assets/sounds/highlight.mp3";
+import pop from "@/assets/sounds/pop.mp3";
+import revealCell from "@/assets/sounds/revealCell.mp3";
+import stick from "@/assets/sounds/stick.mp3";
 import { openCell, revealSurroundingCells, toggleCellFlag } from "@/store/mainSlice";
 import { selectStatus } from "@/store/selectors";
 import { cellMarkerColor } from "@/utils/constants";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
+import { useSound } from "@/utils/hooks/useSound";
 
 import st from "./index.module.scss";
 
@@ -26,20 +32,36 @@ const Cell = ({ cell }: CellProps): React.ReactNode => {
 	const { id, marker, state } = cell;
 	const status = useAppSelector(selectStatus);
 	const dispatch = useAppDispatch();
+	const playRevealCell = useSound(revealCell);
+	const playExplosion = useSound(explosion);
+	const playStick = useSound(stick);
+	const playPop = useSound(pop);
+	const playHighlight = useSound(highlightSound);
 
-	const handleClick = (state: CellState, cell: ICell): void => {
-		if (state === "closed") {
+	const handleClick = (cell: ICell): void => {
+		if (cell.state === "closed") {
 			dispatch(openCell(cell));
+		}
+		if (cell.marker === 9 && cell.state !== "flagged") {
+			playExplosion();
+		} else if (cell.state === "closed") {
+			playRevealCell();
 		}
 	};
 
 	const handleContextMenu = (
 		event: React.MouseEvent<HTMLElement>,
-		id: CellId,
+		cell: ICell,
 	): void => {
 		event.stopPropagation();
 		event.preventDefault();
-		dispatch(toggleCellFlag(id));
+		dispatch(toggleCellFlag(cell.id));
+
+		if (cell.state === "flagged") {
+			playPop();
+		} else if (cell.state !== "opened") {
+			playStick();
+		}
 	};
 
 	const handleMiddleClick = (
@@ -51,6 +73,9 @@ const Cell = ({ cell }: CellProps): React.ReactNode => {
 			event.stopPropagation();
 			event.preventDefault();
 			dispatch(revealSurroundingCells({ id, highlight }));
+			if (highlight) {
+				playHighlight();
+			}
 		}
 	};
 
@@ -71,10 +96,10 @@ const Cell = ({ cell }: CellProps): React.ReactNode => {
 			data-testopen={state === "opened" ? true : null}
 			sx={styles}
 			onClick={() => {
-				handleClick(state, cell);
+				handleClick(cell);
 			}}
 			onContextMenu={(event) => {
-				handleContextMenu(event, id);
+				handleContextMenu(event, cell);
 			}}
 			onMouseDown={(event) => {
 				handleMiddleClick(event, id, true);

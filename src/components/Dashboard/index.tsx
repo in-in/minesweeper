@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 import click from "@/assets/sounds/click.mp3";
+import switchControl from "@/assets/sounds/switch.mp3";
 import { Level } from "@/components/Level";
 import { Range } from "@/components/Range";
 import { Stat } from "@/components/Stat";
@@ -41,7 +42,8 @@ const Dashboard = (): React.ReactNode => {
 	const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
 	const dispatch = useAppDispatch();
 
-	const play = useSound(click);
+	const playClick = useSound(click);
+	const playSwitch = useSound(switchControl);
 
 	const stylesButton: SxProps = {
 		width: { xs: "50%", sm: "auto" },
@@ -50,11 +52,22 @@ const Dashboard = (): React.ReactNode => {
 
 	const handleChange = (): void => {
 		dispatch(toggleSound());
+		playSwitch();
 	};
 
-	const handleClick = (): void => {
+	const handleClickScoretable = (): void => {
 		dispatch(showScoretable());
-		play();
+		playClick();
+	};
+
+	const handleClickRestart = (): void => {
+		dispatch(restart());
+		playClick();
+	};
+
+	const handleClickTheme = (): void => {
+		dispatch(switchTheme());
+		playSwitch();
 	};
 
 	return (
@@ -75,7 +88,7 @@ const Dashboard = (): React.ReactNode => {
 					size="medium"
 					sx={stylesButton}
 					variant="contained"
-					onClick={handleClick}
+					onClick={handleClickScoretable}
 				>
 					Scoretable
 				</Button>
@@ -100,7 +113,7 @@ const Dashboard = (): React.ReactNode => {
 				}}
 			>
 				{theme} mode
-				<IconButton onClick={() => dispatch(switchTheme())}>
+				<IconButton onClick={handleClickTheme}>
 					{theme === "dark" ? <Brightness7 /> : <Brightness4 />}
 				</IconButton>
 			</Box>
@@ -117,7 +130,7 @@ const Dashboard = (): React.ReactNode => {
 				size="medium"
 				sx={stylesButton}
 				variant="contained"
-				onClick={() => dispatch(restart())}
+				onClick={handleClickRestart}
 			>
 				Restart
 			</Button>

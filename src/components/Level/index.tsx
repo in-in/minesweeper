@@ -1,3 +1,5 @@
+import type { Levels } from "@/customTypes/customTypes";
+
 import {
 	FormControl,
 	FormControlLabel,
@@ -8,10 +10,12 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+import level from "@/assets/sounds/level.mp3";
 import { switchLevel } from "@/store/mainSlice";
 import { selectCurrentLevelName, selectIsIdleStatus } from "@/store/selectors";
 import { LEVELS } from "@/utils/constants";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
+import { useSound } from "@/utils/hooks/useSound";
 
 const Level = (): React.ReactNode => {
 	const currentLevelName = useAppSelector(selectCurrentLevelName);
@@ -19,6 +23,13 @@ const Level = (): React.ReactNode => {
 	const dispatch = useAppDispatch();
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.down("sm"));
+
+	const play = useSound(level);
+
+	const handleChange = (level: Levels): void => {
+		dispatch(switchLevel(level));
+		play();
+	};
 
 	return (
 		<FormControl>
@@ -38,7 +49,9 @@ const Level = (): React.ReactNode => {
 							label={level.name}
 							sx={{ textTransform: "capitalize" }}
 							value={level.name}
-							onChange={() => dispatch(switchLevel(level))}
+							onChange={() => {
+								handleChange(level);
+							}}
 						/>
 					);
 				})}

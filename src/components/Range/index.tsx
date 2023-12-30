@@ -2,9 +2,11 @@ import { type MinesCounter } from "@/customTypes/customTypes";
 
 import { FormControl, FormLabel, NativeSelect } from "@mui/material";
 
+import dropdown from "@/assets/sounds/dropdown.mp3";
 import { updateMinesCounter } from "@/store/mainSlice";
 import { selectIsIdleStatus, selectMinesCounter } from "@/store/selectors";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/store";
+import { useSound } from "@/utils/hooks/useSound";
 
 const Range = (): React.ReactNode => {
 	const minesCounter = useAppSelector(selectMinesCounter);
@@ -12,6 +14,13 @@ const Range = (): React.ReactNode => {
 	const dispatch = useAppDispatch();
 
 	const createRangeArray = Array.from({ length: 90 }, (_, i) => i + 10);
+
+	const play = useSound(dropdown);
+
+	const handleChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+		dispatch(updateMinesCounter(Number(event.target.value) as MinesCounter));
+		play();
+	};
 
 	const selectOptions = createRangeArray.map((el) => (
 		<option data-testid="mines-select" key={el} value={el}>
@@ -27,9 +36,7 @@ const Range = (): React.ReactNode => {
 				id="mines"
 				name="mines"
 				value={minesCounter}
-				onChange={(ev) =>
-					dispatch(updateMinesCounter(Number(ev.target.value) as MinesCounter))
-				}
+				onChange={handleChange}
 			>
 				{selectOptions}
 			</NativeSelect>
