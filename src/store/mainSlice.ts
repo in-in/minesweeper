@@ -16,6 +16,7 @@ import {
 	fieldAdapter,
 	fieldAdapterSelectors,
 	scoretableAdapter,
+	scoretableAdapterSelectors,
 } from "@/store/adapters";
 import {
 	FINISH_LOSS_MESSAGE_TEXT,
@@ -166,6 +167,14 @@ const mainSlice = createSlice({
 						state.finishMessageText = FINISH_WIN_MESSAGE_TEXT;
 
 						if (action != null) {
+							const scoretablesIds = scoretableAdapterSelectors.selectIds(
+								state.scoretable,
+							);
+
+							if (scoretablesIds.length >= 15 && scoretablesIds[0] != null) {
+								scoretableAdapter.removeOne(state.scoretable, scoretablesIds[0]);
+							}
+
 							scoretableAdapter.setOne(state.scoretable, {
 								clockTime: state.clockTime,
 								date: action.payload.date,

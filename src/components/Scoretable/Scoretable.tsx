@@ -73,6 +73,9 @@ const Scoretable = (): React.ReactNode => {
 						pageSize: 5,
 					},
 				},
+				sorting: {
+					sortModel: [{ field: "date", sort: "desc" }],
+				},
 			}}
 		/>
 	);
