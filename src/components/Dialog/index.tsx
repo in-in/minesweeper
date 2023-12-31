@@ -45,8 +45,8 @@ const Dialog = (): React.ReactNode => {
 
 	return (
 		<MUIDialog
-			aria-describedby="alert-dialog-description"
-			aria-labelledby="alert-dialog-title"
+			aria-describedby="finish-dialog-description"
+			aria-labelledby="finish-dialog-title"
 			data-testid="dialog"
 			open={isFinishStatus}
 			sx={{
@@ -55,9 +55,9 @@ const Dialog = (): React.ReactNode => {
 				},
 			}}
 		>
-			<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+			<DialogTitle id="finish-dialog-title">{title}</DialogTitle>
 			<DialogContent>
-				<DialogContentText id="alert-dialog-description">
+				<DialogContentText id="finish-dialog-description">
 					{replaceStubsInString({
 						text,
 						slot1: formatClockTime(clockTime),
