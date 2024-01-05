@@ -1,8 +1,7 @@
 import type { TypedAddListener, TypedStartListening } from "@reduxjs/toolkit";
 
+import type { Cell, CellId } from "@/customTypes/customTypes";
 import type { AppDispatch, RootState } from "@/store/store";
-
-import { type Cell, type CellId } from "@/customTypes/customTypes";
 
 import { addListener, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
@@ -10,15 +9,18 @@ import { fieldAdapterSelectors } from "@/store/adapters";
 import {
 	clockTick,
 	displayHiddenMines,
+	highlightCells,
 	openCell,
 	openSurroundingCells,
 	pageLoad,
 	play,
+	revealSurroundingCells,
 	start,
 	updateField,
 } from "@/store/mainSlice";
 import { SLICE_MAIN } from "@/utils/constants";
 import { getSurroundingCells } from "@/utils/helpers/getSurroundingCells";
+import { highlightSurroundingCells } from "@/utils/helpers/highlightSurroundingCells";
 import { localStorageWrapper } from "@/utils/helpers/localStorageWrapper";
 import { placeMines } from "@/utils/helpers/placeMines";
 
@@ -128,5 +130,44 @@ startAppListening({
 			.flat();
 
 		dispatch(openSurroundingCells([...emptyCells, ...new Set(notEmptyCells)]));
+	},
+});
+
+startAppListening({
+	actionCreator: revealSurroundingCells,
+	effect: (action, { getState, dispatch }) => {
+		const state = getState()[SLICE_MAIN];
+		const targetCell = state.field.entities[action.payload.id];
+		const surroundingCells = getSurroundingCells({
+			id: action.payload.id,
+			limit: state.currentLevel.size,
+			field: fieldAdapterSelectors.selectAll(state.field),
+		});
+		const surroundingFlags = surroundingCells.reduce(
+			(sum, curr) => (curr.state === "flagged" ? (sum += 1) : sum),
+			0,
+		);
+		const targetCellConditional =
+			targetCell?.state === "opened" &&
+			targetCell.marker !== 0 &&
+			surroundingFlags === targetCell.marker;
+
+		surroundingCells.forEach((cell) => {
+			if (targetCellConditional && cell.marker === 9 && cell.state !== "flagged") {
+				dispatch(openCell(cell));
+			}
+
+			if (targetCellConditional && cell.marker !== 9 && cell.state === "closed") {
+				dispatch(openCell(cell));
+			}
+
+			if (surroundingFlags !== targetCell?.marker) {
+				const highlightedCells = highlightSurroundingCells({
+					highlight: action.payload.highlight,
+					surroundingCells,
+				});
+				dispatch(highlightCells(highlightedCells));
+			}
+		});
 	},
 });

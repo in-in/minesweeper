@@ -27,7 +27,7 @@ function buildModule({ mode }: BuildOptions): Configuration["module"] {
 					getCustomTransformers: () => ({
 						before: [
 							isDev && ReactRefreshTypeScript(),
-							isProd && removeJsxAttributes(["data-testid"]),
+							isProd && removeJsxAttributes("data-test"),
 						].filter(Boolean),
 					}),
 				},

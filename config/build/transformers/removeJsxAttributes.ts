@@ -9,14 +9,14 @@ import {
 } from "typescript";
 
 function removeJsxAttributes<T extends Node>(
-	attributes: string[],
+	attributes: string,
 ): TransformerFactory<T> {
 	return (context: TransformationContext): ((node: T) => T) => {
 		const visitor: Visitor = (node: Node): Node | undefined => {
-			if (isJsxAttribute(node) && attributes.includes(node.name.getText())) {
+			const regexp = new RegExp(attributes, "i");
+			if (isJsxAttribute(node) && regexp.test(node.name.getText())) {
 				return undefined;
 			}
-
 			return visitEachChild(node, visitor, context);
 		};
 

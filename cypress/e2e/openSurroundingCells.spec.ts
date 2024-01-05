@@ -43,17 +43,15 @@ describe("openSurroundingCells", () => {
 			replaceStubsInString({
 				text: FINISH_WIN_MESSAGE_TEXT,
 				slot1: formatClockTime(0),
-				slot2: `${1} move${getSuffix(Number(1))}`,
+				slot2: `1 move${getSuffix(Number(1))}`,
 			}),
 		);
 	});
 
 	it("lose with incorrect flag", () => {
-		cy.get("[data-testid='0']+[data-testid='1']:not(:nth-child(10n+1))")
-			.last()
-			.as("cell");
+		cy.get("[data-testpos='8-1']").as("cell");
 		cy.get("@cell").click();
-		cy.get("@cell").prev().rightclick();
+		cy.get("[data-testpos='7-0']").rightclick();
 		cy.get("@cell").trigger("mousedown", { button: 1 });
 		cy.getByTestId("dialog").should("contain", FINISH_LOSS_MESSAGE_TITLE);
 	});
@@ -67,16 +65,11 @@ describe("openSurroundingCells", () => {
 	});
 
 	it("highlight surrounding cells", () => {
-		cy.getByTestId("field").within(() => {
-			cy.get("[data-testid]").eq(0).trigger("mousedown", { button: 1 });
-			cy.get(
-				"[data-testid]:nth-child(2), [data-testid]:nth-child(11), [data-testid]:nth-child(12)",
-			).each(($el) => {
-				cy.wrap($el).should("have.data", "testhighlight");
-			});
-			cy.get("[data-testhighlight]").should("have.length", 3);
-			cy.get("[data-testid]").eq(0).trigger("mouseup", { button: 1 });
-			cy.get("[data-testhighlight]").should("not.exist");
-		});
+		cy.get("[data-testpos='8-1']").as("cell");
+		cy.get("@cell").click();
+		cy.get("@cell").trigger("mousedown", { button: 1 });
+		cy.get("[data-testhighlight]").should("have.length", 8);
+		cy.get("@cell").trigger("mouseup", { button: 1 });
+		cy.get("[data-testhighlight]").should("not.exist");
 	});
 });

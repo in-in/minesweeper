@@ -10,7 +10,7 @@ import type {
 	StatusFinish,
 } from "@/customTypes/customTypes";
 
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAction, createSlice, nanoid } from "@reduxjs/toolkit";
 
 import {
 	fieldAdapter,
@@ -27,8 +27,11 @@ import {
 	SLICE_MAIN,
 } from "@/utils/constants";
 import { buildField } from "@/utils/helpers/buildField";
-import { getSurroundingCells } from "@/utils/helpers/getSurroundingCells";
-import { highlightSurroundingCells } from "@/utils/helpers/highlightSurroundingCells";
+
+export const revealSurroundingCells = createAction<{
+	id: CellId;
+	highlight: boolean;
+}>(`${SLICE_MAIN}/revealSurroundingCells`);
 
 const mainSlice = createSlice({
 	name: SLICE_MAIN,
@@ -92,48 +95,9 @@ const mainSlice = createSlice({
 				.selectAll(state.field)
 				.filter((el) => el.state === "opened").length;
 		},
-		revealSurroundingCells(
-			state,
-			action: PayloadAction<{
-				id: CellId;
-				highlight: boolean;
-			}>,
-		) {
-			const targetCell = state.field.entities[action.payload.id];
-
-			const surroundingCells = getSurroundingCells({
-				id: action.payload.id,
-				limit: state.currentLevel.size,
-				field: fieldAdapterSelectors.selectAll(state.field),
-			});
-
-			const surroundingFlags = surroundingCells.reduce(
-				(sum, curr) => (curr.state === "flagged" ? (sum += 1) : sum),
-				0,
-			);
-
-			surroundingCells.forEach((cell) => {
-				if (
-					targetCell?.state === "opened" &&
-					targetCell.marker !== 0 &&
-					surroundingFlags === targetCell.marker &&
-					cell.marker === 9 &&
-					cell.state !== "flagged"
-				) {
-					state.currentSelectCellId = cell.id;
-					mainSlice.caseReducers.play(state);
-				} else {
-					fieldAdapter.setMany(
-						state.field,
-						highlightSurroundingCells({
-							highlight: action.payload.highlight,
-							surroundingCells,
-						}),
-					);
-				}
-			});
+		highlightCells(state, action: PayloadAction<Cell[]>) {
+			fieldAdapter.setMany(state.field, action.payload);
 		},
-
 		toggleCellFlag(state, action: PayloadAction<CellId>) {
 			const targetCellState = state.field.entities[action.payload]?.state;
 			if (targetCellState === "closed" || targetCellState === "flagged") {
@@ -219,12 +183,12 @@ const mainSlice = createSlice({
 export const {
 	clockTick,
 	displayHiddenMines,
+	highlightCells,
 	openCell,
 	openSurroundingCells,
 	pageLoad,
 	play,
 	restart,
-	revealSurroundingCells,
 	showScoretable,
 	start,
 	switchLevel,

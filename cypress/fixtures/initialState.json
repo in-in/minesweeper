@@ -617,6 +617,7 @@
 		"flagCounter": 10,
 		"isLoad": true,
 		"isScoretableDisplay": false,
+		"isSoundEnabled": false,
 		"minesCounter": 10,
 		"openCellCounter": 0,
 		"scoretable": {

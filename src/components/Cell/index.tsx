@@ -94,6 +94,7 @@ const Cell = ({ cell }: CellProps): React.ReactNode => {
 			data-testhighlight={state === "highlighted" ? true : null}
 			data-testid={marker}
 			data-testopen={state === "opened" ? true : null}
+			data-testpos={id}
 			sx={styles}
 			onClick={() => {
 				handleClick(cell);
