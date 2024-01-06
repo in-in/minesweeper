@@ -1,0 +1,753 @@
+{
+	"main": {
+		"clockTime": 0,
+		"currentLevel": {
+			"name": "easy",
+			"size": 10
+		},
+		"currentSelectCellId": null,
+		"field": {
+			"ids": [
+				"0-0",
+				"0-1",
+				"0-2",
+				"0-3",
+				"0-4",
+				"0-5",
+				"0-6",
+				"0-7",
+				"0-8",
+				"0-9",
+				"1-0",
+				"1-1",
+				"1-2",
+				"1-3",
+				"1-4",
+				"1-5",
+				"1-6",
+				"1-7",
+				"1-8",
+				"1-9",
+				"2-0",
+				"2-1",
+				"2-2",
+				"2-3",
+				"2-4",
+				"2-5",
+				"2-6",
+				"2-7",
+				"2-8",
+				"2-9",
+				"3-0",
+				"3-1",
+				"3-2",
+				"3-3",
+				"3-4",
+				"3-5",
+				"3-6",
+				"3-7",
+				"3-8",
+				"3-9",
+				"4-0",
+				"4-1",
+				"4-2",
+				"4-3",
+				"4-4",
+				"4-5",
+				"4-6",
+				"4-7",
+				"4-8",
+				"4-9",
+				"5-0",
+				"5-1",
+				"5-2",
+				"5-3",
+				"5-4",
+				"5-5",
+				"5-6",
+				"5-7",
+				"5-8",
+				"5-9",
+				"6-0",
+				"6-1",
+				"6-2",
+				"6-3",
+				"6-4",
+				"6-5",
+				"6-6",
+				"6-7",
+				"6-8",
+				"6-9",
+				"7-0",
+				"7-1",
+				"7-2",
+				"7-3",
+				"7-4",
+				"7-5",
+				"7-6",
+				"7-7",
+				"7-8",
+				"7-9",
+				"8-0",
+				"8-1",
+				"8-2",
+				"8-3",
+				"8-4",
+				"8-5",
+				"8-6",
+				"8-7",
+				"8-8",
+				"8-9",
+				"9-0",
+				"9-1",
+				"9-2",
+				"9-3",
+				"9-4",
+				"9-5",
+				"9-6",
+				"9-7",
+				"9-8",
+				"9-9"
+			],
+			"entities": {
+				"0-0": {
+					"id": "0-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-1": {
+					"id": "0-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-2": {
+					"id": "0-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-3": {
+					"id": "0-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-4": {
+					"id": "0-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-5": {
+					"id": "0-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-6": {
+					"id": "0-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-7": {
+					"id": "0-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-8": {
+					"id": "0-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"0-9": {
+					"id": "0-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-0": {
+					"id": "1-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-1": {
+					"id": "1-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-2": {
+					"id": "1-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-3": {
+					"id": "1-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-4": {
+					"id": "1-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-5": {
+					"id": "1-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-6": {
+					"id": "1-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-7": {
+					"id": "1-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-8": {
+					"id": "1-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"1-9": {
+					"id": "1-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-0": {
+					"id": "2-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-1": {
+					"id": "2-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-2": {
+					"id": "2-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-3": {
+					"id": "2-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-4": {
+					"id": "2-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-5": {
+					"id": "2-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-6": {
+					"id": "2-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-7": {
+					"id": "2-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-8": {
+					"id": "2-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"2-9": {
+					"id": "2-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-0": {
+					"id": "3-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-1": {
+					"id": "3-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-2": {
+					"id": "3-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-3": {
+					"id": "3-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-4": {
+					"id": "3-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-5": {
+					"id": "3-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-6": {
+					"id": "3-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-7": {
+					"id": "3-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-8": {
+					"id": "3-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"3-9": {
+					"id": "3-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-0": {
+					"id": "4-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-1": {
+					"id": "4-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-2": {
+					"id": "4-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-3": {
+					"id": "4-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-4": {
+					"id": "4-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-5": {
+					"id": "4-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-6": {
+					"id": "4-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-7": {
+					"id": "4-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-8": {
+					"id": "4-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"4-9": {
+					"id": "4-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-0": {
+					"id": "5-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-1": {
+					"id": "5-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-2": {
+					"id": "5-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-3": {
+					"id": "5-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-4": {
+					"id": "5-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-5": {
+					"id": "5-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-6": {
+					"id": "5-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-7": {
+					"id": "5-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-8": {
+					"id": "5-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"5-9": {
+					"id": "5-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-0": {
+					"id": "6-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-1": {
+					"id": "6-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-2": {
+					"id": "6-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-3": {
+					"id": "6-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-4": {
+					"id": "6-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-5": {
+					"id": "6-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-6": {
+					"id": "6-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-7": {
+					"id": "6-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-8": {
+					"id": "6-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"6-9": {
+					"id": "6-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-0": {
+					"id": "7-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-1": {
+					"id": "7-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-2": {
+					"id": "7-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-3": {
+					"id": "7-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-4": {
+					"id": "7-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-5": {
+					"id": "7-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-6": {
+					"id": "7-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-7": {
+					"id": "7-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-8": {
+					"id": "7-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"7-9": {
+					"id": "7-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-0": {
+					"id": "8-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-1": {
+					"id": "8-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-2": {
+					"id": "8-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-3": {
+					"id": "8-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-4": {
+					"id": "8-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-5": {
+					"id": "8-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-6": {
+					"id": "8-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-7": {
+					"id": "8-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-8": {
+					"id": "8-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"8-9": {
+					"id": "8-9",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-0": {
+					"id": "9-0",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-1": {
+					"id": "9-1",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-2": {
+					"id": "9-2",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-3": {
+					"id": "9-3",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-4": {
+					"id": "9-4",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-5": {
+					"id": "9-5",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-6": {
+					"id": "9-6",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-7": {
+					"id": "9-7",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-8": {
+					"id": "9-8",
+					"marker": 0,
+					"state": "closed"
+				},
+				"9-9": {
+					"id": "9-9",
+					"marker": 0,
+					"state": "closed"
+				}
+			}
+		},
+		"finishMessageText": "You found all mines in _slot1_ and _slot2_!",
+		"finishMessageTitle": "Game Over - You Won!",
+		"flagCounter": 10,
+		"isLoad": true,
+		"isScoretableDisplay": false,
+		"isSoundEnabled": false,
+		"minesCounter": 10,
+		"openCellCounter": 0,
+		"scoretable": {
+			"ids": [
+				"bqfUgQJRNpcbUOfzMMUBd",
+				"ZKCGxYN5gARIjRNK8Q7eI",
+				"kt5oouk-7ZZl2MvZl_pEj",
+				"QVcvRg-NG0uq-CbdZHRvx",
+				"IJTdKjWmUAkEvdMwGHmea",
+				"B97rb2HiIJQ4GOD6nNwtA",
+				"0-XZV_rbiogudJPmEetAv",
+				"ZpkGPwHGV8MUI0S6N_P75",
+				"H5JazUC5soH84Xj7TisHu",
+				"4qRiUt26S-mUxHAbfiNbj",
+				"kFVtt8cfBaj0iusgvR6ax",
+				"LRqjRRDTaEUFGiPl4Esl3",
+				"XvpXdH-52X5gswCol-fJj",
+				"5ExAvMpN4x7vPTS6JRbk8",
+				"Jpd5UHslDdCjNa5ijPLzn"
+			],
+			"entities": {
+				"bqfUgQJRNpcbUOfzMMUBd": {
+					"clockTime": 0,
+					"date": 1704518902910,
+					"id": "bqfUgQJRNpcbUOfzMMUBd",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"ZKCGxYN5gARIjRNK8Q7eI": {
+					"clockTime": 0,
+					"date": 1704518904205,
+					"id": "ZKCGxYN5gARIjRNK8Q7eI",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"kt5oouk-7ZZl2MvZl_pEj": {
+					"clockTime": 0,
+					"date": 1704518906488,
+					"id": "kt5oouk-7ZZl2MvZl_pEj",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"QVcvRg-NG0uq-CbdZHRvx": {
+					"clockTime": 0,
+					"date": 1704518908412,
+					"id": "QVcvRg-NG0uq-CbdZHRvx",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"IJTdKjWmUAkEvdMwGHmea": {
+					"clockTime": 0,
+					"date": 1704518911622,
+					"id": "IJTdKjWmUAkEvdMwGHmea",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"B97rb2HiIJQ4GOD6nNwtA": {
+					"clockTime": 0,
+					"date": 1704518914411,
+					"id": "B97rb2HiIJQ4GOD6nNwtA",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"0-XZV_rbiogudJPmEetAv": {
+					"clockTime": 0,
+					"date": 1704518922442,
+					"id": "0-XZV_rbiogudJPmEetAv",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"ZpkGPwHGV8MUI0S6N_P75": {
+					"clockTime": 0,
+					"date": 1704518924958,
+					"id": "ZpkGPwHGV8MUI0S6N_P75",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"H5JazUC5soH84Xj7TisHu": {
+					"clockTime": 0,
+					"date": 1704518926506,
+					"id": "H5JazUC5soH84Xj7TisHu",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"4qRiUt26S-mUxHAbfiNbj": {
+					"clockTime": 0,
+					"date": 1704518928075,
+					"id": "4qRiUt26S-mUxHAbfiNbj",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"kFVtt8cfBaj0iusgvR6ax": {
+					"clockTime": 0,
+					"date": 1704518929692,
+					"id": "kFVtt8cfBaj0iusgvR6ax",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"LRqjRRDTaEUFGiPl4Esl3": {
+					"clockTime": 0,
+					"date": 1704518931183,
+					"id": "LRqjRRDTaEUFGiPl4Esl3",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"XvpXdH-52X5gswCol-fJj": {
+					"clockTime": 0,
+					"date": 1704519350705,
+					"id": "XvpXdH-52X5gswCol-fJj",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"5ExAvMpN4x7vPTS6JRbk8": {
+					"clockTime": 0,
+					"date": 1704519355891,
+					"id": "5ExAvMpN4x7vPTS6JRbk8",
+					"level": "easy",
+					"turnCounter": 1
+				},
+				"Jpd5UHslDdCjNa5ijPLzn": {
+					"clockTime": 0,
+					"date": 1704519359049,
+					"id": "Jpd5UHslDdCjNa5ijPLzn",
+					"level": "easy",
+					"turnCounter": 1
+				}
+			}
+		},
+		"status": "idle",
+		"theme": "dark",
+		"turnCounter": 0
+	}
+}
