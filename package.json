@@ -19,7 +19,8 @@
 	"browserslist": [
 		"last 2 versions and > 1%",
 		"not dead",
-		"not Samsung > 0"
+		"not samsung > 0",
+		"not op_mob > 0"
 	],
 	"prettier": {
 		"printWidth": 85,
