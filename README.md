@@ -23,11 +23,16 @@
 
 ## How To Use
 
-**Start development server**
-
 ```shell
-npm start
+git clone git@github.com:in-in/minesweeper.git
 ```
+
+| Option 1 | Option 2 |
+| --- | --- |
+| `npm install` | `docker compose build` |
+| `npm start` | `docker compose up` |
+
+open `http://localhost:3030/`
 
 ## Credits
 
