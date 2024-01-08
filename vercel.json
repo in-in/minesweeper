@@ -8,7 +8,7 @@
 			"src": "/.*",
 			"headers": {
 				"cache-control": "max-age=31536000, immutable",
-				"content-security-policy": "default-src https:; connect-src 'self'; manifest-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; script-src 'unsafe-eval' 'self'; style-src 'unsafe-inline' 'self'; base-uri 'self'; frame-ancestors 'none';",
+				"content-security-policy": "default-src https:; connect-src 'self'; manifest-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; script-src 'self' 'self'; style-src 'unsafe-inline' 'self'; base-uri 'self'; frame-ancestors 'none';",
 				"x-content-type-options": "nosniff",
 				"x-frame-options": "DENY",
 				"accept-encoding": "br"
