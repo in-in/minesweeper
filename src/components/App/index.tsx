@@ -1,4 +1,4 @@
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, Link, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 
@@ -40,6 +40,22 @@ const App = (): React.ReactNode => {
 			<CssBaseline enableColorScheme />
 			<div className={st.layout}>
 				<Wrapper />
+				<Typography
+					component="small"
+					sx={{ color: "text.secondary" }}
+					variant="subtitle2"
+				>
+					©&nbsp;
+					<Link
+						href="https://bit.ly/githubprod"
+						rel="noopener noreferrer"
+						target="_blank"
+						underline="hover"
+					>
+						in-in
+					</Link>
+					, 2024
+				</Typography>
 			</div>
 		</ThemeProvider>
 	);
