@@ -104,6 +104,7 @@ const Dashboard = (): React.ReactNode => {
 			/>
 			<Box
 				data-testid="theme-button"
+				id="labelbox"
 				sx={{
 					display: "flex",
 					flexDirection: "column",
@@ -113,7 +114,7 @@ const Dashboard = (): React.ReactNode => {
 				}}
 			>
 				{theme} mode
-				<IconButton onClick={handleClickTheme}>
+				<IconButton aria-labelledby="labelbox" onClick={handleClickTheme}>
 					{theme === "dark" ? <Brightness7 /> : <Brightness4 />}
 				</IconButton>
 			</Box>
